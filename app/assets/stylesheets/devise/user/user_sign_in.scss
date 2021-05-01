@@ -1,0 +1,498 @@
+@mixin sign_in_background_image{
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  max-width: 1920px;
+  min-height: 850px;
+}
+
+
+@mixin text_box{
+  margin: 0 auto;
+  max-width: 280px;
+  min-height: 40px;
+}
+
+@mixin text_field{
+  width: 90%;
+  height: 40px;
+  border: none;
+  border-bottom: 1px dotted #888888;
+  background-color: transparent;
+  color: #fff;
+}
+
+
+
+
+// ------------------------------------------------------------
+@media(min-width: 850px){
+  .background_sign_in_image{
+    @include sign_in_background_image;
+    background-image: image-url('sign_in_background6.jpg');
+    background-position: left 100px bottom 0px;
+    &:before{
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      -webkit-filter: blur(10px);
+      -moz-filter: blur(10px);
+      -o-filter: blur(10px);
+      -ms-filter: blur(10px);
+      filter: blur(10px) opacity(100%) brightness(0.4);
+      background: inherit;
+    }
+    .sign_in_box{
+      max-width: 600px;
+      background-color: transparent;
+      border: 1px dotted #fff;
+      margin: 100px auto 100px;
+      display: flex;
+      &__form{
+        width: 100%;
+        padding: 30px 45px 0px;
+        text-align: center;
+        &__text{
+          width: 55%;
+          padding-bottom: 10px;
+          text-align: center;
+          margin: 30px auto 0px;
+          border-bottom: 1px solid #fff;
+          &--title{
+            color: #fff;
+            font-size: 23px;
+            font-weight: bold;
+          }
+        }
+        &__field{
+          padding: 40px 50px;
+          position: relative;
+          .email_box{
+            @include text_box;
+            &__field{
+              @include text_field;
+              text-indent: 0.1em;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                text-indent: 0.2em;
+                border: none;
+                border-bottom: solid 1px #ff9800;
+              }
+            }
+          }
+          .password_box{
+            @include text_box;
+            margin-top: 25px;
+            &__field{
+              @include text_field;
+              text-indent: 0.1em;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                text-indent: 0.2em;
+                border-bottom: solid 1px #ff9800;
+              }
+            }
+          }
+          .password_confirmation_box{
+            @include text_box;
+            margin-top: 25px;
+            &__field{
+              @include text_field;
+              text-indent: 0.1em;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                text-indent: 0.2em;
+                border-bottom: solid 1px #ff9800;
+              }
+            }
+          }
+          .user_remember_me{
+            width: 50%;
+            margin: 30px auto 0px;
+            text-align: center;
+            &__check{
+              margin-right: 7px;
+            }
+            &__label{
+              color: #eee;
+              font-size: 14px;
+              &:hover{
+                cursor: pointer;
+                opacity: 70%;
+              }
+            }
+          }
+          .reset_password_btn{
+            width: 50%;
+            margin: 15px auto 0px;
+            text-align: center;
+            &:hover{
+              opacity: 70%;
+              cursor: pointer;
+            }
+            .fas.fa-angle-right{
+              color: #eee;
+              font-size: 14px;
+              margin-right: 10px;
+              margin-left: 10px;
+              margin-top: 3px;
+            }
+            &__link{
+              color: #eee;
+              font-size: 14px;
+              text-decoration: none;
+            }
+          }
+          .submit_user_sign_in_box{
+            max-width: 180px;
+            margin: 40px auto 0px;
+            text-align: center;
+            height: 35px;
+            line-height: 30px;
+            &__btn{
+              width: 100%;
+              height: 35px;
+              border: 1px solid #ff9800;
+              border-radius: 20px;
+              background: #ff9800;
+              background-position: right bottom;
+              transition: all .6s ease-out;
+              font-size: 12px;
+              color: #fff;
+              .fas.fa-angle-right{
+                font-size: 13px;
+                margin-right: 8px;
+                margin-top: 5px;
+              }
+              &__text{
+                display: inline-block;
+                margin-right: 6px;
+                font-weight: bold;
+              }
+              &:focus{
+                outline: none;
+              }
+            }
+          }
+        }
+        .sns_login_border{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 80%;
+          margin: 40px auto 0px;
+          font-size: 14px;
+          &__left{
+            color: #888888;
+            margin-right: 10px;
+          }
+          &__name{
+            color: #888888;
+          }
+          &__right{
+            color: #888888;
+            margin-left: 10px;
+          }
+        }
+        &__icons{
+          margin: 30px auto 0px;
+          width: 50%;
+          &__facebook{
+            width: 100%;
+            height: 40px;
+            background: #1177ee;
+            border: 1px solid #1177ee;
+            text-align: left;
+            &--link{
+              display: flex;
+              align-items: center;
+              text-decoration: none;
+              .facebook_icon{
+                display: block;
+                width: 35px;
+                margin-left: 17px;
+              }
+              .facebook_text{
+                display: block;
+                text-decoration: none;
+                color: #fff;
+                font-weight: bold;
+                margin-left: 15px;
+                margin-top: 4px;
+              }
+            }
+          }
+          &__google{
+            margin-top: 20px;
+            width: 100%;
+            height: 40px;
+            background: #cccccc;
+            border: 1px solid #cccccc;
+            &--link{
+              display: flex;
+              text-decoration: none;
+              .google_icon{
+                display: inline-block;
+                width: 30px;
+                margin-left: 20px;
+                margin-top: 5px;
+              }
+              .google_text{
+                display: inline-block;
+                vertical-align: middle;
+                text-decoration: none;
+                color: #fff;
+                font-weight: bold;
+                margin-left: 24px;
+                margin-top: 7px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------------------------------------
+
+@media(max-width: 849px){
+  .background_sign_in_image{
+    @include sign_in_background_image;
+    background-image: image-url('sign_in_background6.jpg');
+    background-position: center;
+    &:before{
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      -webkit-filter: blur(10px);
+      -moz-filter: blur(10px);
+      -o-filter: blur(10px);
+      -ms-filter: blur(10px);
+      filter: blur(10px) opacity(100%) brightness(0.4);
+      background: inherit;
+    }
+    .sign_in_box{
+      max-width: 600px;
+      background-color: transparent;
+      margin: 60px auto 100px;
+      &__form{
+        width: 100%;
+        padding: 20px 20px 0px;
+        text-align: center;
+        &__text{
+          width: 85%;
+          padding-bottom: 10px;
+          text-align: center;
+          margin: 30px auto 0px;
+          &--title{
+            color: #fff;
+            font-size: 21px;
+            font-weight: bold;
+          }
+        }
+        &__field{
+          padding: 25px 30px;
+          position: relative;
+          .email_box{
+            @include text_box;
+            &__field{
+              @include text_field;
+              text-indent: 0.1em;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                text-indent: 0.2em;
+                border: none;
+                border-bottom: solid 1px #ff9800;
+              }
+            }
+          }
+          .password_box{
+            @include text_box;
+            margin-top: 25px;
+            &__field{
+              @include text_field;
+              text-indent: 0.1em;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                text-indent: 0.2em;
+                border-bottom: solid 1px #ff9800;
+              }
+            }
+          }
+          .password_confirmation_box{
+            @include text_box;
+            margin-top: 25px;
+            &__field{
+              @include text_field;
+              text-indent: 0.1em;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                text-indent: 0.2em;
+                border-bottom: solid 1px #ff9800;
+              }
+            }
+          }
+          .user_remember_me{
+            width: 100%;
+            margin: 30px 0px 0px;
+            text-align: center;
+            &__check{
+              margin-right: 4px;
+            }
+            &__label{
+              color: #fff;
+              font-size: 14px;
+            }
+          }
+          .reset_password_btn{
+            width: 100%;
+            margin: 20px 0px 0px;
+            text-align: center;
+            &__link{
+              color: #fff;
+              font-size: 14px;
+              text-decoration: none;
+            }
+          }
+          .submit_user_sign_in_box{
+            max-width: 180px;
+            margin: 30px auto 0px;
+            text-align: center;
+            height: 35px;
+            line-height: 30px;
+            &__btn{
+              width: 100%;
+              height: 35px;
+              border: 1px solid #ff9800;
+              border-radius: 20px;
+              background: #ff9800;
+              background-position: right bottom;
+              transition: all .6s ease-out;
+              font-size: 12px;
+              color: #fff;
+              .fas.fa-angle-right{
+                font-size: 13px;
+                margin-right: 8px;
+                margin-top: 5px;
+              }
+              &__text{
+                display: inline-block;
+                margin-right: 6px;
+                font-weight: bold;
+              }
+              &:focus{
+                outline: none;
+              }
+            }
+          }
+        }
+        .sns_login_border{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 80%;
+          margin: 60px auto 0px;
+          font-size: 14px;
+          &__left{
+            color: #888888;
+            margin-right: 10px;
+          }
+          &__name{
+            color: #888888;
+          }
+          &__right{
+            color: #888888;
+            margin-left: 10px;
+          }
+        }
+        &__icons{
+          margin: 35px auto 0px;
+          max-width: 180px;
+          &__facebook{
+            min-width: 50%;
+            height: 35px;
+            background: #1177ee;
+            border: 1px solid #1177ee;
+            &--link{
+              display: flex;
+              align-items: center;
+              text-decoration: none;
+              .facebook_icon{
+                display: block;
+                max-width: 30px;
+                margin-left: 14px;
+              }
+              .facebook_text{
+                display: block;
+                max-width: 30px;
+                text-decoration: none;
+                color: #fff;
+                font-weight: bold;
+                margin-left: 17px;
+                margin-top: 4px;
+                font-size: 15px;
+                text-align: center;
+              }
+            }
+          }
+          &__google{
+            margin-top: 25px;
+            margin-left: 45;
+            min-width: 50%;
+            height: 35px;
+            background: #cccccc;
+            border: 1px solid #cccccc;
+            &--link{
+              display: flex;
+              text-decoration: none;
+              .google_icon{
+                display: inline-block;
+                width: 25px;
+                margin-left: 18px;
+                margin-top: 5px;
+              }
+              .google_text{
+                font-size: 15px;
+                display: inline-block;
+                vertical-align: middle;
+                text-decoration: none;
+                color: #fff;
+                font-weight: bold;
+                margin-left: 27px;
+                margin-top: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .alert{
+    font-size: 14px;
+    line-height: 30px;
+    height: 30px;
+  }
+  
+  .notice{
+    font-size: 14px;
+    line-height: 30px;
+    height: 30px;
+  }
+}
+

@@ -1,0 +1,53 @@
+.background_shop
+  .background_registration_box
+    %section.shop_registration
+      %span.shop_registration__title 店舗情報入力
+      %span.shop_registration__account 〜アカウント登録〜
+    %section.step_box
+      .step_box__one
+        %p.step_box__one--text アカウント
+        .step_box__one--circle
+      .step_box__border_one
+      .step_box__two
+        %p.step_box__two--text プロフィール
+        .step_box__two--circle
+      .step_box__border_two
+      .step_box__three
+        %p.step_box__three--text 登録完了
+        .step_box__three--circle
+    %section.shop_registration_box
+      = form_with model: @shop, url: shop_registration_path, class: 'shop_registration_box__form' do |form|
+        .shop_registration_box__form__name
+          = form.label :name, '店舗名', class: 'shop_registration_box__form__name--label', for: 'name'
+          %span.shop_registration_box__form__name--require 必須
+          = form.text_field :name, class: 'shop_registration_box__form__name--text', placeholder: ' 例) ケンタッキーフライドチキン〇〇店', id: 'name', autofocus: true
+          = render partial: "error_messages_shop_new_registration", locals: {shop: @shop, column: "name"}
+        .shop_registration_box__form__admin
+          = form.label :admin, '管理者名', class: 'shop_registration_box__form__admin--label', for: 'admin'
+          %span.shop_registration_box__form__admin--require 必須
+          %span.shop_registration_box__form__admin--annotation ※ 性と名の間は半角スペースを入れてください
+          = form.text_field :admin, class: 'shop_registration_box__form__admin--text', placeholder: '例) 九州　太郎', id: 'admin'
+          = render partial: "error_messages_shop_new_registration", locals: {shop: @shop, column: "admin"}
+        .shop_registration_box__form__email
+          = form.label :email, 'メールアドレス', class: "shop_registration_box__form__email--label", for: 'email'
+          %span.shop_registration_box__form__email--require 必須
+          = form.text_field :email, class: "shop_registration_box__form__email--text", placeholder: "@を含むメールアドレス", id: 'email'
+          = render partial: "error_messages_shop_new_registration", locals: {shop:@shop, column: "email"}
+        .shop_registration_box__form__phone
+          = form.label :phone_number, '電話番号', class: 'shop_registration_box__form__phone--label', for: 'phone_number'
+          %span.shop_registration_box__form__phone--require 必須
+          = form.text_field :phone_number, class: 'shop_registration_box__form__phone--text', placeholder: ' 例) 0928224376', id: 'phone_number'
+          = render partial: "error_messages_shop_new_registration", locals: {shop: @shop, column: "phone_number"}
+        .shop_registration_box__form__password
+          = form.label :password, 'パスワード', class: 'shop_registration_box__form__password--label', for: 'password'
+          %span.shop_registration_box__form__password--require 必須
+          = form.password_field :password, class: 'shop_registration_box__form__password--text', placeholder: '７文字以上半角英数', id: 'password'
+          = render partial: "error_messages_shop_new_registration", locals: {shop: @shop, column: "password"}
+        .shop_registration_box__form__confirmation
+          = form.label :password_confirmation, 'パスワード（確認用）', class: 'shop_registration_box__form__confirmation--label', for: 'password_confirmation'
+          .shop_registration_box__form__confirmation--require 必須
+          = form.password_field :password_confirmation, class: 'shop_registration_box__form__confirmation--text', placeholder: '同じパスワードを入力', id: 'confirmation'
+          = render partial: "error_messages_shop_new_registration", locals: {shop: @shop, column: "password_confirmation"}
+        %button{type: "submit", class: 'shop_registration_box__form__submit_btn'}
+          %i.fas.fa-angle-right
+          %span.shop_registration_box__form__submit_btn--text プロフィール登録へ

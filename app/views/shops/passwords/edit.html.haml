@@ -1,0 +1,21 @@
+.background_reset_password_edit
+  .reset_password_edit
+    .reset_password_edit__title
+      .reset_password_edit__title--text Food_Share_App
+      .reset_password_edit__title--sub 〜 パスワードの再設定 〜
+    .reset_password_edit__box
+      = form_with model: @shop, url: v1_shop_reset_password_path(@shop), html: { method: :patch }, class: 'reset_password_edit__box__form' do |form|
+        = form.hidden_field :reset_password_token
+        .reset_password_edit__box__form__new_password
+          = form.label :password, "新しいパスワード", class: "reset_password_edit__box__form__new_password--label", for: "new_password"
+          = form.password_field :password, autofocus: "true", autocomplete: "off", class: "reset_password_edit__box__form__new_password--text", id: "new_password", placeholder: "例）７文字以上の半角英数字で入力してください"
+          = render partial: 'shops/passwords/error_messages_edit_password', locals: {shop: @shop, column: 'password'}
+        .reset_password_edit__box__form__new_password_confirmation
+          = form.label :password_confirmation, "新しいパスワード(確認用)", class: "reset_password_edit__box__form__new_password_confirmation--label", for: "new_password_confirmation"
+          = form.password_field :password_confirmation, autocomplete: "off", class: "reset_password_edit__box__form__new_password_confirmation--text", id: "new_password_confirmation", placeholder: "例）上記と同じパスワードを入力してください"
+          = render partial: 'shops/passwords/error_messages_edit_password', locals: {shop: @shop, column: 'password_confirmation'}
+        %button{type: "submit", class: "reset_password_edit__box__form__submit"}
+          %i.fas.fa-angle-right
+          %span.reset_password_edit__box__form__submit--text 変更する
+  .reset_password_tab
+    %i.fas.fa-bars

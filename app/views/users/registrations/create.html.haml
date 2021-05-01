@@ -1,0 +1,47 @@
+.background_food
+  %section.step_box_fourth
+    .step_box_fourth__one
+      %p.step_box_fourth__one--text アカウント
+      %p.step_box_fourth__one--step (STEP1)
+    .step_box_fourth__border
+    .step_box_fourth__two
+      %p.step_box_fourth__two--text プロフィール
+      %p.step_box_fourth__two--step (STEP2)
+    .step_box_fourth__border
+    .step_box_fourth__three
+      %p.step_box_fourth__three--text アドレス
+      %p.step_box_fourth__three--step (STEP3)
+    .step_box_fourth__border
+    .step_box_fourth__four
+      %p.step_box_fourth__four--text 登録完了
+      %p.step_box_fourth__four--step (STEP4)
+  %section.registration_gest
+    = icon("far", "check-circle")
+    %span.registration_gest__text 
+      = "#{@user.nickname.truncate(9, omission: '...')}様 ご登録ありがとうございました"
+  %section.registration_done
+    .registration_done__notification
+      %span.welcome_text  Food_Share_Appへようこそ！!
+    .registration_done__info
+      = icon("fas", "angle-down")
+      %span.registration_done__info--text 以下の中から行きたいページをクリックしてください
+  %section.product_list_page
+    = link_to root_path, class: 'product_list_page__link' do
+      .product_list_page__link__box
+        = icon("fas", "angle-right")
+        %span.product_list_page__link__box--text 商品一覧へ
+  %section.top_page
+    = link_to root_path, class: 'top_page__link' do
+      .top_page__link__box
+        = icon("fas", "angle-right")
+        %span.top_page__link__box--text トップページへ
+  %section.credit_card_page
+    = link_to root_path, class: 'credit_card_page__link' do
+      .credit_card_page__link__box
+        = icon("fas", "angle-right")
+        %span.credit_card_page__link__box--text カード登録へ
+  %section.user_my_page
+    = link_to root_path, class: 'user_my_page__link' do
+      .user_my_page__link__box
+        = icon("fas", "angle-right")
+        %span.user_my_page__link__box--text マイページへ

@@ -1,0 +1,62 @@
+ja:
+  activerecord:
+    models:
+      user:
+      profile:
+      address:
+      shop:
+      shop_detail:
+    attributes:
+      user:
+        nickname: ニックネーム
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用
+      profile:
+        family_name: 姓
+        last_name: 名
+        j_family_name: 姓（カナ）
+        j_last_name: 名（カナ）
+        birthday: 生年月日
+        phone_number: 電話番号
+      address:
+        postal_code: 郵便番号
+        prefecture: 都道府県
+        city: 市区町村
+        address_number: 番地
+        building: 建物名
+      shop:
+        name: 店舗名
+        admin: 管理者
+        email: メールアドレス
+        phone_number: 電話番号
+        password: パスワード
+        password_confirmation: 確認用パスワード
+      shop_detail:
+        genre: ジャンル
+        location: 所在
+        start_time: 営業開始時間
+        end_time: 営業終了時間
+    errors:
+      messages:
+        invalid: "が正しくありません"
+        exclusion: "を選択してください"
+  enums:
+    shop_detail:
+      genre:
+        japanese_food: 日本料理
+        noodles: ラーメン・麺類
+        fishes: 寿司・魚料理
+        local_cuisine: 郷土料理
+        chinese_food: 中華料理
+        french: フレンチ
+        italian: イタリアン
+        meats: 焼肉・肉料理
+        izakaya: 居酒屋・バー
+        skewers: 焼鳥・串料理
+        fast_food: ファミレス・ファーストフード
+        casserole: 鍋料理
+        viking: ビュッフェ・バイキング
+        bread: パン類
+        cafe: カフェ・スイーツ
+        other: その他

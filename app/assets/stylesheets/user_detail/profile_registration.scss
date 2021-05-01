@@ -1,0 +1,725 @@
+@mixin select{
+  background-color: rgba(0,0,0,0);
+  height: 50px;
+  border: 1px solid #888888;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+@mixin profile_title_box{
+  max-width: 340px;
+  height: 45px;
+  border-bottom: 1px solid #eee;
+  line-height: 40px;
+  background-color: rgba(0,0,0,0);
+  margin: 20px auto 0px;
+  padding: 0px 10px 10px 10px;
+  text-align: center;
+}
+
+@mixin profile_title_box_text{
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+@mixin profile_title_box_detail{
+  font-size: 12px;
+  color: #fff;
+  margin-left: 15px;
+}
+
+// ---------------------------------------------------
+
+@media(min-width: 650px){
+  .background_food{
+    @include registration_background;
+    &:before{
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      -webkit-filter: blur(7px);
+      -moz-filter: blur(7px);
+      filter: blur(7px) opacity(100%) brightness(0.2);
+      background: inherit;
+    }
+    .profile_input_box{
+      max-width: 600px;
+      border: 1px dotted #fff;
+      padding: 40px 40px 60px;
+      margin: 90px auto 0px;
+      .profile_title{
+        @include profile_title_box;
+        &__text{
+          @include profile_title_box_text;
+          font-size: 21px;
+        }
+        &__detail{
+          @include profile_title_box_detail;
+          font-size: 16px;
+        }
+      }
+      .step_box_profile{
+        @include step_box;
+        max-width: 350px;
+        &__one{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_one{
+          border: 1px solid #fff;
+          width: 25px;
+          height: 0px;
+        }
+        &__two{
+          &--text{
+            font-size: 8px;
+            color: #ff9800;
+          }
+          &--circle{
+            background-color: #ff9800;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_two{
+          width: 25px;
+          height: 0px;
+          border: 1px solid #fff;
+        }
+        &__three{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_three{
+          width: 25px;
+          height: 0px;
+          border: 1px solid #fff;
+        }
+        &__four{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+      }
+      .registration_box{
+        @include registration_box;
+        padding: 0px;
+        &__title{
+          &__form{
+            width: 100%;
+            position: relative;
+            &__profile{
+              padding: 0px 30px 30px;
+              .family_last_name_box{
+                display: flex;
+                margin-top: 30px;
+                width: 100%;
+                .family_name_box{
+                  width: 70%;
+                  margin-left: 15px;
+                  &__label{
+                    @include label;
+                  }
+                  &__text_field{
+                    @include field;
+                    width: 100%;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border-bottom: 1px solid #ff9800;
+                    }
+                  }
+                }
+                .last_name_box{
+                  width: 70%;
+                  margin-left: 15px;
+                  &__label{
+                    @include label;
+                  }
+                  &__text_field{
+                    @include field;
+                    width: 100%;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border-bottom: 1px solid #ff9800;
+                    }
+                  }
+                }
+              }
+              .j_family_last_name_box{
+                display: flex;
+                margin-top: 30px;
+                width: 100%;
+                .j_family_name_box{
+                  width: 70%;
+                  margin-left: 15px;
+                  &__label{
+                    @include label;
+                  }
+                  &__text_field{
+                    @include field;
+                    width: 100%;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border-bottom: 1px solid #ff9800;
+                    }
+                  }
+                }
+                .j_last_name_box{
+                  width: 70%;
+                  margin-left: 15px;
+                  &__label{
+                    @include label;
+                  }
+                  &__text_field{
+                    @include field;
+                    width: 100%;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border-bottom: 1px solid #ff9800;
+                    }
+                  }
+                }
+              }
+              .sex_box{
+                margin-top: 20px;
+                color: #fff;
+                width: 100%;
+                margin-left: 15px;
+                &__label{
+                  @include label;
+                }
+                &__man{
+                  margin-top: 15px;
+                  margin-left: 3px;
+                  &--radio_btn{
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                  &--label{
+                    margin-left: 5px;
+                    &:hover{
+                      cursor: pointer;
+                      color: #ff9800;
+                    }
+                  }
+                }
+                &__woman{
+                  margin-top: 10px;
+                  margin-left: 3px;
+                  &--radio_btn{
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                  &--label{
+                    margin-left: 5px;
+                    &:hover{
+                      cursor: pointer;
+                      color: #ff9800;
+                    }
+                  }
+                }
+              }
+              .birthday_box{
+                margin-top: 30px;
+                width: 100%;
+                &__label{
+                  @include label;
+                  margin-left: 19px;
+                }
+                &__select{
+                  margin-top: 20px;
+                  margin-left: 10px;
+                  color: #fff;
+                  .year{
+                    @include select;
+                    width: 30%;
+                    margin-right: 3px;
+                    padding: 5px;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border: 1px solid #ff9800;
+                      background-color: rgba(0,0,0,0);
+                    }
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                  .month{
+                    @include select;
+                    width: 20%;
+                    margin-left: 10px;
+                    margin-right: 3px;
+                    padding: 5px;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border: 1px solid #ff9800;
+                      background-color: rgba(0,0,0,0);
+                    }
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                  .day{
+                    @include select;
+                    width: 20%;
+                    margin-left: 10px;
+                    margin-right: 3px;
+                    padding: 5px;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border: 1px solid #ff9800;
+                      background-color: rgba(0,0,0,0);
+                    }
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+              .phone_number_box{
+                margin-top: 30px;
+                width: 100%;
+                &__label{
+                  @include label;
+                  margin-left: 15px;
+                }
+                &__text_field{
+                  @include field;
+                  width: 100%;
+                  margin-left: 15px;
+                  &:focus{
+                    outline: 0;
+                    box-shadow: none;
+                    border-bottom: 1px solid #ff9800;
+                    background-color: rgba(0,0,0,0);
+                  }
+                }
+              }
+              .submit_box{
+                display: block;
+                height: 40px;
+                line-height: 40px;
+                width: 50%;
+                background-color: transparent;
+                border: solid 1px #fff;
+                border-radius: 20px;
+                margin: 55px auto 0px;
+                text-align: center;
+                &:focus{
+                  outline: none;
+                }
+                &:hover{
+                  cursor: pointer;
+                }
+                .fas.fa-angle-right{
+                  font-size: 13px;
+                  color: #fff;
+                  margin-right: 3px;
+                }
+                &__btn{
+                  font-size: 12px;
+                  font-weight: bold;
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+// -------------------------------------------------------------
+@media(max-width: 649px){
+  .background_food{
+    @include registration_background;
+    min-height: 900px;
+    &:before{
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      -webkit-filter: blur(7px);
+      -moz-filter: blur(7px);
+      filter: blur(7px) opacity(100%) brightness(0.2);
+      background: inherit;
+    }
+    .profile_input_box{
+      margin: 95px auto 0px;
+      width: 100%;
+      .profile_title{
+        @include profile_title_box;
+        max-width: 290px;
+        margin: 0px auto;
+        &__text{
+          @include profile_title_box_text;
+          font-size: 18px;
+        }
+        &__detail{
+          @include profile_title_box_detail;
+          font-size: 12px;
+        }
+      }
+      .step_box_profile{
+        @include step_box;
+        max-width: 320px;
+        padding: 5px;
+        font-size: 7px;
+        &__one{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_one{
+          border: 1px solid #fff;
+          width: 25px;
+          height: 0px;
+        }
+        &__two{
+          &--text{
+            font-size: 8px;
+            color: #ff9800;
+          }
+          &--circle{
+            background-color: #ff9800;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_two{
+          width: 25px;
+          height: 0px;
+          border: 1px solid #fff;
+        }
+        &__three{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_three{
+          width: 25px;
+          height: 0px;
+          border: 1px solid #fff;
+        }
+        &__four{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+      }
+      .registration_box{
+        @include registration_box;
+        padding: 0px;
+        &__title{
+          &__form{
+            width: 100%;
+            position: relative;
+            &__profile{
+              padding: 0px 15px 15px;
+              .family_last_name_box{
+                display: flex;
+                margin-top: 30px;
+                width: 100%;
+                .family_name_box{
+                  width: 70%;
+                  margin-left: 15px;
+                  &__label{
+                    @include label;
+                  }
+                  &__text_field{
+                    @include field;
+                    width: 100%;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border-bottom: 1px solid #ff9800;
+                    }
+                  }
+                }
+                .last_name_box{
+                  width: 70%;
+                  margin-left: 15px;
+                  &__label{
+                    @include label;
+                  }
+                  &__text_field{
+                    @include field;
+                    width: 100%;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border-bottom: 1px solid #ff9800;
+                    }
+                  }
+                }
+              }
+              .j_family_last_name_box{
+                display: flex;
+                margin-top: 30px;
+                width: 100%;
+                .j_family_name_box{
+                  width: 70%;
+                  margin-left: 15px;
+                  &__label{
+                    @include label;
+                  }
+                  &__text_field{
+                    @include field;
+                    width: 100%;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border-bottom: 1px solid #ff9800;
+                    }
+                  }
+                }
+                .j_last_name_box{
+                  width: 70%;
+                  margin-left: 15px;
+                  &__label{
+                    @include label;
+                  }
+                  &__text_field{
+                    @include field;
+                    width: 100%;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border-bottom: 1px solid #ff9800;
+                    }
+                  }
+                }
+              }
+              .sex_box{
+                margin-top: 20px;
+                color: #fff;
+                width: 100%;
+                margin-left: 15px;
+                &__label{
+                  @include label;
+                }
+                &__man{
+                  margin-top: 15px;
+                  margin-left: 3px;
+                  &--radio_btn{
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                  &--label{
+                    margin-left: 5px;
+                    &:hover{
+                      cursor: pointer;
+                      color: #ff9800;
+                    }
+                  }
+                }
+                &__woman{
+                  margin-top: 10px;
+                  margin-left: 3px;
+                  &--radio_btn{
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                  &--label{
+                    margin-left: 5px;
+                    &:hover{
+                      cursor: pointer;
+                      color: #ff9800;
+                    }
+                  }
+                }
+              }
+              .birthday_box{
+                margin-top: 30px;
+                width: 100%;
+                &__label{
+                  @include label;
+                  margin-left: 19px;
+                }
+                &__select{
+                  margin-top: 20px;
+                  margin-left: 5px;
+                  color: #fff;
+                  .year{
+                    @include select;
+                    width: 28%;
+                    margin-right: 3px;
+                    padding: 5px;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border: 1px solid #ff9800;
+                      background-color: rgba(0,0,0,0);
+                    }
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                  .month{
+                    @include select;
+                    width: 18%;
+                    margin-left: 10px;
+                    margin-right: 3px;
+                    padding: 5px;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border: 1px solid #ff9800;
+                      background-color: rgba(0,0,0,0);
+                    }
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                  .day{
+                    @include select;
+                    width: 18%;
+                    margin-left: 10px;
+                    margin-right: 3px;
+                    padding: 5px;
+                    &:focus{
+                      outline: 0;
+                      box-shadow: none;
+                      border: 1px solid #ff9800;
+                      background-color: rgba(0,0,0,0);
+                    }
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+              .phone_number_box{
+                margin-top: 30px;
+                width: 100%;
+                &__label{
+                  @include label;
+                  margin-left: 15px;
+                }
+                &__text_field{
+                  @include field;
+                  width: 100%;
+                  margin-left: 15px;
+                  &:focus{
+                    outline: 0;
+                    box-shadow: none;
+                    border-bottom: 1px solid #ff9800;
+                    background-color: rgba(0,0,0,0);
+                  }
+                }
+              }
+              .submit_box{
+                display: block;
+                height: 40px;
+                line-height: 40px;
+                width: 58%;
+                background-color: transparent;
+                border: solid 1px #fff;
+                border-radius: 20px;
+                margin: 60px auto 0px;
+                text-align: center;
+                &:focus{
+                  outline: none;
+                }
+                &:hover{
+                  cursor: pointer;
+                }
+                .fas.fa-angle-right{
+                  font-size: 13px;
+                  color: #fff;
+                  margin-right: 3px;
+                }
+                &__btn{
+                  font-size: 12px;
+                  font-weight: bold;
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

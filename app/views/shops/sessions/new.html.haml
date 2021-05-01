@@ -1,0 +1,22 @@
+.background_shop_sign_in_image
+  .shop_sign_in
+    %section.shop_sign_in__box
+      .shop_sign_in__box__text
+        %span.shop_sign_in__box__text--title サインイン（店舗用）
+      = form_with model: @shop, url: shop_session_path, class: "shop_sign_in__box__form" do |f|
+        .shop_sign_in__box__form__name
+          = f.text_field :name, class: "shop_sign_in__box__form__name--text", id: "name", placeholder: "ShopName", autofocus: true, autocomplete: 'off'
+        .shop_sign_in__box__form__password
+          = f.password_field :password, class: "shop_sign_in__box__form__password--text", id: "password", placeholder: "Password", autocomplete: 'off'
+        .shop_sign_in__box__form__password_confirmation
+          = f.password_field :password_confirmation, class: "shop_sign_in__box__form__password_confirmation--text", id: "password_confirmation", placeholder: "PasswordConfirmation", autocomplete: 'off'
+        - if devise_mapping.rememberable?
+          .shop_sign_in__box__form__permanent
+            = f.check_box :remember_me, class: "shop_sign_in__box__form__permanent--check", id: "check_btn"
+            = f.label :remember_me, "ログインしたままにする", class: "shop_sign_in__box__form__permanent--label", for: "check_btn"
+        .shop_sign_in__box__form__reset_password
+          = link_to "Q. パスワードを忘れた場合", new_shop_password_path, class: "shop_sign_in__box__form__reset_password--link"
+        .submit_shop_sign_in_box
+          %button{type: "submit", class: "submit_shop_sign_in_box__btn"}
+            %i.fas.fa-angle-right
+            %span.submit_shop_sign_in_box__btn--text ログイン

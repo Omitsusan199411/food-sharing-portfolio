@@ -1,0 +1,712 @@
+@mixin any{
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  background-color: #aaaaaa;
+  border-radius: 2px;
+  padding: 2px 4px;
+  vertical-align: middle;
+  width: 35px;
+  margin-bottom: 3px;
+}
+
+@mixin text_area{
+  display: block;
+  height: 100px;
+  width: 100%;
+  background-color: transparent;
+  margin-top: 7px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  text-indent: 0.5em;
+  line-height: 2em;
+  padding: 0px 8px;
+  &::placeholder{
+    color: #d3d3d3;
+  }
+}
+
+@mixin short_select{
+  display: inline-block;
+  height: 50px;
+  width: 18%;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  padding: 3px;
+  text-indent: 0.8em;
+  line-height: 1em;
+  margin-top: 7px;
+  &::placeholder{
+    color: #d3d3d3;
+  }
+}
+
+// --------------------------------------------------------------------------
+@media (min-width: 650px){
+  .background_shop_detail{
+    @include background_shop_image;
+    background-image: image-url('background_shop.jpg');
+    &:before{
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      -webkit-filter: blur(10px);
+      -moz-filter: blur(10px);
+      -ms-filter: blur(10px);
+      filter: blur(10px) opacity(100%) brightness(0.4);
+      background: inherit;
+    }
+    .background_registration_box_detail{
+      max-width: 600px;
+      border: 1px dotted #fff;
+      padding: 40px 40px 70px;
+      margin: 100px auto 200px;
+      .shop_detail_registration{
+        @include customer_registration;
+        max-width: 350px;
+        &__title{
+          @include registration_info;
+          font-size: 22px;
+        }
+        &__account{
+          @include registration_info_account;
+          font-size: 16px;
+        }
+      }
+      .step_box_shop_detail{
+        @include step_box;
+        position: relative;
+        &__one{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_one{
+          border: 1px solid #fff;
+          width: 25px;
+          height: 0px;
+        }
+        &__two{
+          &--text{
+            font-size: 8px;
+            color: #008080;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+            background-color: #008080;
+          }
+        }
+        &__border_two{
+          width: 25px;
+          height: 0px;
+          border: 1px solid #fff;
+        }
+        &__three{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_three{
+          width: 25px;
+          height: 0px;
+          border: 1px solid #fff;
+        }
+        &__four{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+      }
+      .shop_detail_registration_box{
+        @include registration_box;
+        &__form{
+          width: 80%;
+          margin: 0 auto;
+          padding: 0px 10px;
+          position: relative;
+          &__introduction{
+            display: block;
+            margin-top: 30px;
+            &--label{
+              @include user_label;
+            }
+            &--any{
+              @include require;
+              background-color:#eee;
+              color: #888888;
+            }
+            &--area{
+              @include text_area;
+              @include placeholder(#757575);
+              width: 100%;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border: 1px solid #008080;
+              }
+            }
+          }
+          &__genre{
+            display: block;
+            margin-top: 30px;
+            &--label{
+              @include user_label;
+            }
+            &--require{
+              @include require;
+              background-color: #008080;
+            }
+            &--select{
+              @include short_select;
+              width: 80%;
+              display: block;
+              font-size: 14px;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border: 1px solid #008080;
+              }
+            }
+          }
+          &__location{
+            display: block;
+            margin-top: 30px;
+            &--label{
+              @include user_label;
+            }
+            &--require{
+              @include require;
+              background-color: #008080;
+            }
+            &--text{
+              @include field;
+              width: 100%;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__start_time{
+            display: block;
+            margin-top: 30px;
+            &--label{
+              @include user_label;
+            }
+            &--require{
+              @include require;
+              background-color: #008080;
+            }
+            &--block{
+              width: 100%;
+              color: #fff;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+              &--select{
+                @include short_select;
+                width: 30%;
+                margin-right: 3px;
+                margin-left: 3px;
+                &:focus{
+                  outline: none;
+                }
+                &:hover{
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+          &__end_time{
+            display: block;
+            margin-top: 30px;
+            &--label{
+              @include user_label;
+            }
+            &--require{
+              @include require;
+              background-color: #008080;
+            }
+            &--block{
+              width: 100%;
+              color: #fff;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+              &--select{
+                @include short_select;
+                width: 30%;
+                margin-right: 3px;
+                margin-left: 3px;
+                &:focus{
+                  outline: none;
+                }
+                &:hover{
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+          &__holiday{
+            display: block;
+            margin-top: 30px;
+            &--title{
+              @include user_label;
+            }
+            &--any{
+              @include require;
+              background-color:#eee;
+              color: #888888;
+            }
+            &__block{
+              margin-top: 20px;
+              margin-left: 10px;
+              &--element{
+                margin-top: 10px;
+                color: #fff;
+                &:first-child{
+                  margin-top: 10px; 
+                }
+                input[type=checkbox]{
+                  display: none;
+                }
+                input[type=checkbox] + label{
+                  display: block;
+                  position: relative;
+                  padding-left: 30px;
+                  cursor: pointer;
+                  font-size: 14px;
+                }
+                input[type=checkbox] + label:before {
+                  content: "";
+                  display: block;
+                  width: 15px;
+                  height: 15px;
+                  border: 1px dotted #fff;
+                  border-radius: 2px;
+                  position: absolute;
+                  left: 0px;
+                  top: 2px;
+                  transition: all 0.3s;
+                }
+                input[type=checkbox]:checked + label:before{
+                  width: 10px;
+                  top: -5px;
+                  left: 5px;
+                  border-radius: 0;
+                  border: 2px solid #008080;
+                  border-top-color: transparent;
+                  border-left-color: transparent;
+                  transform: rotate(45deg);
+                }
+                input[type=checkbox]:checked + label{
+                  transition: color 0.5s;
+                  color: #008080;
+                }
+              }
+            }
+          }
+          &__submit{
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            width: 50%;
+            background-color: transparent;
+            border: solid 1px #fff;
+            border-radius: 20px;
+            margin: 70px auto 0px;
+            text-align: center;
+            &:focus{
+              outline: none;
+            }
+            &:hover{
+              cursor: pointer;
+            }
+            .fas.fa-angle-right{
+              font-size: 12px;
+              color: #fff;
+              margin-right: 3px;
+            }
+            &--text{
+              font-size: 12px;
+              font-weight: bold;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 649px){
+  .background_shop_detail{
+    @include background_shop_image;
+    background-image: image-url('background_shop.jpg');
+    &:before{
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      -webkit-filter: blur(10px);
+      -moz-filter: blur(10px);
+      -ms-filter: blur(10px);
+      filter: blur(10px) opacity(100%) brightness(0.4);
+      background: inherit;
+    }
+    .shop_detail_registration{
+      @include customer_registration;
+      max-width: 280px;
+      margin-top: 95px;
+      &__title{
+        @include registration_info;
+        font-size: 20px;
+      }
+      &__account{
+        @include registration_info_account;
+        font-size: 12px;
+      }
+    }
+    .step_box_shop_detail{
+      @include step_box;
+      max-width: 300px;
+      position: relative;
+      &__one{
+        &--text{
+          font-size: 8px;
+        }
+        &--circle{
+          width: 10px;
+          height: 10px;
+          border: 1px solid #fff;
+          border-radius: 5px;
+          margin: 4px auto 0px;
+        }
+      }
+      &__border_one{
+        border: 1px solid #fff;
+        width: 25px;
+        height: 0px;
+      }
+      &__two{
+        &--text{
+          font-size: 8px;
+          color: #008080;
+        }
+        &--circle{
+          background-color: #fff;
+          width: 10px;
+          height: 10px;
+          border: 1px solid #fff;
+          border-radius: 5px;
+          margin: 4px auto 0px;
+          background-color: #008080;
+        }
+      }
+      &__border_two{
+        width: 25px;
+        height: 0px;
+        border: 1px solid #fff;
+      }
+      &__three{
+        &--text{
+          font-size: 8px;
+        }
+        &--circle{
+          background-color: #fff;
+          width: 10px;
+          height: 10px;
+          border: 1px solid #fff;
+          border-radius: 5px;
+          margin: 4px auto 0px;
+        }
+      }
+      &__border_three{
+        width: 25px;
+        height: 0px;
+        border: 1px solid #fff;
+      }
+      &__four{
+        &--text{
+          font-size: 8px;
+        }
+        &--circle{
+          background-color: #fff;
+          width: 10px;
+          height: 10px;
+          border: 1px solid #fff;
+          border-radius: 5px;
+          margin: 4px auto 0px;
+        }
+      }
+    }
+    .shop_detail_registration_box{
+      @include registration_box;
+      max-width: 340px;
+      margin: 0px auto 150px;
+      &__form{
+        width: 80%;
+        margin: 0 auto;
+        padding: 0px 10px;
+        position: relative;
+        &__introduction{
+          display: block;
+          margin-top: 30px;
+          &--label{
+            @include user_label;
+          }
+          &--any{
+            @include require;
+            background-color:#eee;
+            color: #888888;
+          }
+          &--area{
+            @include text_area;
+            @include placeholder(#757575);
+            width: 100%;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border: 1px solid #008080;
+            }
+          }
+        }
+        &__genre{
+          display: block;
+          margin-top: 30px;
+          &--label{
+            @include user_label;
+          }
+          &--require{
+            @include require;
+            background-color: #008080;
+          }
+          &--select{
+            @include short_select;
+            width: 80%;
+            display: block;
+            font-size: 14px;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border: 1px solid #008080;
+            }
+          }
+        }
+        &__location{
+          display: block;
+          margin-top: 30px;
+          &--label{
+            @include user_label;
+          }
+          &--require{
+            @include require;
+            background-color: #008080;
+          }
+          &--text{
+            @include field;
+            width: 100%;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border-bottom: 1px solid #008080;
+            }
+          }
+        }
+        &__start_time{
+          display: block;
+          margin-top: 30px;
+          &--label{
+            @include user_label;
+          }
+          &--require{
+            @include require;
+            background-color: #008080;
+          }
+          &--block{
+            width: 100%;
+            color: #fff;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border-bottom: 1px solid #008080;
+            }
+            &--select{
+              @include short_select;
+              width: 30%;
+              margin-right: 3px;
+              margin-left: 3px;
+              &:focus{
+                outline: none;
+              }
+              &:hover{
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        &__end_time{
+          display: block;
+          margin-top: 30px;
+          &--label{
+            @include user_label;
+          }
+          &--require{
+            @include require;
+            background-color: #008080;
+          }
+          &--block{
+            width: 100%;
+            color: #fff;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border-bottom: 1px solid #008080;
+            }
+            &--select{
+              @include short_select;
+              width: 30%;
+              margin-right: 3px;
+              margin-left: 3px;
+              &:focus{
+                outline: none;
+              }
+              &:hover{
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        &__holiday{
+          display: block;
+          margin-top: 30px;
+          &--title{
+            @include user_label;
+          }
+          &--any{
+            @include require;
+            background-color:#eee;
+            color: #888888;
+          }
+          &__block{
+            margin-top: 20px;
+            margin-left: 10px;
+            &--element{
+              margin-top: 10px;
+              color: #fff;
+              &:first-child{
+                margin-top: 10px; 
+              }
+              input[type=checkbox]{
+                display: none;
+              }
+              input[type=checkbox] + label{
+                display: block;
+                position: relative;
+                padding-left: 30px;
+                cursor: pointer;
+                font-size: 14px;
+              }
+              input[type=checkbox] + label:before {
+                content: "";
+                display: block;
+                width: 15px;
+                height: 15px;
+                border: 1px dotted #fff;
+                border-radius: 2px;
+                position: absolute;
+                left: 0px;
+                top: 2px;
+                transition: all 0.3s;
+              }
+              input[type=checkbox]:checked + label:before{
+                width: 10px;
+                top: -5px;
+                left: 5px;
+                border-radius: 0;
+                border: 2px solid #008080;
+                border-top-color: transparent;
+                border-left-color: transparent;
+                transform: rotate(45deg);
+              }
+              input[type=checkbox]:checked + label{
+                transition: color 0.5s;
+                color: #008080;
+              }
+            }
+          }
+        }
+        &__submit{
+          display: block;
+          height: 35px;
+          line-height: 35px;
+          width: 50%;
+          background-color: transparent;
+          border: solid 1px #fff;
+          border-radius: 20px;
+          margin: 60px auto 0px;
+          text-align: center;
+          &:focus{
+            outline: none;
+          }
+          &:hover{
+            cursor: pointer;
+          }
+          .fas.fa-angle-right{
+            font-size: 12px;
+            color: #fff;
+            margin-right: 3px;
+          }
+          &--text{
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

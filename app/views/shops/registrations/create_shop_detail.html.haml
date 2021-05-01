@@ -1,0 +1,43 @@
+.background_shop_detail
+  %section.step_create_shop_detail_box
+    .step_create_shop_detail_box__one
+      %p.step_create_shop_detail_box__one--text アカウント
+      %p.step_create_shop_detail_box__one--number (STEP1)
+    .step_create_shop_detail_box__border
+    .step_create_shop_detail_box__two
+      %p.step_create_shop_detail_box__two--text 詳細情報
+      %p.step_create_shop_detail_box__two--number (STEP2)
+    .step_create_shop_detail_box__border
+    .step_create_shop_detail_box__three
+      %p.step_create_shop_detail_box__three--text 登録完了
+      %p.step_create_shop_detail_box__three--number (STEP3)
+  %section.shop_registration_gest
+    = icon("far", "check-circle")
+    %span.shop_registration_gest__text
+      = "#{@shop.name.truncate(10, omission: '...')}様　ご登録ありがとうございます"
+  %section.shop_registration_done
+    .shop_registration_done__notification
+      %span.shop_registration_done__notification--text Food_Share_Appへようこそ
+    .shop_registration_done__choice
+      = icon("fas", "angle-down")
+      %span.shop_registration_done__choice--text 以下の中から行きたいページをクリックしてください
+  %section.product_list_page
+    = link_to 'トップページへ', class: 'product_list_page__link' do
+      .product_list_page__link__box
+        = icon("fas", "angle-right")
+        %span.product_list_page__link__box--text 商品一覧へ
+  %section.top_page
+    = link_to root_path, class: 'top_page__link' do
+      .top_page__link__box
+        = icon("fas", "angle-right")
+        %span.top_page__link__box--text トップページへ
+  %section.product_post_page
+    = link_to root_path, class: 'product_post_page__link' do
+      .product_post_page__link__box
+        = icon("fas", "angle-right")
+        %span.product_post_page__link__box--text 商品投稿へ
+  %section.shop_page
+    = link_to root_path, class: 'shop_page__link' do
+      .shop_page__link__box
+        = icon("fas", "angle-right")
+        %span.shop_page__link__box--text 店舗詳細へ

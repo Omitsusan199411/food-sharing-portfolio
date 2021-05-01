@@ -1,0 +1,335 @@
+
+// -----------------------------------------------------------
+@media (min-width: 850px){
+  .background_shop_sign_in_image{
+    @include sign_in_background_image;
+    background-size: cover;
+    overflow: hidden;
+    background-image: image-url('sign_in_background8.jpg');
+    &:before{
+      content: "";
+      background: inherit;
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      bottom: -10px;
+      right: -10px;
+      -webkit-filter: blur(10px);
+      -moz-filter: blur(10px);
+      -ms-filter: blur(10px);
+      filter: blur(10px) opacity(100%) brightness(0.4);
+      z-index: -1;
+    }
+    .shop_sign_in{
+      max-width: 600px;
+      background-color: transparent;
+      border: 1px dotted #fff;
+      margin: 100px auto 100px;
+      display: flex;
+      &__box{
+        width: 100%;
+        padding: 30px 45px 25px;
+        text-align: center;
+        &__text{
+          width: 55%;
+          padding-bottom: 10px;
+          text-align: center;
+          margin: 30px auto 0px;
+          border-bottom: 1px solid #fff;
+          &--title{
+            color: #fff;
+            font-size: 23px;
+            font-weight: bold;
+          }
+        }
+        &__form{
+          padding: 20px 50px;
+          position: relative;
+          &__name{
+            @include text_box;
+            margin-top: 25px;
+            &--text{
+              @include text_field;
+              text-indent: 0.1em;
+              &:focus{
+                text-indent: 0.2em;
+                outline: none;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__password{
+            @include text_box;
+            margin-top: 25px;
+            &--text{
+              @include text_field;
+              text-indent: 0.1em;
+              &:focus{
+                text-indent: 0.2em;
+                outline: none;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__password_confirmation{
+            @include text_box;
+            margin-top: 25px;
+            &--text{
+              @include text_field;
+              text-indent: 0.1em;
+              &:focus{
+                text-indent: 0.2em;
+                outline: none;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__permanent{
+            width: 190px;
+            margin: 0 auto;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #000000;
+            &--check{
+              vertical-align: middle;
+              &:hover{
+                cursor: pointer;
+              }
+            }
+            &--label{
+              color: #fff;
+              margin-left: 5px;
+              vertical-align: middle;
+              &:hover{
+                cursor: pointer;
+                opacity: 70%;
+              }
+            }
+          }
+          &__reset_password{
+            width: 185px;
+            margin: 0 auto;
+            margin-top: 25px;
+            font-size: 14px;
+            &:hover{
+              cursor: pointer;
+            }
+            &--link{
+              text-decoration: none;
+              color: #fff;
+              position: relative;
+              display: inline-block;
+              &:hover{
+                opacity: 70%;
+              }
+            }
+          }
+          .submit_shop_sign_in_box{
+            max-width: 180px;
+            margin: 35px auto 0px;
+            text-align: center;
+            height: 35px;
+            line-height: 30px;
+            &__btn{
+              width: 100%;
+              height: 35px;
+              border: 1px solid #008080;
+              border-radius: 20px;
+              background: #008080;
+              background-position: right bottom;
+              transition: all .6s ease-out;
+              font-size: 12px;
+              color: #fff;
+              .fas.fa-angle-right{
+                font-size: 13px;
+                margin-right: 8px;
+                margin-top: 5px;
+              }
+              &--text{
+                display: inline-block;
+                margin-right: 6px;
+                font-weight: bold;
+              }
+              &:focus{
+                outline: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------
+
+
+@media (max-width: 849px){
+  .background_shop_sign_in_image{
+    @include sign_in_background_image;
+    background-size: cover;
+    overflow: hidden;
+    background-image: image-url('sign_in_background8.jpg');
+    background-position: right -150px bottom 200px;
+    &:before{
+      content: "";
+      background: inherit;
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      bottom: -10px;
+      right: -10px;
+      -webkit-filter: blur(10px);
+      -moz-filter: blur(10px);
+      -ms-filter: blur(10px);
+      filter: blur(10px) opacity(100%) brightness(0.4);
+      z-index: -1;
+    }
+    .shop_sign_in{
+      max-width: 500px;
+      background-color: transparent;
+      margin: 60px auto 100px;
+      &__box{
+        width: 100%;
+        padding: 20px 20px 0px;
+        margin: 0 auto;
+        &__text{
+          width: 75%;
+          padding-bottom: 10px;
+          text-align: center;
+          margin: 30px auto 0px;
+          border-bottom: 1px solid #fff;
+          &--title{
+            color: #fff;
+            font-size: 21px;
+            font-weight: bold;
+          }
+        }
+        &__form{
+          padding: 20px 0px;
+          position: relative;
+          text-align: center;
+          &__name{
+            @include text_box;
+            margin-top: 25px;
+            &--text{
+              @include text_field;
+              text-indent: 0.1em;
+              width: 75%;
+              &:focus{
+                text-indent: 0.2em;
+                outline: none;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__password{
+            @include text_box;
+            margin-top: 25px;
+            &--text{
+              @include text_field;
+              text-indent: 0.1em;
+              width: 75%;
+              &:focus{
+                text-indent: 0.2em;
+                outline: none;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__password_confirmation{
+            @include text_box;
+            margin-top: 25px;
+            &--text{
+              @include text_field;
+              text-indent: 0.1em;
+              width: 75%;
+              &:focus{
+                text-indent: 0.2em;
+                outline: none;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__permanent{
+            width: 75%;
+            margin: 0 auto;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #000000;
+            &--check{
+              vertical-align: middle;
+              &:hover{
+                cursor: pointer;
+              }
+            }
+            &--label{
+              color: #fff;
+              margin-left: 5px;
+              vertical-align: middle;
+              &:hover{
+                cursor: pointer;
+                opacity: 70%;
+              }
+            }
+          }
+          &__reset_password{
+            width: 75%;
+            margin: 0 auto;
+            margin-top: 25px;
+            font-size: 14px;
+            &:hover{
+              cursor: pointer;
+            }
+            &--link{
+              text-decoration: none;
+              color: #fff;
+              position: relative;
+              display: inline-block;
+              &:hover{
+                opacity: 70%;
+              }
+            }
+          }
+          .submit_shop_sign_in_box{
+            max-width: 180px;
+            margin: 35px auto 0px;
+            text-align: center;
+            height: 35px;
+            line-height: 30px;
+            &__btn{
+              width: 100%;
+              height: 35px;
+              border: 1px solid #008080;
+              border-radius: 20px;
+              background: #008080;
+              background-position: right bottom;
+              transition: all .6s ease-out;
+              font-size: 12px;
+              color: #fff;
+              .fas.fa-angle-right{
+                font-size: 13px;
+                margin-right: 8px;
+                margin-top: 5px;
+              }
+              &--text{
+                display: inline-block;
+                margin-right: 6px;
+                font-weight: bold;
+              }
+              &:focus{
+                outline: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

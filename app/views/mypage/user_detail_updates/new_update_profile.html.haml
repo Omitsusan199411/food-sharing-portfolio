@@ -1,0 +1,65 @@
+.background_food
+  .profile_input_box
+    %section.profile_title
+      %span.profile_title__text 詳細情報入力
+      %span.profile_title__detail 〜プロフィール登録〜
+    %section.step_box_profile
+      .step_box_profile__one
+        %p.step_box_profile__one--text アカウント
+        .step_box_profile__one--circle
+      .step_box_profile__border_one
+      .step_box_profile__two
+        %p.step_box_profile__two--text プロフィール
+        .step_box_profile__two--circle
+      .step_box_profile__border_two
+      .step_box_profile__three
+        %p.step_box_profile__three--text アドレス
+        .step_box_profile__three--circle
+      .step_box_profile__border_three
+      .step_box_profile__four
+        %p.step_box_profile__four--text 登録完了
+        .step_box_profile__four--circle
+    %section.registration_box
+      .registration_box__title 
+      = form_with model: @profile, url: mypage_user_detail_updates_profile_path, method: :patch, class: 'registration_box__title__form' do |form|
+        %section.registration_box__title__form__profile
+          %ul.family_last_name_box
+            %li.family_name_box
+              = form.label :family_name, '姓（全角）', class: 'family_name_box__label', for: 'family_name'
+              = form.text_field :family_name, class: 'family_name_box__text_field', placeholder: ' 例）山本', id: 'family_name'
+            %li.last_name_box
+              = form.label :last_name, '名（全角）', class: 'last_name_box__label', for: 'last_name'
+              = form.text_field :last_name, class: 'last_name_box__text_field', placeholder: ' 例）信男', id: 'last_name'
+          .error_name_box
+            = render partial: 'error_messages_profile', locals: {profile: @validate, profile_column: 'family_name'}
+            = render partial: 'error_messages_profile', locals: {profile: @validate, profile_column: 'last_name'}
+          %ul.j_family_last_name_box
+            %li.j_family_name_box
+              = form.label :j_family_name, '姓（全角カナ）', class: 'j_family_name_box__label', for: 'j_family_name'
+              = form.text_field :j_family_name, class: 'j_family_name_box__text_field', placeholder: ' 例）ヤマモト', id: 'j_family_name'
+            %li.j_last_name_box
+              = form.label :j_last_name, ' 名（全角カナ）', class: 'j_last_name_box__label', for: 'j_last_name'
+              = form.text_field :j_last_name, class: 'j_last_name_box__text_field', placeholder: ' 例）ノブオ', id:'j_last_name'
+          .error_name_box
+            = render partial: 'error_messages_profile', locals: {profile: @validate, profile_column: 'j_family_name'}
+            = render partial: 'error_messages_profile', locals: {profile: @validate, profile_column: 'j_last_name'}
+          .sex_box
+            %span.sex_box__label 性別
+            .sex_box__man
+              = form.radio_button :sex, :男性, class: "sex_box__man--radio_btn", id: 'man'
+              = form.label :sex, '男性', class: "sex_box__man--label", for: 'man'
+            .sex_box__woman
+              = form.radio_button :sex, :女性, class: "sex_box__woman--radio_btn", id: 'woman'
+              = form.label :sex, '女性', class: "sex_box__woman--label", for: 'woman'
+          .birthday_box
+            = form.label :birthday, '生年月日', class: 'birthday_box__label'
+            .birthday_box__select
+              != sprintf(form.date_select(:birthday, with_css_classes: 'XXXX', prompt: '----', use_month_numbers: true, start_year: 1930, end_year:(Time.now.year-10), default: Date.new(1989, 1, 1), order: [:year, :month, :day], date_separator:'%s'),'年','月')+'日'
+              = render partial: 'error_messages_profile', locals: {profile: @validate, profile_column: 'birthday'}
+          .phone_number_box
+            = form.label :phone_number, '電話番号', class: 'phone_number_box__label', for: 'phone_number'
+            = form.text_field :phone_number, class: 'phone_number_box__text_field', id: 'phone_number', placeholder: '例) 09098007727'
+            = render partial: 'error_messages_profile', locals: {profile: @validate, profile_column: 'phone_number'}
+          %button{type: "submit", class: 'submit_box'}
+            %i.fas.fa-angle-right
+            %span.submit_box__btn プロフィール登録

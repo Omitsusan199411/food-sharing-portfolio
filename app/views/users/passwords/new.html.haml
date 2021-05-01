@@ -1,0 +1,17 @@
+.background_sign_in_image
+  .user_reset_password_box
+    .user_reset_password_box__title 
+      .user_reset_password_box__title--text Food_Share_App
+      .user_reset_password_box__title--sub 〜 パスワード再設定 〜
+    .user_reset_password_box__description
+      .user_reset_password_box__description--text ★ 登録したメールアドレスにパスワードの再設定をお送りします
+      .user_reset_password_box__description--sub ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+    = form_with model: @user, url: v2_user_reset_passwords_path, html: { method: :post }, class: 'user_reset_password_box__form' do |form|
+      .user_reset_password_box__form__email
+        = form.label :email, "メールアドレス" ,for: 'email', class: 'user_reset_password_box__form__email--label'
+        = form.text_field :email, class: 'user_reset_password_box__form__email--text_field', autofocus: true, id: 'email', placeholder: ' 例）aaa@gamil.com', autocomplete: 'off', autofocus: 'true'
+      %button{type: "submit", class: 'user_reset_password_box__form__submit'}
+        %i.fas.fa-angle-right
+        %span.user_reset_password_box__form__submit--text 送信
+  .user_reset_password_tab
+    %i.fas.fa-bars

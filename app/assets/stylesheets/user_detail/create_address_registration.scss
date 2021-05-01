@@ -1,0 +1,308 @@
+
+// -----------------------------------------------------
+
+.background_food{
+  @include registration_background;
+  &:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    -webkit-filter: blur(7px);
+    -moz-filter: blur(7px);
+    filter: blur(7px) opacity(100%) brightness(0.2);
+    background: inherit;
+  }
+  // .step_box_fourth{
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   position: absolute;
+  //   top: 250px;
+  //   left: 100px;
+  //   &__one{
+  //     background-color: #fff;
+  //     @include step_figure;
+  //     color: #000000;
+  //     &--text{
+  //       @include text;
+  //     }
+  //     &--step{
+  //       @include step_text;
+  //     }
+  //   }
+  //   &__border{
+  //     @include step_border;
+  //   }
+  //   &__two{
+  //     background-color: #fff;
+  //     @include step_figure;
+  //     &--text{
+  //       @include text;
+  //     }
+  //     &--step{
+  //       @include step_text;
+  //     }
+  //   }
+  //   &__border{
+  //     @include step_border;
+  //   }
+  //   &__three{
+  //     background-color: #fff;
+  //     @include step_figure;
+  //     &--text{
+  //       @include text;
+  //     }
+  //     &--step{
+  //       @include step_text;
+  //     }
+  //   }
+  //   &__border{
+  //     @include step_border;
+  //   }
+  //   &__four{
+  //     color: #fff;
+  //     background-color: #ff9800;
+  //     font-weight: bold;
+  //     @include step_figure;
+  //     &--text{
+  //       @include text;
+  //     }
+  //     &--step{
+  //       @include step_text;
+  //     }
+  //   }
+  // }
+  .registration_gest{
+    max-width: 550px;
+    position: absolute;
+    top: 370px;
+    right: 843px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    background-color: rgba(0,0,0,0);
+    .far.fa-check-circle{
+      vertical-align: middle;
+      font-size: 22px;
+      color: #fff;
+      font-weight: bold;
+    }
+    &__text{
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
+      font-size: 20px;
+      color: #fff;
+    }
+  }
+  .registration_done{
+    right: 130px;
+    top: 90px;
+    width: 550px;
+    height: 60px;
+    line-height: 60px;
+    position: absolute;
+    background-color: rgba(0,0,0,0);
+    &__notification{
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0);
+      text-align: center;
+      .welcome_text{
+        vertical-align: middle;
+        font-size: 34px;
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+    &__info{
+      text-align: center;
+      margin-top: 20px;
+      .fas.fa-angle-down{
+        margin-right: 8px;
+        color: #fff;
+        font-size: 20px;
+      }
+      &--text{
+        color: #fff;
+        font-size: 18px;
+      }
+    }
+  }
+  .product_list_page{
+    height:140px;
+    width: 140px;
+    position: absolute;
+    top: 270px;
+    right: 440px;
+    border: 2px solid #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    &:hover{
+      cursor: pointer;
+      animation: vibe 0.3s linear infinite;
+      border: 4px solid #fff;
+    }
+    &__link{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      line-height: 30px;
+      &__box{
+        width: 100%;
+        position: absolute;
+        bottom:8px;
+        white-space: nowrap;
+        text-align: center;
+        padding:2px;
+        .fas.fa-angle-right{
+          font-size: 18px;
+          vertical-align: middle;
+        }
+        &--text{
+          font-size: 16px;
+          vertical-align: middle;
+          font-weight: bold;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+  .top_page{
+    height:140px;
+    width: 140px;
+    position: absolute;
+    top: 270px;
+    right: 220px;
+    border: 2px solid #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    &:hover{
+      cursor: pointer;
+      animation: vibe 0.3s linear infinite;
+      border: 4px solid #fff;
+    }
+    &__link{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      line-height: 30px;
+      &__box{
+        width: 100%;
+        position: absolute;
+        bottom:8px;
+        white-space: nowrap;
+        text-align: center;
+        padding:2px;
+        .fas.fa-angle-right{
+          font-size: 18px;
+          vertical-align: middle;
+        }
+        &--text{
+          font-size: 16px;
+          vertical-align: middle;
+          font-weight: bold;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+  .credit_card_page{
+    height:140px;
+    width: 140px;
+    position: absolute;
+    top: 500px;
+    right: 440px;
+    border: 2px solid #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    &:hover{
+      cursor: pointer;
+      animation: vibe 0.3s linear infinite;
+      border: 4px solid #fff;
+    }
+    &__link{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      line-height: 30px;
+      &__box{
+        width: 100%;
+        position: absolute;
+        bottom:8px;
+        white-space: nowrap;
+        text-align: center;
+        padding:2px;
+        .fas.fa-angle-right{
+          font-size: 18px;
+          vertical-align: middle;
+        }
+        &--text{
+          font-size: 16px;
+          vertical-align: middle;
+          font-weight: bold;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+  .user_my_page{
+    height:140px;
+    width: 140px;
+    position: absolute;
+    top: 500px;
+    right: 220px;
+    border: 2px solid #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    &:hover{
+      cursor: pointer;
+      animation: vibe 0.3s linear infinite;
+      border: 4px solid #fff;
+    }
+    &__link{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      line-height: 30px;
+      &__box{
+        width: 100%;
+        position: absolute;
+        bottom:8px;
+        white-space: nowrap;
+        text-align: center;
+        padding:2px;
+        .fas.fa-angle-right{
+          font-size: 18px;
+          vertical-align: middle;
+        }
+        &--text{
+          font-size: 16px;
+          vertical-align: middle;
+          font-weight: bold;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+}

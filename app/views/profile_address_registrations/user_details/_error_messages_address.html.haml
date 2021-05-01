@@ -1,0 +1,4 @@
+- if address.errors.any?
+  - address.errors.full_messages_for(address_column.to_sym).each_with_index do |message, i|
+    - if i == 0
+      %p.error_messages_box= message

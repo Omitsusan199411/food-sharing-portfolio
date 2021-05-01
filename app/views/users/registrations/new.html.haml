@@ -1,0 +1,51 @@
+.background_food
+  .background_registration_box
+    %section.customer_registration
+      %span.customer_registration__title お客様情報入力
+      %span.customer_registration__account 〜アカウント登録〜
+    %section.step_box
+      .step_box__one
+        %p.step_box__one--text アカウント
+        .step_box__one--circle
+      .step_box__border_one
+      .step_box__two
+        %p.step_box__two--text プロフィール
+        .step_box__two--circle
+      .step_box__border_two
+      .step_box__three
+        %p.step_box__three--text アドレス
+        .step_box__three--circle
+      .step_box__border_three
+      .step_box__four
+        %p.step_box__four--text 登録完了
+        .step_box__four--circle
+    %section.registration_box
+      .registration_box__title
+      = form_with model: @user, url: user_registration_path, class: 'registration_box__title__form' do |form|
+        %section.registration_box__title__form__account
+          .nickname_box
+            = form.label :nickname, 'ニックネーム', class: 'nickname_box__label', for: 'nickname'
+            %span.nickname_box__require 必須
+            = form.text_field :nickname, class: 'nickname_box__text_field', maxlength: 15, placeholder: ' 例) シェア敦子', id: 'nickname', autofocus: true
+            = render partial: 'error_messages_account', locals: {user: @user, column: 'nickname'}
+          .email_box
+            = form.label :email, class: 'email_box__label', for: 'email'
+            %span.email_box__require 必須
+            = form.text_field :email, placeholder: 'PC・携帯どちらでも可', class: 'email_box__field', id: 'email', autocomplete: 'off'
+            = render partial: 'error_messages_account', locals: {user: @user, column: 'email'}
+          .password_box
+            = form.label :password, 'パスワード', class: 'password_box__label', for: 'password'
+            %span.password_box__require 必須
+            = form.password_field :password, class: 'password_box__field', placeholder: '7文字以上の半角英数字', id: 'password'
+            = render partial: 'error_messages_account', locals: {user: @user, column: 'password'}
+          .password_confirmation_box
+            = form.label :password_confirmation, 'パスワード（確認用）', class: 'password_confirmation_box__label', for: 'password_confirmation'
+            %span.password_confirmation_box__require 必須
+            = form.password_field :password_confirmation, class: 'password_confirmation_box__field', placeholder: '同じパスワードを入力', id: 'password_confirmation'
+            = render partial: 'error_messages_account', locals: {user: @user, column: 'password_confirmation'}
+          %button{type: "submit", class: 'submit_box_detail', name: 'commit', value: "A"}
+            %i.fas.fa-angle-right
+            %span.submit_box_detail__btn プロフィール登録へ
+          %button{type: "submit", class: 'submit_box_done', name: 'commit', value: "B"}
+            %i.fas.fa-angle-right
+            %span.submit_box_done__btn 登録完了

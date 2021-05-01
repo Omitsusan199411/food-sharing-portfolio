@@ -1,0 +1,9 @@
+- if @profile.present?
+  .user_detail_profile_update
+    = link_to 'ユーザープロフィール更新', mypage_user_detail_updates_profile_path(current_user)
+- if @address.present?
+  .user_detail_address_update
+    = link_to 'ユーザー住所更新', mypage_user_details_updates_address_path(current_user)
+- if @profile.blank? || @address.blank?
+  .user_detail_address_registration
+    = link_to 'ユーザー詳細登録', profile_address_registrations_user_details_profile_path

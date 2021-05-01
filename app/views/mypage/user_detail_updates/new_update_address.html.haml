@@ -1,0 +1,50 @@
+.background_food
+  .address_input_box
+    %section.address_title
+      %span.address_title__text 詳細情報入力
+      %span.address_title__detail 〜アドレス登録〜
+    %section.step_box_address
+      .step_box_address__one
+        %p.step_box_address__one--text アカウント
+        .step_box_address__one--circle
+      .step_box_address__border_one
+      .step_box_address__two
+        %p.step_box_address__two--text プロフィール
+        .step_box_address__two--circle
+      .step_box_address__border_two
+      .step_box_address__three
+        %p.step_box_address__three--text アドレス
+        .step_box_address__three--circle
+      .step_box_address__border_three
+      .step_box_address__four
+        %p.step_box_address__four--text 登録完了
+        .step_box_address__four--circle
+    %section.registration_box
+      .registration_box__title
+      = form_with model: @address, url: mypage_user_details_updates_address_path, scope: :address, method: :patch, class: 'registration_box__title__form' do |form|
+        %section.registration_box__title__form__address
+          .postal_code_box
+            = form.label :postal_code, '郵便番号', class: 'postal_code_box__label', for: 'postal_code'
+            = form.text_field :postal_code, placeholder: ' 例) 8920084', class: 'postal_code_box__text_field', id: 'postal_code', value: "#{@zipcode}"
+            = render partial: 'error_messages_address', locals: {address: @address, address_column: 'postal_code'}
+          %button{type: "submit", class: 'postal_code_box_submit', formaction: mypage_user_detail_updates_postal_code_path, formmethod: "get"}
+            %i.fas.fa-angle-right
+            %span.postal_code_box_submit__btn 住所検索
+          .prefecture_box
+            = form.label :prefecture, '都道府県', class: 'prefecture_box__label', for: 'prefecture'
+            = form.select :prefecture, options_for_select(Address.prefecture_select.map{|c|[c,c]}, @address1), {include_blank: "選択"}, {class: "prefecture_box__select"}
+            = render partial: 'error_messages_address', locals: {address: @address, address_column: 'prefecture'}
+          .city_box
+            = form.label :city, '市区町村', class: 'city_box__label', for: 'city'
+            = form.text_field :city, placeholder: ' 例) 鹿児島市鴨池新町', class: 'city_box__text_field', id:'city', value: "#{@address2}"+"#{@address3}"
+            = render partial: 'error_messages_address', locals: {address: @address, address_column: 'city'}
+          .address_number_box
+            = form.label :address_number, '番地', class: 'address_number_box__label', for: 'address_number'
+            = form.text_field :address_number, placeholder: ' 例) 1丁目-28番地', class: 'address_number_box__text_field', id: 'address_number'
+            = render partial: 'error_messages_address', locals: {address: @address, address_column: 'address_number'}
+          .building_box
+            = form.label :building, '建物名', class: 'building_box__label', for: 'building'
+            = form.text_field :building, placeholder: ' 例) 城山グランドハイツ', class: 'building_box__text_field', id: 'building'
+          %button{type: "submit", class: 'submit_box'}
+            %i.fas.fa-angle-right
+            %span.submit_box__btn アドレス登録

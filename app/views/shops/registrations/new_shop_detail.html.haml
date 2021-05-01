@@ -1,0 +1,57 @@
+.background_shop_detail
+  .background_registration_box_detail
+    %section.shop_detail_registration
+      %span.shop_detail_registration__title 店舗情報入力
+      %span.shop_detail_registration__account 〜プロフィール登録〜
+    %section.step_box_shop_detail
+      .step_box_shop_detail__one
+        %p.step_box_shop_detail__one--text アカウント
+        .step_box_shop_detail__one--circle
+      .step_box_shop_detail__border_one
+      .step_box_shop_detail__two
+        %p.step_box_shop_detail__two--text プロフィール
+        .step_box_shop_detail__two--circle
+      .step_box_shop_detail__border_two
+      .step_box_shop_detail__three
+        %p.step_box_shop_detail__three--text 登録完了
+        .step_box_shop_detail__three--circle
+    %section.shop_detail_registration_box
+      = form_with model: @shop_detail, url: shop_details_path, class: 'shop_detail_registration_box__form' do |form|
+        .shop_detail_registration_box__form__introduction
+          = form.label :introduction, '紹介文', class: 'shop_detail_registration_box__form__introduction--label', for: 'introduction'
+          %span.shop_detail_registration_box__form__introduction--any 任意
+          = form.text_area :introduction, class: 'shop_detail_registration_box__form__introduction--area', placeholder: ' 例）創業100周年を迎える歴史あるお店です。主に和菓子を得意としたお店で外国のお客様にとても人気です。ぜひ、店舗に足を運んでみてください。', id: 'introduction', maxlength: 200
+        .shop_detail_registration_box__form__genre
+          = form.label :genre, 'ジャンル', class: 'shop_detail_registration_box__form__genre--label', for: 'genree'
+          %span.shop_detail_registration_box__form__genre--require 必須
+          = form.select :genre, ShopDetail.genres_i18n.keys.map {|k| [ShopDetail.genres_i18n[k], k]}, {include_blank: "-- 選択 --"}, {class: 'shop_detail_registration_box__form__genre--select', id: 'genre'}
+          = render partial: "error_messages_shop_detail_registration", locals: {shop_detail: @shop_detail, column: "genre"}
+        .shop_detail_registration_box__form__location
+          = form.label :location, '場所', class: 'shop_detail_registration_box__form__location--label', for: 'location'
+          %span.shop_detail_registration_box__form__location--require 必須
+          = form.text_field :location, class: 'shop_detail_registration_box__form__location--text', placeholder: '例) JR博多シティ８階', id: 'location'
+          = render partial: "error_messages_shop_detail_registration", locals: {shop_detail: @shop_detail, column: "location"}
+        .shop_detail_registration_box__form__start_time
+          = form.label :start_time, '営業開始時間', class: 'shop_detail_registration_box__form__start_time--label', for: 'start_time'
+          %span.shop_detail_registration_box__form__start_time--require 必須
+          .shop_detail_registration_box__form__start_time--block
+            != format(form.time_select(:start_time, {:minute_step => 5, prompt: " -- ", ignore_data: true, time_separator: '%s'}, {class: 'shop_detail_registration_box__form__start_time--block--select', id: 'start_time'}), '  時  ')+ '  分  '
+          = render partial: "error_messages_shop_detail_registration", locals: {shop_detail: @shop_detail, column: "start_time"}
+        .shop_detail_registration_box__form__end_time
+          = form.label :end_time, '営業終了時間', class: 'shop_detail_registration_box__form__end_time--label', for: 'end_time'
+          %span.shop_detail_registration_box__form__end_time--require 必須
+          .shop_detail_registration_box__form__end_time--block
+            != format(form.time_select(:end_time, {:minute_step => 5, prompt: " -- ", ignore_data: true, time_separator: '%s'}, {class: 'shop_detail_registration_box__form__end_time--block--select', id: 'end_time'}), '  時  ')+ '  分  '
+          = render partial: "error_messages_shop_detail_registration", locals: {shop_detail: @shop_detail, column: "end_time"}
+        .shop_detail_registration_box__form__holiday
+          %span.shop_detail_registration_box__form__holiday--title 店休日
+          %span.shop_detail_registration_box__form__holiday--any 任意
+          .shop_detail_registration_box__form__holiday__block
+            - weeks = Array.new(["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"])
+            - weeks.each_with_index do |w, i|
+              .shop_detail_registration_box__form__holiday__block--element
+                = form.check_box :holiday, {multiple: true, class: "shop_detail_registration_box__form__holiday__block--element--checkbox", id: "holiday#{i}"}, w, nil
+                = form.label :holiday, w, class: 'shop_detail_registration_box__form__holiday__block--element--label', for: "holiday#{i}"
+        %button{type: "submit", class: 'shop_detail_registration_box__form__submit'}
+          %i.fas.fa-angle-right
+          %span.shop_detail_registration_box__form__submit--text 登録完了

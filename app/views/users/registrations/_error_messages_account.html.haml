@@ -1,0 +1,4 @@
+- if user.errors.any?
+  - user.errors.full_messages_for(column.to_sym).each_with_index do |message, i|
+    - if i == 0
+      %p.error_messages_box= message

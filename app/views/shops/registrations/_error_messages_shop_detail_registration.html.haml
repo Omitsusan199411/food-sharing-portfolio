@@ -1,0 +1,4 @@
+- if shop_detail.errors.any?
+  - shop_detail.errors.full_messages_for(column.to_sym).each_with_index do |message, i|
+    - if i == 0
+      .error_messages_shop_detail_registration= message

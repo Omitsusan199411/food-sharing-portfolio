@@ -1,0 +1,607 @@
+@mixin background_shop_image{
+  max-width: 1920px;
+  min-height: 1200px;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+@mixin label{
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  background-color: #008080;
+  border-radius: 2px;
+  padding: 2px 4px;
+  vertical-align: middle;
+  width: 35px;
+  margin-bottom: 3px;
+}
+
+@mixin text{
+  display: block;
+  height: 50px;
+  width: 95%;
+  background-color: transparent;
+  margin-top: 7px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  text-indent: 1em;
+  &::placeholder{
+    color: #d3d3d3;
+  }
+}
+
+@mixin label_text{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+@mixin user_label{
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 3px;
+  color: #fff;
+}
+
+@mixin placeholder($color){
+  &::placeholder{
+    color: $color;
+  }
+}
+
+
+// -------------------------------------------------------
+@media (min-width: 650px){
+  .background_shop{
+    @include background_shop_image;
+    background-image: image-url('background_shop.jpg');
+    &:before{
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      -webkit-filter: blur(10px);
+      -moz-filter: blur(10px);
+      -ms-filter: blur(10px);
+      filter: blur(10px) opacity(100%) brightness(0.4);
+      background: inherit;
+    }
+    .background_registration_box{
+      max-width: 600px;
+      border: 1px dotted #fff;
+      padding: 40px 40px 60px;
+      margin: 100px auto 200px;
+      .shop_registration{
+        @include customer_registration;
+        max-width: 350px;
+        &__title{
+          @include registration_info;
+          font-size: 22px;
+        }
+        &__account{
+          @include registration_info_account;
+          font-size: 16px;
+        }
+      }
+      .step_box{
+        @include step_box;
+        position: relative;
+        &__one{
+          &--text{
+            font-size: 8px;
+            color: #008080;
+          }
+          &--circle{
+            background-color: #008080;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_one{
+          border: 1px solid #fff;
+          width: 25px;
+          height: 0px;
+        }
+        &__two{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_two{
+          width: 25px;
+          height: 0px;
+          border: 1px solid #fff;
+        }
+        &__three{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+        &__border_three{
+          width: 25px;
+          height: 0px;
+          border: 1px solid #fff;
+        }
+        &__four{
+          &--text{
+            font-size: 8px;
+          }
+          &--circle{
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 4px auto 0px;
+          }
+        }
+      }
+      .shop_registration_box{
+        @include registration_box;
+        &__form{
+          width: 80%;
+          margin: 0 auto;
+          padding: 0px 10px;
+          position: relative;
+          &__name{
+            display: block;
+            margin-top: 35px;
+            &--label{
+              @include user_label;
+            }
+            &--require{
+              @include require;
+              background-color: #008080;
+            }
+            &--text{
+              @include field;
+              width: 100%;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__admin{
+            display: block;
+            margin-top: 35px;
+            &--label{
+              @include user_label;
+            }
+            &--require{
+              @include require;
+              background-color: #008080;
+            }
+            &--annotation{
+              font-size: 9px;
+              color: #fff;
+            }
+            &--text{
+              @include field;
+              width: 100%;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__email{
+            display: block;
+            margin-top: 35px;
+            &--label{
+              @include user_label;
+            }
+            &--require{
+              @include require;
+              background-color: #008080;
+            }
+            &--annotation{
+              font-size: 9px;
+              color: #fff;
+            }
+            &--text{
+              @include field;
+              width: 100%;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__phone{
+            display: block;
+            margin-top: 35px;
+            &--label{
+              @include user_label;
+            }
+            &--require{
+              @include require;
+              background-color: #008080;
+            }
+            &--text{
+              @include field;
+              width: 100%;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__password{
+            display: block;
+            margin-top: 35px;
+            &--label{
+              @include user_label;
+            }
+            &--require{
+              @include require;
+              background-color: #008080;
+            }
+            &--text{
+              @include field;
+              width: 100%;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__confirmation{
+            display: block;
+            margin-top: 35px;
+            &--label{
+              @include user_label;
+            }
+            &--require{
+              @include require;
+              background-color: #008080;
+            }
+            &--text{
+              @include field;
+              width: 100%;
+              &:focus{
+                outline: 0;
+                box-shadow: none;
+                border-bottom: 1px solid #008080;
+              }
+            }
+          }
+          &__submit_btn{
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            width: 50%;
+            background-color: transparent;
+            border: solid 1px #fff;
+            border-radius: 20px;
+            margin: 70px auto 0px;
+            text-align: center;
+            &:focus{
+              outline: none;
+            }
+            &:hover{
+              cursor: pointer;
+            }
+            .fas.fa-angle-right{
+              font-size: 12px;
+              color: #fff;
+              margin-right: 3px;
+            }
+            &--text{
+              font-size: 12px;
+              font-weight: bold;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 649px){
+  .background_shop{
+    @include background_shop_image;
+    background-image: image-url('background_shop.jpg');
+    &:before{
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      -webkit-filter: blur(10px);
+      -moz-filter: blur(10px);
+      -ms-filter: blur(10px);
+      filter: blur(10px) opacity(100%) brightness(0.4);
+      background: inherit;
+    }
+    .shop_registration{
+      @include customer_registration;
+      max-width: 290px;
+      margin-top: 95px;
+      &__title{
+        @include registration_info;
+        font-size: 20px;
+      }
+      &__account{
+        @include registration_info_account;
+        font-size: 12px;
+      }
+    }
+    .step_box{
+      @include step_box;
+      max-width: 320px;
+      padding: 5px;
+      font-size: 7px;
+      &__one{
+        &--text{
+          font-size: 8px;
+          color: #008080;
+        }
+        &--circle{
+          background-color: #008080;
+          width: 10px;
+          height: 10px;
+          border: 1px solid #fff;
+          border-radius: 5px;
+          margin: 4px auto 0px;
+        }
+      }
+      &__border_one{
+        border: 1px solid #fff;
+        width: 25px;
+        height: 0px;
+      }
+      &__two{
+        &--text{
+          font-size: 8px;
+        }
+        &--circle{
+          background-color: #fff;
+          width: 10px;
+          height: 10px;
+          border: 1px solid #fff;
+          border-radius: 5px;
+          margin: 4px auto 0px;
+        }
+      }
+      &__border_two{
+        width: 25px;
+        height: 0px;
+        border: 1px solid #fff;
+      }
+      &__three{
+        &--text{
+          font-size: 8px;
+        }
+        &--circle{
+          background-color: #fff;
+          width: 10px;
+          height: 10px;
+          border: 1px solid #fff;
+          border-radius: 5px;
+          margin: 4px auto 0px;
+        }
+      }
+      &__border_three{
+        width: 25px;
+        height: 0px;
+        border: 1px solid #fff;
+      }
+      &__four{
+        &--text{
+          font-size: 8px;
+        }
+        &--circle{
+          background-color: #fff;
+          width: 10px;
+          height: 10px;
+          border: 1px solid #fff;
+          border-radius: 5px;
+          margin: 4px auto 0px;
+        }
+      }
+    }
+    .shop_registration_box{
+      @include registration_box;
+      max-width: 340px;
+      &__form{
+        width: 80%;
+        margin: 0 auto;
+        padding: 0px 10px;
+        position: relative;
+        &__name{
+          display: block;
+          margin-top: 35px;
+          &--label{
+            @include user_label;
+          }
+          &--require{
+            @include require;
+            background-color: #008080;
+          }
+          &--text{
+            @include field;
+            width: 100%;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border-bottom: 1px solid #008080;
+            }
+          }
+        }
+        &__admin{
+          display: block;
+          margin-top: 35px;
+          &--label{
+            @include user_label;
+          }
+          &--require{
+            @include require;
+            background-color: #008080;
+          }
+          &--annotation{
+            display: block;
+            font-size: 9px;
+            color: #fff;
+            margin: 10px 0px 0px 3px;
+          }
+          &--text{
+            @include field;
+            width: 100%;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border-bottom: 1px solid #008080;
+            }
+          }
+        }
+        &__email{
+          display: block;
+          margin-top: 35px;
+          &--label{
+            @include user_label;
+          }
+          &--require{
+            @include require;
+            background-color: #008080;
+          }
+          &--annotation{
+            display: block;
+            font-size: 9px;
+            color: #fff;
+          }
+          &--text{
+            @include field;
+            width: 100%;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border-bottom: 1px solid #008080;
+            }
+          }
+        }
+        &__phone{
+          display: block;
+          margin-top: 35px;
+          &--label{
+            @include user_label;
+          }
+          &--require{
+            @include require;
+            background-color: #008080;
+          }
+          &--text{
+            @include field;
+            width: 100%;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border-bottom: 1px solid #008080;
+            }
+          }
+        }
+        &__password{
+          display: block;
+          margin-top: 35px;
+          &--label{
+            @include user_label;
+          }
+          &--require{
+            @include require;
+            background-color: #008080;
+          }
+          &--text{
+            @include field;
+            width: 100%;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border-bottom: 1px solid #008080;
+            }
+          }
+        }
+        &__confirmation{
+          display: block;
+          margin-top: 35px;
+          &--label{
+            @include user_label;
+          }
+          &--require{
+            @include require;
+            background-color: #008080;
+          }
+          &--text{
+            @include field;
+            width: 100%;
+            &:focus{
+              outline: 0;
+              box-shadow: none;
+              border-bottom: 1px solid #008080;
+            }
+          }
+        }
+        &__submit_btn{
+          display: block;
+          height: 35px;
+          line-height: 35px;
+          width: 65%;
+          background-color: transparent;
+          border: solid 1px #fff;
+          border-radius: 20px;
+          margin: 60px auto 0px;
+          text-align: center;
+          &:focus{
+            outline: none;
+          }
+          &:hover{
+            cursor: pointer;
+          }
+          .fas.fa-angle-right{
+            font-size: 12px;
+            color: #fff;
+            margin-right: 3px;
+          }
+          &--text{
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

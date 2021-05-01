@@ -1,0 +1,21 @@
+.customer_sign_up
+  = link_to 'お客様新規登録', new_user_registration_path
+.customer_log_in
+  = link_to 'お客様ログイン', new_user_session_path
+.shop_sign_up
+  = link_to '店舗用新規登録', new_shop_registration_path
+.shop_sign_out
+  = link_to '店舗用ログイン', new_shop_session_path
+.customer_log_out
+  = button_to 'お客様ログアウト', destroy_user_session_path, method: :delete
+- if user_signed_in?
+  .user_nickname
+    = current_user.nickname
+  .mypage
+    = link_to 'マイページ', mypage_user_path(current_user)
+.shop_log_out
+  = button_to '店舗ログアウト', destroy_shop_session_path, method: :delete
+- if shop_signed_in?
+  = current_shop.name
+.test
+  %p.test aaa

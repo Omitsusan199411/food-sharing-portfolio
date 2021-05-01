@@ -1,0 +1,34 @@
+@media(min-width: 550px){
+  .error_messages_box{
+    width: 100%;
+    margin-left: 2px;
+    margin-top: 8px;
+    color: #ff9800;
+    font-weight: bold;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+}
+
+@media(max-width: 549px) and (min-width: 350px){
+  .error_messages_box{
+    width: 100%;
+    margin-top: 5px;
+    color: #ff9800;
+    font-weight: bold;
+    white-space: nowrap;
+    font-size: 9px;
+  }
+}
+
+
+@media(max-width: 349px){
+  .error_messages_box{
+    width: 100%;
+    margin-top: 5px;
+    color: #ff9800;
+    font-weight: bold;
+    white-space: nowrap;
+    font-size: 3px;
+  }
+}

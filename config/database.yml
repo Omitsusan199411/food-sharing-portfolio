@@ -1,0 +1,30 @@
+default: &default
+  adapter: mysql2
+  charset: utf8
+  encoding: utf8
+  collation: utf8_general_ci
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  socket: /tmp/mysql.sock
+  timeout: 5000
+
+development:
+  <<: *default
+  database: food_share_app_database_dev
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
+  host: 127.0.0.1
+
+test:
+  <<: *default
+  database: food_share_app_database_test
+
+prd:
+  <<: *default
+  database: <%= ENV['PRD_MYSQL_DATABASE'] %>
+  adapter: mysql2
+  encoding: utf8
+  charset: utf8
+  collation: utf8_general_ci
+  host: <%= ENV['PRD_MYSQL_HOST'] %>
+  username: <%= ENV['PRD_MYSQL_USER'] %>
+  password: <%= ENV['PRD_MYSQL_PASSWORD'] %>

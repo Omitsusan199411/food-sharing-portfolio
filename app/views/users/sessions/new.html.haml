@@ -1,0 +1,34 @@
+.background_sign_in_image
+  .sign_in_box
+    %section.sign_in_box__form
+      .sign_in_box__form__text
+        %span.sign_in_box__form__text--title サインイン（購入者用）
+      = form_with model: @user, url: user_session_path, class: 'sign_in_box__form__field' do |f|
+        .email_box
+          = f.email_field :email, class: 'email_box__field', placeholder: ' Email', autofocus: true
+        .password_box
+          = f.password_field :password, class: 'password_box__field', placeholder: ' Password', autocomplete: "off"
+        .password_confirmation_box
+          = f.password_field :password_confirmation, class: 'password_confirmation_box__field', placeholder: ' PasswordConfirmation', autocomplete: "off"
+        .user_remember_me
+          = f.check_box :remember_me, class: "user_remember_me__check", id: "user_remember_me"
+          = f.label :remember_me, "ログインしたままにする", class: "user_remember_me__label", for: "user_remember_me"
+        .reset_password_btn
+          = link_to "Q. パスワードを忘れた場合", new_user_password_path, class: "reset_password_btn__link"
+        .submit_user_sign_in_box
+          %button{type: "submit", class: "submit_user_sign_in_box__btn"}
+            %i.fas.fa-angle-right
+            %span.submit_user_sign_in_box__btn__text ログイン
+        .sns_login_border
+          .sns_login_border__left 〜
+          .sns_login_border__name SNS_LOGIN
+          .sns_login_border__right 〜
+        .sign_in_box__form__icons
+          .sign_in_box__form__icons__facebook
+            = link_to user_facebook_omniauth_authorize_path, class: 'sign_in_box__form__icons__facebook--link' do
+              = image_tag(asset_path('Facebook.png'), alt: 'facebook', class: 'facebook_icon')
+              %span.facebook_text facebook
+          .sign_in_box__form__icons__google
+            = link_to user_google_oauth2_omniauth_authorize_path, class: 'sign_in_box__form__icons__google--link' do
+              = image_tag(asset_path('Google.png'), alt: 'twitter', class: 'google_icon')
+              %span.google_text google

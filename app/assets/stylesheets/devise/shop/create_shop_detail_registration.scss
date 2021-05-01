@@ -1,0 +1,309 @@
+@keyframes vibe_shop{
+  0%{transform: translate(0px,0px) rotate(0deg)}
+  25%{transform: translate(2px,2px) rotate(1deg)}
+  50%{transform: translate(0px,2px) rotate(0deg)}
+  75%{transform: translate(2px,0px) rotate(-1deg)}
+  100%{transform: translate(0px,0px) rotate(0deg)}
+}
+
+
+// ------------------------------------------------
+
+.background_shop_detail{
+  @include background_shop_image;
+  &:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px) opacity(100%) brightness(0.4);
+    background: inherit;
+  }
+  // .step_create_shop_detail_box{
+  //   position: absolute;
+  //   top: 200px;
+  //   left: 150px;
+  //   display: flex;
+  //   align-items: center;
+  //   &__one{
+  //     @include step_box;
+  //     color: black;
+  //     &--text{
+  //       margin-top: 27px;
+  //       font-size: 14px;
+  //       font-weight: bold;
+  //     }
+  //     &--number{
+  //       margin-top: 2px;
+  //       font-size: 11px;
+  //     }
+  //   }
+  //   &__border{
+  //     border-top: 2px solid #aaaaaa;
+  //     width: 40px;
+  //     height: 0px;
+  //     margin-left: 5px;
+  //   }
+  //   &__two{
+  //     @include step_box;
+  //     margin-left: 5px;
+  //     color: black;
+  //     &--text{
+  //       margin-top: 27px;
+  //       font-size: 14px;
+  //       font-weight: bold;
+  //     }
+  //     &--number{
+  //       font-size: 11px;
+  //       margin-top: 2px;
+  //     }
+  //   }
+  //   &__three{
+  //     @include step_box;
+  //     border: 3px solid #aaaaaa;
+  //     background-color: #008080;
+  //     color: #fff;
+  //     font-weight: bold;
+  //     margin-left: 5px;
+  //     &--text{
+  //       margin-top: 27px;
+  //       font-size: 14px;
+  //     }
+  //     &--number{
+  //       font-size: 11px;
+  //       margin-top: 2px;
+  //     }
+  //   }
+  // }
+  .shop_registration_gest{
+    max-width: 550px;
+    position: absolute;
+    top: 370px;
+    right: 848px;
+    background-color: transparent;
+    .far.fa-check-circle{
+      vertical-align: middle;
+      font-size: 16px;
+      color: #fff;
+      font-weight: bold;
+    }
+    &__text{
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
+      font-size: 20px;
+      color: #fff;
+    }
+  }
+  .shop_registration_done{
+    position: absolute;
+    top: 90px;
+    right: 150px;
+    width: 550px;
+    background-color: transparent;
+    &__notification{
+      height: 60px;
+      line-height: 60px;
+      background-color: transparent;
+      text-align: center;
+      &--text{
+        vertical-align: middle;
+        font-size: 34px;
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+    &__choice{
+      text-align: center;
+      margin-top: 20px;
+      .fas.fa-angle-down{
+        margin-right: 8px;
+        color: #fff;
+        font-size: 20px;
+      }
+      &--text{
+        color: #fff;
+        font-size: 18px;
+      }
+    }
+  }
+  .product_list_page{
+    height:140px;
+    width: 140px;
+    position: absolute;
+    top: 270px;
+    right: 470px;
+    border: 2px solid #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    &:hover{
+      cursor: pointer;
+      animation: vibe_shop 0.3s linear infinite;
+      border: 4px solid #fff;
+    }
+    &__link{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      line-height: 30px;
+      &__box{
+        width: 100%;
+        position: absolute;
+        bottom:8px;
+        white-space: nowrap;
+        text-align: center;
+        padding:2px;
+        .fas.fa-angle-right{
+          font-size: 18px;
+          vertical-align: middle;
+        }
+        &--text{
+          font-size: 16px;
+          vertical-align: middle;
+          font-weight: bold;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+  .top_page{
+    height:140px;
+    width: 140px;
+    position: absolute;
+    top: 270px;
+    right: 250px;
+    border: 2px solid #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    padding: 0px 3px;
+    &:hover{
+      cursor: pointer;
+      animation: vibe_shop 0.3s linear infinite;
+      border: 4px solid #fff;
+    }
+    &__link{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      line-height: 30px;
+      &__box{
+        width: 100%;
+        position: absolute;
+        bottom:8px;
+        white-space: nowrap;
+        text-align: center;
+        padding:2px;
+        .fas.fa-angle-right{
+          font-size: 18px;
+          vertical-align: middle;
+        }
+        &--text{
+          font-size: 16px;
+          vertical-align: middle;
+          font-weight: bold;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+  .product_post_page{
+    height:140px;
+    width: 140px;
+    position: absolute;
+    top: 500px;
+    right: 470px;
+    border: 2px solid #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    &:hover{
+      cursor: pointer;
+      animation: vibe_shop 0.3s linear infinite;
+      border: 4px solid #fff;
+    }
+    &__link{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      line-height: 30px;
+      &__box{
+        width: 100%;
+        position: absolute;
+        bottom:8px;
+        white-space: nowrap;
+        text-align: center;
+        padding:2px;
+        .fas.fa-angle-right{
+          font-size: 18px;
+          vertical-align: middle;
+        }
+        &--text{
+          font-size: 16px;
+          vertical-align: middle;
+          font-weight: bold;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+  .shop_page{
+    height:140px;
+    width: 140px;
+    position: absolute;
+    top: 500px;
+    right: 250px;
+    border: 2px solid #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    &:hover{
+      cursor: pointer;
+      animation: vibe_shop 0.3s linear infinite;
+      border: 4px solid #fff;
+    }
+    &__link{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      line-height: 30px;
+      &__box{
+        width: 100%;
+        position: absolute;
+        bottom:8px;
+        white-space: nowrap;
+        text-align: center;
+        padding:2px;
+        .fas.fa-angle-right{
+          font-size: 18px;
+          vertical-align: middle;
+        }
+        &--text{
+          font-size: 16px;
+          vertical-align: middle;
+          font-weight: bold;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+}

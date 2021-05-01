@@ -1,0 +1,19 @@
+.background_reset_password_create
+  .reset_password_create
+    .reset_password_create__title
+      .reset_password_create__title--text Food_Share_App
+      .reset_password_create__title--sub 〜 パスワードの再設定 〜
+    .reset_password_create__box
+      .reset_password_create__box__name
+        %span.reset_password_create__box__name--text
+          = "#{@shop.name} 様"
+      .reset_password_create__box__reset_password
+        %span.reset_password_create__box__reset_password--email
+          = "#{@shop.email}"
+        %span.reset_password_create__box__reset_password--text
+          = "のアドレスにパスワードの再設定のメールをお送りしています"
+      = link_to root_path, class: 'reset_password_create__box__btn' do
+        %i.fas.fa-angle-right
+        %span.reset_password_create__box__btn--text トップページへ
+  .reset_password_tab
+    %i.fas.fa-bars
