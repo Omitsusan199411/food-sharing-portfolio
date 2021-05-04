@@ -332,7 +332,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
-  carrierwave (~> 2.1.1)
+  carrierwave
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise

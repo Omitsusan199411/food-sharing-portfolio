@@ -40,7 +40,7 @@ group :development, :test, :production, :prd do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
   gem 'haml-rails'
-  gem 'carrierwave', '~>2.1.1'
+  gem 'carrierwave'
   gem 'mini_magick'
   gem 'jquery-rails'
   gem 'font-awesome-sass'
