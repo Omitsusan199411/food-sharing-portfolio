@@ -1,6 +1,8 @@
 class ShopDetail < ApplicationRecord
   belongs_to :shop, optional: true
 
+  mount_uploader :photo, ImageUploader
+
   enum genre:{
     japanese_food:1, noodles:2, fishes:3, local_cuisine:4, chinese_food:5, french:6,
     italian:7, meats:8, izakaya:9, skewers:10, fast_food:11,

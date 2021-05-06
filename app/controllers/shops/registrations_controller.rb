@@ -76,23 +76,28 @@ class Shops::RegistrationsController < Devise::RegistrationsController
   end
 
   def new_shop_detail
-    
+
   end
 
   def create_shop_detail
+    binding.pry
     @shop = Shop.new(session["shop_regist_data"]["shop"])
-    @shop_detail = ShopDetail.new(shop_detail_params)
+    @shop_detail = ShopDetail.create(shop_detail_params)
+    binding.pry
     unless @shop_detail.valid?
       render :new_shop_detail and return
     else
       @shop.build_shop_detail(@shop_detail.attributes)
     end
+    binding.pry
     if @shop.save
+      binding.pry
       session["shop_regist_data"]["shop"].clear
       sign_in(:shop, @shop)
       flash[:notice] = "店舗情報を登録しました"
       redirect_to root_path and return
     else
+      binding.pry
       flash.now[:alert] = '新規登録に失敗しました'
       render :new and return
     end
@@ -108,6 +113,6 @@ class Shops::RegistrationsController < Devise::RegistrationsController
   def shop_detail_params
     start = Time.zone.local(params[:shop_detail]["start_time(1i)"].to_i, params[:shop_detail]["start_time(2i)"].to_i, params[:shop_detail]["start_time(3i)"].to_i, params[:shop_detail]["start_time(4i)"].to_i, params[:shop_detail]["start_time(5i)"].to_i)
     last = Time.zone.local(params[:shop_detail]["end_time(1i)"].to_i, params[:shop_detail]["end_time(2i)"].to_i, params[:shop_detail]["end_time(3i)"].to_i, params[:shop_detail]["end_time(4i)"].to_i, params[:shop_detail]["end_time(5i)"].to_i)
-    params.require(:shop_detail).permit(:photo, :introduction, :genre, :location, holiday: []).merge(start_time: start, end_time: last)
+    params.require(:shop_detail).permit(:photo, :photo_cache, :remove_photo, :introduction, :genre, :location, :start_time, :end_time, holiday: []).merge(start_time: start, end_time: last)
   end
 end

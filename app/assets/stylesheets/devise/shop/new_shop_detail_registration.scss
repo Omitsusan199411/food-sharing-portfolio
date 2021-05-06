@@ -159,6 +159,25 @@
           margin: 0 auto;
           padding: 0px 10px;
           position: relative;
+          &__photo{
+            &--label{
+              @include user_label;
+              &:hover{
+                cursor: pointer;
+              }
+            }
+            &--any{
+              @include require;
+              background-color:#eee;
+              color: #888888;
+            }
+            &--file_upload{
+              display: block;
+              .fa.fa-file-picture-o{
+                width: 20px;
+              }
+            }
+          }
           &__introduction{
             display: block;
             margin-top: 30px;
@@ -492,6 +511,25 @@
         margin: 0 auto;
         padding: 0px 10px;
         position: relative;
+        &__photo{
+          &--label{
+            @include user_label;
+            &:hover{
+              cursor: pointer;
+            }
+          }
+          &--any{
+            @include require;
+            background-color:#eee;
+            color: #888888;
+          }
+          &--file_upload{
+            display: block;
+            .fa.fa-file-picture-o{
+              width: 20px;
+            }
+          }
+        }
         &__introduction{
           display: block;
           margin-top: 30px;

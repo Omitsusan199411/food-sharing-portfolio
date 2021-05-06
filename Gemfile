@@ -54,6 +54,7 @@ group :development, :test, :production, :prd do
   gem 'omniauth-facebook'
   gem "rspec-rails"
   gem "factory_bot_rails"
+  gem 'fog-aws'
 end
 
 group :development do

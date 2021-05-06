@@ -41,3 +41,5 @@ public/uploads/*
 /docker/prd/app/.env.example
 
 /docker/prd/mysql/db_data
+
+/public/uploads*

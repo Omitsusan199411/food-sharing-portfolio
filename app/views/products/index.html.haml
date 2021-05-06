@@ -19,3 +19,11 @@
   = current_shop.name
 .test
   %p.test aaa
+-# - if shop_signed_in?
+-#   - unless current_shop.shop_detail.photo.nil?
+-#     .uploders 
+-#       = image_tag current_shop.shop_detail.photo.url, alt: '店舗アイコン'
+-#   - else
+-#     .fail
+-#       %p.fail_text 画像の表示に失敗 
+  
