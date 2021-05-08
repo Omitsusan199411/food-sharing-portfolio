@@ -84,7 +84,7 @@ jobs:
       - run:
           name: download .env
           command: |
-            aws s3 cp ${AWS_FOOD_APP_S3_URL} .env
+            aws s3 cp s3://food-sharing-service-env/.env .env
       # - run:
       #     name: copy and echo aws credentials
       #     command: |
