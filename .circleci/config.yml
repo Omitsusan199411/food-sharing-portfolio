@@ -81,16 +81,16 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           override-installed: true
-      # - run:
-      #     name: download .env
-      #     command: |
-      #       aws s3 cp s3://adachin.com/prd/env .env
+      - run:
+          name: download .env
+          command: |
+            aws s3 cp ${AWS_FOOD_APP_S3_URL} .env
       # - run:
       #     name: copy and echo aws credentials
       #     command: |
-      #       cp docker/prd/adachin-app/common/.aws/credentials credentials \
-      #       && sed -i "2i aws_access_key_id =${AWS_ACCESS_KEY_ID_PRD_S3}" credentials \
-      #       && sed -i "3i aws_secret_access_key =${AWS_SECRET_ACCESS_KEY_PRD_S3}" credentials
+      #       cp docker/prd/app/.aws/credentials credentials \
+      #       && sed -i "2i aws_access_key_id =${AWS_ACCESS_KEY_ID}" credentials \
+      #       && sed -i "3i aws_secret_access_key =${AWS_SECRET_ACCESS_KEY}" credentials
       - aws-ecr/build-and-push-image:
       # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbsの中のaws-ecr)
           account-url: AWS_ECR_ACCOUNT_URL

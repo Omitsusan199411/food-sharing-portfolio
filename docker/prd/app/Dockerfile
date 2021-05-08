@@ -63,7 +63,7 @@ RUN wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERS
 RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 COPY . $APP_ROOT
-RUN cp docker/prd/app/.env.example $APP_ROOT/.env
+# RUN cp docker/prd/app/.env.example $APP_ROOT/.env
 
 
 # bundle install
