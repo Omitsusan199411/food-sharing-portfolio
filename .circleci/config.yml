@@ -105,7 +105,7 @@ jobs:
       - aws-ecs/update-service:
       # 新しいDockerイメージを既存のECSサービスにデプロイする
           # ECSのタスク定義
-          family: '${AWS_ECS_APP_NAME}-nginx-rails-taskdef'
+          family: '$AWS_ECS_APP_NAME_TASKDEF'
           service-name: '${AWS_ECS_APP_NAME}-ecs-service'
           cluster-name: '${AWS_ECS_APP_NAME}-ecs-cluster'
           #タスク定義内で定義したコンテナイメージURLの更新
@@ -113,16 +113,13 @@ jobs:
       - aws-ecs/run-task:
       # マイグレーション
           cluster: '${AWS_ECS_APP_NAME}-ecs-cluster'
-          task-definition: '${AWS_ECS_APP_NAME}-nginx-rails-taskdef'
+          task-definition: '$AWS_ECS_APP_NAME_TASKDEF'
           count: 1
           launch-type: FARGATE
           awsvpc: true
           subnet-ids: '$AWS_SUBNET_ID_NUMBER_ONE,$AWS_SUBNET_ID_NUMBER_TWO'
           security-group-ids: $AWS_SECURITY_GROUP_ID
-          overrides: "{\"containerOverrides\":[{\"name\": \"${AWS_ECS_APP_NAME}-nginx-rails-taskdef\",\"command\": [\"bundle\", \"exec\", \"rails\", \"db:migrate\", \"RAILS_ENV=prd\"]}]}"
-
-
-
+          overrides: "{\"containerOverrides\":[{\"name\": \"${AWS_ECS_APP_NAME_TASKDEF}\",\"command\": [\"bundle\", \"exec\", \"rails\", \"db:migrate\", \"RAILS_ENV=prd\"]}]}"
 
 workflows:
   version: 2
