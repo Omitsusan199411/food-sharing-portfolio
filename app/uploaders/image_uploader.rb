@@ -12,6 +12,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
+  # アップロードファイルの保存先
   def store_dir
     if model.present?
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -52,7 +53,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
+  #画像をリサイズする
   process resize_to_fit: [400, 400]
+
+  #サムネイル画像をリサイズする。.thumb.urlで呼びだし
+  version :thumb do
+    process resize_to_fit: [50, 50]
+  end
 
 end

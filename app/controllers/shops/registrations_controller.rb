@@ -80,26 +80,20 @@ class Shops::RegistrationsController < Devise::RegistrationsController
   end
 
   def create_shop_detail
-    binding.pry
     @shop = Shop.new(session["shop_regist_data"]["shop"])
-    @shop_detail = ShopDetail.create(shop_detail_params)
-    binding.pry
+    @shop_detail = @shop.build_shop_detail(shop_detail_params)
     unless @shop_detail.valid?
       render :new_shop_detail and return
     else
-      @shop.build_shop_detail(@shop_detail.attributes)
-    end
-    binding.pry
-    if @shop.save
-      binding.pry
-      session["shop_regist_data"]["shop"].clear
-      sign_in(:shop, @shop)
-      flash[:notice] = "店舗情報を登録しました"
-      redirect_to root_path and return
-    else
-      binding.pry
-      flash.now[:alert] = '新規登録に失敗しました'
-      render :new and return
+      if @shop.save
+        session["shop_regist_data"]["shop"].clear
+        sign_in(:shop, @shop)
+        flash[:notice] = "店舗情報を登録しました"
+        redirect_to root_path and return
+      else
+        flash.now[:alert] = '新規登録に失敗しました'
+        render :new and return
+      end
     end
   end
 

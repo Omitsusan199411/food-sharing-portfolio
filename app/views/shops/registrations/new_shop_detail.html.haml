@@ -16,7 +16,7 @@
         %p.step_box_shop_detail__three--text 登録完了
         .step_box_shop_detail__three--circle
     %section.shop_detail_registration_box
-      = form_with model: @shop_detail, url: shop_details_path, multipart: true, class: 'shop_detail_registration_box__form' do |form|
+      = form_with model: @shop_detail, url: shop_details_path, class: 'shop_detail_registration_box__form' do |form|
         .shop_detail_registration_box__form__photo
           = form.label :photo, 'アイコン選択', class: 'fa fa-file-picture-o', for: 'photo'
           %span.shop_detail_registration_box__form__photo--any 任意
