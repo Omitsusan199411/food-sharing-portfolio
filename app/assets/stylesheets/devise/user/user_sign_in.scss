@@ -1,29 +1,3 @@
-@mixin sign_in_background_image{
-  background-size: cover;
-  position: relative;
-  z-index: 0;
-  overflow: hidden;
-  max-width: 1920px;
-  min-height: 850px;
-}
-
-
-@mixin text_box{
-  margin: 0 auto;
-  max-width: 280px;
-  min-height: 40px;
-}
-
-@mixin text_field{
-  width: 90%;
-  height: 40px;
-  border: none;
-  border-bottom: 1px dotted #888888;
-  background-color: transparent;
-  color: #fff;
-}
-
-
 
 
 // ------------------------------------------------------------

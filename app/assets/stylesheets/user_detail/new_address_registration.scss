@@ -142,7 +142,7 @@
                 margin-left: 15px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__text_field{
                   @include field;
@@ -182,7 +182,7 @@
                 margin-left: 15px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__select{
                   display: block;
@@ -207,7 +207,7 @@
                 margin-left: 15px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__text_field{
                   @include field;
@@ -224,7 +224,7 @@
                 margin-left: 15px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__text_field{
                   @include field;
@@ -241,7 +241,7 @@
                 margin-left: 15px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__any{
                   @include any;
@@ -415,7 +415,7 @@
                 width: 100%;
                 margin-left: 15px;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__text_field{
                   @include field;
@@ -452,7 +452,7 @@
                 margin-left: 15px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__select{
                   display: block;
@@ -477,7 +477,7 @@
                 margin-left: 15px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__text_field{
                   @include field;
@@ -494,7 +494,7 @@
                 margin-left: 15px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__text_field{
                   @include field;
@@ -511,7 +511,7 @@
                 margin-left: 15px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__any{
                   @include any;

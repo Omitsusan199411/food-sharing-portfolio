@@ -1,3 +1,4 @@
+= javascript_include_tag 'shop_photo.js'
 .background_shop_detail
   .background_registration_box_detail
     %section.shop_detail_registration
@@ -18,10 +19,13 @@
     %section.shop_detail_registration_box
       = form_with model: @shop_detail, url: shop_details_path, class: 'shop_detail_registration_box__form' do |form|
         .shop_detail_registration_box__form__photo
-          = form.label :photo, 'アイコン選択', class: 'fa fa-file-picture-o', for: 'photo'
-          %span.shop_detail_registration_box__form__photo--any 任意
-          = form.file_field :photo, class: 'shop_detail_registration_box__form__photo--file_upload', id: 'photo'
-          = form.hidden_field :photo_cache, class: 'shop_detail_registration_box__form__photo--file_upload_cache'
+          = form.label :photo, class: 'shop_detail_registration_box__form__photo__label', for: 'photo' do
+            %span.shop_detail_registration_box__form__photo--title アイコン設定
+            %span.shop_detail_registration_box__form__photo--any 任意
+            = image_tag "shop_noimage.png", class: "shop_detail_registration_box__form__photo__label--image", id: 'defalutimg', style: 'hover'
+            = form.file_field :photo, class: 'shop_detail_registration_box__form__photo__label--file_upload', id: 'photo', onchange: "imgPreView(event)", style: 'hover'
+            = form.hidden_field :photo_cache, class: 'shop_detail_registration_box__form__photo__label--file_upload_cache'
+            #preview
         .shop_detail_registration_box__form__introduction
           = form.label :introduction, '紹介文', class: 'shop_detail_registration_box__form__introduction--label', for: 'introduction'
           %span.shop_detail_registration_box__form__introduction--any 任意

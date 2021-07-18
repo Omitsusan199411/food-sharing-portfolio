@@ -1,5 +1,6 @@
 @import "reset";
 @import "modules/products";
+@import "modules/mixin";
 @import "flash_message";
 @import "devise/user/user_registration";
 @import "user_detail/profile_registration";
@@ -11,6 +12,7 @@
 @import "devise/shop/new_shop_detail_registration";
 @import "devise/shop/create_shop_detail_registration";
 @import "devise/shop/error_messages_shop_registration";
+@import "devise/shop/error_messages_shop_detail_registration";
 @import "devise/shop/shop_sign_in";
 @import "devise/shop/reset_password_new";
 @import "devise/shop/reset_password_edit";

@@ -153,7 +153,7 @@
                   width: 70%;
                   margin-left: 15px;
                   &__label{
-                    @include label;
+                    @include user_label;
                   }
                   &__text_field{
                     @include field;
@@ -169,7 +169,7 @@
                   width: 70%;
                   margin-left: 15px;
                   &__label{
-                    @include label;
+                    @include user_label;
                   }
                   &__text_field{
                     @include field;
@@ -190,7 +190,7 @@
                   width: 70%;
                   margin-left: 15px;
                   &__label{
-                    @include label;
+                    @include user_label;
                   }
                   &__text_field{
                     @include field;
@@ -206,7 +206,7 @@
                   width: 70%;
                   margin-left: 15px;
                   &__label{
-                    @include label;
+                    @include user_label;
                   }
                   &__text_field{
                     @include field;
@@ -225,7 +225,7 @@
                 width: 100%;
                 margin-left: 15px;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__man{
                   margin-top: 15px;
@@ -264,7 +264,7 @@
                 margin-top: 30px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                   margin-left: 19px;
                 }
                 &__select{
@@ -324,7 +324,7 @@
                 margin-top: 30px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                   margin-left: 15px;
                 }
                 &__text_field{
@@ -503,7 +503,7 @@
                   width: 70%;
                   margin-left: 15px;
                   &__label{
-                    @include label;
+                    @include user_label;
                   }
                   &__text_field{
                     @include field;
@@ -519,7 +519,7 @@
                   width: 70%;
                   margin-left: 15px;
                   &__label{
-                    @include label;
+                    @include user_label;
                   }
                   &__text_field{
                     @include field;
@@ -540,7 +540,7 @@
                   width: 70%;
                   margin-left: 15px;
                   &__label{
-                    @include label;
+                    @include user_label;
                   }
                   &__text_field{
                     @include field;
@@ -556,7 +556,7 @@
                   width: 70%;
                   margin-left: 15px;
                   &__label{
-                    @include label;
+                    @include user_label;
                   }
                   &__text_field{
                     @include field;
@@ -575,7 +575,7 @@
                 width: 100%;
                 margin-left: 15px;
                 &__label{
-                  @include label;
+                  @include user_label;
                 }
                 &__man{
                   margin-top: 15px;
@@ -614,7 +614,7 @@
                 margin-top: 30px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                   margin-left: 19px;
                 }
                 &__select{
@@ -674,7 +674,7 @@
                 margin-top: 30px;
                 width: 100%;
                 &__label{
-                  @include label;
+                  @include user_label;
                   margin-left: 15px;
                 }
                 &__text_field{

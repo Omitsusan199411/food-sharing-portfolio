@@ -1,0 +1,235 @@
+//user_registration
+@mixin label{
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 3px;
+  color: #fff;
+}
+
+@mixin require{
+  display: inline-block;
+  font-size: 7px;
+  margin-left: 5px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  vertical-align: middle;
+  background-color: #ff9800;
+  color: #fff;
+  margin-top: 2px;
+
+}
+
+@mixin any{
+  display: inline-block;
+  font-size: 7px;
+  margin-left: 5px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  vertical-align: middle;
+  background-color: #eee;
+  color: #888888;
+  margin-top: 2px;
+  font-weight: bold;
+}
+
+@mixin field{
+  display: block;
+  height: 45px;
+  margin-top: 10px;
+  border: none;
+  border-bottom: dotted 1px #888888;
+  line-height: 45px;
+  background-color: rgba(0,0,0,0);
+  color: #fff;
+}
+
+@mixin birthday_select{
+  background-color: #fff;
+  height: 50px;
+  border: 2px solid #eee;
+}
+
+@mixin customer_registration{
+  max-width: 290px;
+  height: 45px;
+  border-bottom: 1px solid #eee;
+  line-height: 40px;
+  background-color: rgba(0,0,0,0);
+  margin: 20px auto 0px;
+  padding: 0px 10px 10px 10px;
+  text-align: center;
+}
+
+@mixin step_box{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 350px;
+  height: 50px;
+  margin: 25px auto 0px;
+  color: #fff;
+  font-size: 9px;
+  padding: 10px;
+}
+
+@mixin registration_background{
+  background-image: image-url('registration_background_image2.jpg');
+  background-size: cover;
+  background-position: left 30px bottom 100px;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  max-width: 1920px;
+  min-height: 1100px;
+}
+
+@mixin registration_box{
+  max-width: 420px;
+  background-color: rgba(0,0,0,0);
+  margin: 0 auto;
+}
+
+
+
+@mixin registration_info{
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+@mixin registration_info_account{
+  font-size: 12px;
+  color: #fff;
+  margin-left: 15px;
+}
+
+
+// user_sign_in
+@mixin sign_in_background_image{
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  max-width: 1920px;
+  min-height: 850px;
+}
+
+
+@mixin text_box{
+  margin: 0 auto;
+  max-width: 280px;
+  min-height: 40px;
+}
+
+@mixin text_field{
+  width: 90%;
+  height: 40px;
+  border: none;
+  border-bottom: 1px dotted #888888;
+  background-color: transparent;
+  color: #fff;
+}
+
+// shop_registration
+@mixin background_shop_image{
+  max-width: 1920px;
+  min-height: 1200px;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+@mixin label{
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  background-color: #008080;
+  border-radius: 2px;
+  padding: 2px 4px;
+  vertical-align: middle;
+  width: 35px;
+  margin-bottom: 3px;
+}
+
+@mixin text{
+  display: block;
+  height: 50px;
+  width: 95%;
+  background-color: transparent;
+  margin-top: 7px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  text-indent: 1em;
+  &::placeholder{
+    color: #d3d3d3;
+  }
+}
+
+@mixin label_text{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+@mixin user_label{
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 3px;
+  color: #fff;
+}
+
+@mixin placeholder($color){
+  &::placeholder{
+    color: $color;
+  }
+}
+
+//new_shop_detail_registration
+@mixin any{
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  background-color: #aaaaaa;
+  border-radius: 2px;
+  padding: 2px 4px;
+  vertical-align: middle;
+  width: 35px;
+  margin-bottom: 3px;
+}
+
+@mixin text_area{
+  display: block;
+  height: 100px;
+  width: 100%;
+  background-color: transparent;
+  margin-top: 7px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  text-indent: 0.5em;
+  line-height: 2em;
+  padding: 0px 8px;
+  &::placeholder{
+    color: #d3d3d3;
+  }
+}
+
+@mixin short_select{
+  display: inline-block;
+  height: 50px;
+  width: 18%;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  padding: 3px;
+  text-indent: 0.8em;
+  line-height: 1em;
+  margin-top: 7px;
+  &::placeholder{
+    color: #d3d3d3;
+  }
+}

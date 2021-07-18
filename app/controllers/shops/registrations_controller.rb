@@ -76,7 +76,7 @@ class Shops::RegistrationsController < Devise::RegistrationsController
   end
 
   def new_shop_detail
-
+    @shop_detail = ShopDetail.new
   end
 
   def create_shop_detail
