@@ -34,7 +34,7 @@ function imgPreView(event){
       preview.style.display = "none";
       defalutimg.style.display = "block";
     }
-  }, 500);
+  }, 450);
 }
 
 
