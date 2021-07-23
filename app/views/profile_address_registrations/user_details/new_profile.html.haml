@@ -1,3 +1,4 @@
+= javascript_include_tag 'user_profile.js'
 .background_food
   .profile_input_box
     %section.profile_title
@@ -20,9 +21,16 @@
         %p.step_box_profile__four--text 登録完了
         .step_box_profile__four--circle
     %section.registration_box
-      .registration_box__title 
-      = form_with model: @profile, url: profile_address_registrations_user_details_profile_path, method: :post, class: 'registration_box__title__form' do |form|
-        %section.registration_box__title__form__profile
+      = form_with model: @profile, url: profile_address_registrations_user_details_profile_path, method: :post, class: 'registration_box__form' do |form|
+        %section.registration_box__form__profile
+          .user_photo_box
+            = form.label :photo, class: 'user_photo_box__label', for: 'user_photo' do
+              %span.user_photo_box__label--aicon アイコン設定
+              %span.user_photo_box__label--any 任意
+              = image_tag "shop_noimage.png", class: 'user_photo_box__label--defalutimg', id: 'user_defalutimg', style: 'hover'
+              = form.file_field :photo, class: 'user_photo_box__label--file_field', id: 'photo', onchange: "Aicon(event)", style: 'hover', id: 'user_photo'
+              = form.hidden_field :photo_cache, class: 'user_photo_box__label--hidden_field'
+              #aicon
           %ul.family_last_name_box
             %li.family_name_box
               = form.label :family_name, '姓（全角）', class: 'family_name_box__label', for: 'family_name'
@@ -45,6 +53,7 @@
             = render partial: 'error_messages_profile', locals: {profile: @profile, profile_column: 'j_last_name'}
           .sex_box
             %span.sex_box__label 性別
+            %span.sex_box__any 任意
             .sex_box__man
               = form.radio_button :sex, :男性, class: "sex_box__man--radio_btn", id: 'man'
               = form.label :sex, '男性', class: "sex_box__man--label", for: 'man'
@@ -53,11 +62,13 @@
               = form.label :sex, '女性', class: "sex_box__woman--label", for: 'woman'
           .birthday_box
             = form.label :birthday, '生年月日', class: 'birthday_box__label'
+            %span.birthday_box__any 任意
             .birthday_box__select
               != sprintf(form.date_select(:birthday, with_css_classes: 'XXXX', prompt: '----', use_month_numbers: true, start_year: 1930, end_year:(Time.now.year-10), default: Date.new(1989, 1, 1), order: [:year, :month, :day], date_separator:'%s'),'年','月')+'日'
               = render partial: 'error_messages_profile', locals: {profile: @profile, profile_column: 'birthday'}
           .phone_number_box
             = form.label :phone_number, '電話番号', class: 'phone_number_box__label', for: 'phone_number'
+            %span.phone_number_box__any 任意
             = form.text_field :phone_number, class: 'phone_number_box__text_field', id: 'phone_number', placeholder: '例) 09098007727'
             = render partial: 'error_messages_profile', locals: {profile: @profile, profile_column: 'phone_number'}
           %button{type: "submit", class: 'submit_box'}

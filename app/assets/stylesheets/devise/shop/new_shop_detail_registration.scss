@@ -126,9 +126,6 @@
               @include user_label;
               display: block;
               width: 50%;
-              input{
-                display: none;
-              }
               &--image{
                 display: block;
                 margin-top: 15px;
@@ -142,6 +139,12 @@
               }
               &--file_upload{
                 
+              }
+              &--file_upload_cache{
+
+              }
+              input{
+                display: none;
               }
               #preview{
                 border: 1px dotted #eee;
@@ -510,23 +513,45 @@
           &__label{
             @include user_label;
             display: block;
-            width: 40%;
-            input{
-              display: none;
-            }
-            .far.fa-plus-square{
+            width: 50%;
+            &--image{
               display: block;
-              margin-top: 10px;
+              margin-top: 15px;
               margin-left: 5px;
               color: #fff;
-              width: 35px;
-              height: 35px;
-            }
-            .size{
-              font-size: 2.5em;
+              width: 150px;
+              height: 140px;
+              &:hover{
+                cursor: pointer;
+              }
             }
             &--file_upload{
               
+            }
+            &--file_upload_cache{
+
+            }
+            input{
+              display: none;
+            }
+            #preview{
+              border: 1px dotted #eee;
+              width: 150px;
+              height: 140px;
+              background-color: #eee;
+              margin-top: 15px;
+              margin-left: 5px;
+              img{
+                display: block;
+                text-align: center;
+                width: 145px;
+                height: 138px;
+                border: 1px dotted #eee;
+                border-radius: 85px;
+                &:hover{
+                  cursor: pointer;
+                }
+              }
             }
           }
         }

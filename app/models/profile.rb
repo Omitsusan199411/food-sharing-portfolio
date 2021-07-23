@@ -1,6 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
+  mount_uploader :photo, ImageUploader
   
   validates :family_name, :last_name, format: {with: /\A[ぁ-んァ-ン一-龥]/, message: 'は全角で入力してください'}, allow_blank: true
   validates :j_family_name, :j_last_name, format: {with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナで入力してください'}, allow_blank: true

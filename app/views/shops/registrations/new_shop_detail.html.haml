@@ -19,11 +19,11 @@
     %section.shop_detail_registration_box
       = form_with model: @shop_detail, url: shop_details_path, class: 'shop_detail_registration_box__form' do |form|
         .shop_detail_registration_box__form__photo
-          = form.label :photo, class: 'shop_detail_registration_box__form__photo__label', for: 'photo' do
+          = form.label :photo, class: 'shop_detail_registration_box__form__photo__label', for: 'shop_photo' do
             %span.shop_detail_registration_box__form__photo--title アイコン設定
             %span.shop_detail_registration_box__form__photo--any 任意
-            = image_tag "shop_noimage.png", class: "shop_detail_registration_box__form__photo__label--image", id: 'defalutimg', style: 'hover'
-            = form.file_field :photo, class: 'shop_detail_registration_box__form__photo__label--file_upload', id: 'photo', onchange: "imgPreView(event)", style: 'hover'
+            = image_tag "shop_noimage.png", class: "shop_detail_registration_box__form__photo__label--image", id: 'shop_defalutimg', style: 'hover'
+            = form.file_field :photo, class: 'shop_detail_registration_box__form__photo__label--file_upload', id: 'shop_photo', onchange: "imgPreView(event)", style: 'hover'
             = form.hidden_field :photo_cache, class: 'shop_detail_registration_box__form__photo__label--file_upload_cache'
             #preview
         .shop_detail_registration_box__form__introduction

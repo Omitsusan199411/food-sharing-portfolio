@@ -2,10 +2,10 @@
 window.addEventListener("load", function(){
   let preview = document.getElementById("preview");
   let previewImage = document.getElementById("previewImage");
-  let defalutimg = document.getElementById("defalutimg");
+  let shop_defalutimg = document.getElementById("shop_defalutimg");
   if(previewImage == null) {
     preview.style.display = "none";
-    defalutimg.style.display = "block";
+    shop_defalutimg.style.display = "block";
   }
 })
 
@@ -14,7 +14,7 @@ function imgPreView(event){
   let file = event.target.files[0];
   let reader = new FileReader();
   let preview = document.getElementById("preview");
-  let inputFile = document.getElementById("photo");
+  let inputFile = document.getElementById("shop_photo");
   let previewImage = document.getElementById("previewImage");
   if(previewImage != null) {
     preview.removeChild(previewImage);
@@ -29,10 +29,10 @@ function imgPreView(event){
     if (inputFile.value.length) {
       reader.readAsDataURL(file);
       preview.style.display = "block";
-      defalutimg.style.display = "none";
+      shop_defalutimg.style.display = "none";
     } else {
       preview.style.display = "none";
-      defalutimg.style.display = "block";
+      shop_defalutimg.style.display = "block";
     }
   }, 450);
 }
