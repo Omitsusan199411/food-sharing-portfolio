@@ -26,6 +26,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/secrets.yml
+/config/credentials.yml.enc
 
 #gihubに画像そのものの投稿を防ぐ(carrierwave)
 public/uploads/*
