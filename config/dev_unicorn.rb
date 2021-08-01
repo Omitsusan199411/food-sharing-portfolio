@@ -10,9 +10,9 @@ listen File.expand_path('/root/tmp/unicorn.sock', app_path)
 pid File.expand_path('/root/tmp/unicorn.pid', app_path)
 
 
-stderr_path "#{app_path}/log/unicorn.stderr.log"
+stderr_path = "#{app_path}/log/unicorn.stderr.log"
 
-stdout_path "#{app_path}/log/unicorn.stdout.log"
+stdout_path = "#{app_path}/log/unicorn.stdout.log"
 
 timeout 60
 
