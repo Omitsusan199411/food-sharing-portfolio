@@ -15,7 +15,9 @@ CarrierWave.configure do |config|
       path_style: true
     }
   else
-    config.storage :file # 開発環境:public/uploades下に保存
-    config.enable_processing = false if Rails.env.test? #test:処理をスキップ
+    # 開発環境:public/uploades下に保存
+    config.storage :file
+    #test:処理をスキップ
+    config.enable_processing = false if Rails.env.test?
   end
 end
