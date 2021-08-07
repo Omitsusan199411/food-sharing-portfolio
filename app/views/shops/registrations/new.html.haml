@@ -25,7 +25,7 @@
         .shop_registration_box__form__admin
           = form.label :admin, '管理者名', class: 'shop_registration_box__form__admin--label', for: 'admin'
           %span.shop_registration_box__form__admin--require 必須
-          %span.shop_registration_box__form__admin--annotation ※ 性と名の間は半角スペースを入れてください
+          %span.shop_registration_box__form__admin--annotation ※ 性と名の間は全角スペースを入れてください
           = form.text_field :admin, class: 'shop_registration_box__form__admin--text', placeholder: '例) 九州　太郎', id: 'admin'
           = render partial: "error_messages_shop_new_registration", locals: {shop: @shop, column: "admin"}
         .shop_registration_box__form__email
