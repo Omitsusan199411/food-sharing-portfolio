@@ -8,6 +8,7 @@ CarrierWave.configure do |config|
     config.fog_provider = 'fog/aws'
     config.fog_directory  = ENV['AWS_S3_BUCKET_NAME']
     config.asset_host = ENV['AWS_S3_ASSET_HOST']
+    # s3のURLに直接アクセスすることが禁止
     config.fog_public = false
     config.fog_credentials = {
       provider: 'AWS',
