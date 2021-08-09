@@ -52,10 +52,12 @@ group :development, :test, :production, :prd do
   gem 'omniauth'
   gem 'omniauth-google-oauth2'
   gem 'omniauth-facebook'
-  gem "rspec-rails"
-  gem "factory_bot_rails"
+  gem 'rspec-rails'
+  gem 'factory_bot_rails', '5.2.0'
+  gem 'spring-commands-rspec'
   gem 'fog-aws'
   gem 'unicorn', '~> 5.4.1'
+  gem 'database_cleaner'
 end
 
 group :development do

@@ -19,7 +19,7 @@ require 'rspec/rails'
 # of increasing the boot-up time by auto-requiring all files in the support
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
-#
+# spec/support/配下のファイルを読み込む（テスト用のヘルパーメソッドを使用する際に記述するファイルの置き場になる）
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
@@ -61,5 +61,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  # Factory_botのメソッドを使用する際にクラス名の指定を省略できる。（FactoryBotクラスの記述を省略できる）
   config.include FactoryBot::Syntax::Methods
 end

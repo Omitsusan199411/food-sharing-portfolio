@@ -22,7 +22,11 @@ module Foodshareapp
       g.stylesheets false
       g.javascripts false
       g.helper false
-      g.test_framework false
+      g.test_framework :rspec,
+        view_specs: false,
+        helper_specs: false,
+        controller_specs: false,
+        routing_specs: false
     end
 
     # エラーメッセージを表示する際にfield_with_classの挿入を防ぐ

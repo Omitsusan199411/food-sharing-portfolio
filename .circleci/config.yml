@@ -4,7 +4,7 @@ orbs:
   aws-ecs: circleci/aws-ecs@2.2.0
   aws-cli: circleci/aws-cli@2.0.0
 
-#環境設定 キャッシュの有効化
+#jobsで使用する実行環境を設定 キャッシュの有効化
 executors:
   docker_build:
   # VMを使用
