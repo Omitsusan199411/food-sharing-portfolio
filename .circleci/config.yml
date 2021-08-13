@@ -11,6 +11,49 @@ executors:
     machine: true
       # docker_layer_caching: true
 
+# commands:
+#   bundle_install_rspec:
+#     steps:
+#       - run:
+#           name: copy config files
+#           command: |
+#             cp config/mail.yml.example config/mail.yml
+#       - run:
+#           name: Which bundler?
+#           command: bundle -v
+ 
+#       - restore_cache:
+#           keys:
+#             - cache-gem-{{ checksum "Gemfile.lock" }}
+#             - cache-gem-
+ 
+#       - run:
+#           name: Bundle Install
+#           command: bundle check || bundle install
+ 
+#       - save_cache:
+#           key: cache-gem-{{ checksum "Gemfile.lock" }}
+#           paths:
+#             - vendor/bundle
+ 
+#       - run:
+#           name: Database create
+#           command: DISABLE_SPRING=true bin/rake db:create --trace
+ 
+#       - run:
+#           name: Database setup
+#           command: DISABLE_SPRING=true bin/rake db:schema:load --trace
+ 
+#       - run:
+#           name: Run rspec
+#           command: |
+#             TZ=Asia/Tokyo \
+#               bundle exec rspec --profile 10 \
+#                                 --out test_results/rspec.xml \
+#                                 --format progress \
+#                                 $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+ 
+
 # rspec
 # jobs:
   # rspec:
@@ -123,6 +166,14 @@ jobs:
 
 workflows:
   version: 2
-  deploy_prd:
+  rspec_deploy_prd:
     jobs:
-      - deploy_app_prd
+      - rspec
+      - deploy_app_prd:
+          requires:
+            - rspec
+          filters:
+            branches:
+              only:
+                - master
+                - circleci

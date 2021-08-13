@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
     @user = build(:user)
   end
 
-  describe 'バリデーション' do
+  describe 'User model valid check' do
     it 'nicknameとemailどちらも値が設定されていればOK' do
       expect(@user.valid?).to eq(true)
     end
