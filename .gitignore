@@ -39,8 +39,9 @@ public/uploads/*
 /vendor/bundle
 /.env
 
+#dockerフォルダ関係
 /docker/prd/app/.env.example
-
 /docker/prd/mysql/db_data
 
 /public/uploads*
+

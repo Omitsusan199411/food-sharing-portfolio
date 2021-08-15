@@ -1,123 +1,92 @@
 version: 2.1
 orbs:
+  #それぞれの処理に必要なjobsやcommands等の処理を予めパッケージ化したもの
   aws-ecr: circleci/aws-ecr@7.0.0
-  aws-ecs: circleci/aws-ecs@2.2.0
-  aws-cli: circleci/aws-cli@2.0.0
+  aws-ecs: circleci/aws-ecs@2.2.1
+  aws-cli: circleci/aws-cli@2.0.3
 
 #jobsで使用する実行環境を設定 キャッシュの有効化
 executors:
-  docker_build:
-  # VMを使用
-    machine: true
-      # docker_layer_caching: true
+  defalut:
+    docker:
+      - image: circleci/ruby:2.6.6-node
+      #CI/CD上で使用するrubyのイメージを作成
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
+          #CI/CD上のMysqlへの接続はユーザーを予め設定していわけではないためrootユーザーでアクセス
+          DATABASE_HOST: '127.0.0.1'
+          DATABASE_USER: 'root'
+      - image: circleci/mysql:5.7
+       #CI/CD上で使用するrubyのイメージを作成
+        environment:
+          #CI/CD上のMysqlへの接続パスワードは「空」であることを差す
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          #「%」は全てのホストを差す
+          MYSQL_HOST: '%'
 
-# commands:
-#   bundle_install_rspec:
-#     steps:
-#       - run:
-#           name: copy config files
-#           command: |
-#             cp config/mail.yml.example config/mail.yml
-#       - run:
-#           name: Which bundler?
-#           command: bundle -v
+
+commands:
+  bundle_install_rspec:
+    steps:
+      - run:
+        #bundlerのバージョン確認
+          name: Which bundler?
+          command: bundle -v
+
+      - restore_cache:
+      #キャッシュを読み込む。ジョブ高速化
+          keys:
+            - cache-gem-{{ checksum "Gemfile.lock" }}
+            - cache-gem-
  
-#       - restore_cache:
-#           keys:
-#             - cache-gem-{{ checksum "Gemfile.lock" }}
-#             - cache-gem-
+      - run:
+        #Gemfile内の依存関係を現在インストールされているGemが満たされていることを確認、gemのインストール
+          name: Bundle Install
+          command: bundle check || bundle install
  
-#       - run:
-#           name: Bundle Install
-#           command: bundle check || bundle install
+      - save_cache:
+          key: cache-gem-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
  
-#       - save_cache:
-#           key: cache-gem-{{ checksum "Gemfile.lock" }}
-#           paths:
-#             - vendor/bundle
+      - run:
+          name: Database create
+          command: DISABLE_SPRING=true bin/rails db:create --trace
  
-#       - run:
-#           name: Database create
-#           command: DISABLE_SPRING=true bin/rake db:create --trace
+      - run:
+          name: Database setup
+          command: DISABLE_SPRING=true bin/rails db:schema:load --trace
  
-#       - run:
-#           name: Database setup
-#           command: DISABLE_SPRING=true bin/rake db:schema:load --trace
- 
-#       - run:
-#           name: Run rspec
-#           command: |
-#             TZ=Asia/Tokyo \
-#               bundle exec rspec --profile 10 \
-#                                 --out test_results/rspec.xml \
-#                                 --format progress \
-#                                 $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      - run:
+          name: Run rspec
+          command: |
+            TZ=Asia/Tokyo \
+              bundle exec rspec --profile 10 \
+                                --out test_results/rspec.xml \
+                                --format progress \
+                                $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
  
 
-# rspec
-# jobs:
-  # rspec:
-  #   docker:
-  #     - image: circleci/ruby:2.6.6-stretch
-  #       environment:
-  #         BUNDLE_JOBS: 3
-  #         BUNDLE_RETRY: 3
-  #         BUNDLER_VERSION: 2.1.4
-  #         BUNDLE_PATH: vendor/bundle
-  #         RAILS_ENV: prd
-  #         DATABASE_HOST: '127.0.0.1'
-  #         DATABASE_USER: 'root'
-  #     - image: circleci/mysql:5.7.32
-  #       environment:
-  #         MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-  #         MYSQL_HOST: '%'
-  #   steps:
-  #     - setup_remote_docker
-  #     - checkout
-  #     - run:
-  #         name: Which bundler?
-  #         command: bundle -v
-
-  #     - restore_cache:
-  #         keys:
-  #           - cache-gem-{{ checksum "Gemfile.lock" }}
-  #           - cache-gem-
-
-  #     - run:
-  #         name: Bundle Install
-  #         command: bundle check || bundle install
-      
-  #     - save_cache:
-  #         key: cache-gem-{{ checksum "Gemfile.lock" }}
-  #         paths:
-  #           - vendor/bundle
-
-  #     - run:
-  #         name: Database create
-  #         command: DISABLE_SPRING=true bin/rails db:create --trace
-
-  #     - run:
-  #         name: Database setup
-  #         command: DISABLE_SPRING=true bin/rails db:schema:load --trace
-
-  #     - run:
-  #         name: Run rspec
-  #         environment:
-  #           SALT: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-  #         command: |
-  #           TZ=Asia/Tokyo \
-  #             bundle exec rspec --profile 10 \
-  #                               --out test_results/rspec.xml \
-  #                               --format progress \
-  #                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
 
 # prd
 jobs:
+  rspec:
+    working_directory: ~/local_docker_rails/food_sharing_service
+    executor: defalut
+    steps:
+      #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
+      - checkout
+      - bundle_install_rspec
   deploy_app_prd:
     working_directory: ~/local_docker_rails/food_sharing_service
-    executor: docker_build
+    executor: defalut
+    #実行可能なコマンド集合
     steps:
+      #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
       - checkout
       - aws-cli/setup:
           aws-region: AWS_REGION
@@ -128,14 +97,16 @@ jobs:
           name: download .env
           command: |
             aws s3 cp s3://food-sharing-service-env/.env .env
-      # - run:
-      #     name: copy and echo aws credentials
-      #     command: |
-      #       cp docker/prd/app/.aws/credentials credentials \
-      #       && sed -i "2i aws_access_key_id =${AWS_ACCESS_KEY_ID}" credentials \
-      #       && sed -i "3i aws_secret_access_key =${AWS_SECRET_ACCESS_KEY}" credentials
+      #CircleCi上の環境からAWSへのアクセスを可能にするためにcredentialsをCI/CD上の環境に作成
+      - run:
+          name: touch and echo aws credentials
+          command: |
+            touch credentials \
+            && sed -i "i [default]" credentials \
+            && sed -i "2i aws_access_key_id =${AWS_ACCESS_KEY_ID}" credentials \
+            && sed -i "3i aws_secret_access_key =${AWS_SECRET_ACCESS_KEY}" credentials
       - aws-ecr/build-and-push-image:
-      # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbsの中のaws-ecr)
+      # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbs「circleci/aws-ecr」の中にある既存の処理に値を置換)
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
@@ -146,7 +117,7 @@ jobs:
           dockerfile: docker/prd/app/Dockerfile
           tag: "${CIRCLE_SHA1}"
       - aws-ecs/update-service:
-      # 新しいDockerイメージを既存のECSサービスにデプロイする
+      # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義
           family: '$AWS_ECS_APP_NAME_TASKDEF'
           service-name: '${AWS_ECS_APP_NAME}-ecs-service'
@@ -154,15 +125,18 @@ jobs:
           #タスク定義内で定義したコンテナイメージURLの更新
           container-image-name-updates: 'container=${AWS_ECS_APP_NAME}-ecs-nginx-rails-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/food-share-app-ecs-repogitory:${CIRCLE_SHA1}'
       - aws-ecs/run-task:
-      # マイグレーション
+      # タスクの立ち上げ
           cluster: '${AWS_ECS_APP_NAME}-ecs-cluster'
           task-definition: '$AWS_ECS_APP_NAME_TASKDEF'
+          #クラスターに配置する指定されたタスクのインスタンス化の数
           count: 1
+          #タスクを実行するタイプ（EC2 or Fargate）
           launch-type: FARGATE
           awsvpc: true
           subnet-ids: '$AWS_SUBNET_ID_NUMBER_ONE,$AWS_SUBNET_ID_NUMBER_TWO'
           security-group-ids: $AWS_SECURITY_GROUP_ID
           overrides: "{\"containerOverrides\":[{\"name\": \"${AWS_ECS_APP_NAME_TASKDEF}\",\"command\": [\"bundle\", \"exec\", \"rails\", \"db:migrate\", \"RAILS_ENV=prd\"]}]}"
+
 
 workflows:
   version: 2
