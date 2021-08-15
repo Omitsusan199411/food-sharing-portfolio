@@ -18,7 +18,7 @@ executors:
           RAILS_ENV: test
           #CI/CD上のMysqlへの接続はユーザーを予め設定していわけではないためrootユーザーでアクセス
           DATABASE_HOST: '127.0.0.1'
-          DATABASE_USER: 'root'
+          DATABASE_USER: TEST_MYSQL_USER
       - image: circleci/mysql:5.7
        #CI/CD上で使用するrubyのイメージを作成
         environment:
