@@ -1,11 +1,11 @@
 ja:
   activerecord:
     models:
-      user:
-      profile:
-      address:
-      shop:
-      shop_detail:
+      user: ユーザー
+      profile: ユーザープロフィール
+      address: ユーザー住所
+      shop: 店舗
+      shop_detail: 店舗詳細
     attributes:
       user:
         nickname: ニックネーム

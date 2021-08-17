@@ -35,20 +35,22 @@ commands:
         #bundlerのバージョン確認
           name: Which bundler?
           command: bundle -v
-
+      #save_cacheでキャッシュを保存していれば読み込みが早くなり、ジョブが高速化
       - restore_cache:
-      #キャッシュを読み込む。ジョブ高速化
           keys:
-            - cache-gem-{{ checksum "Gemfile.lock" }}
-            - cache-gem-
+            - rails-cache-gem-{{ checksum "Gemfile.lock" }}
+            - rails-cache-gem-
  
       - run:
         #Gemfile内の依存関係を現在インストールされているGemが満たされていることを確認、gemのインストール
           name: Bundle Install
           command: bundle check || bundle install
  
+      #Gemfile.lockをキャッシュとして保存
       - save_cache:
-          key: cache-gem-{{ checksum "Gemfile.lock" }}
+          #キャッシュ名を設定する
+          key: rails-cache-gem-{{ checksum "Gemfile.lock" }}
+          #キャッシュするファイルの指定。working_directoryから相対的な位置にあるパスを示す。
           paths:
             - vendor/bundle
  

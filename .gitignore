@@ -36,12 +36,14 @@ public/uploads/*
 /node_modules
 /yarn-debug.log*
 /.yarn-integrity
-/vendor/bundle
 /.env
 
 #dockerフォルダ関係
 /docker/prd/app/.env.example
 /docker/prd/mysql/db_data
 
+#carrierwaveローカル環境画像保存箇所
 /public/uploads*
 
+#vendor/bundle
+/vendor/bundle
