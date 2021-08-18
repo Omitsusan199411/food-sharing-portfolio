@@ -19,6 +19,7 @@ executors:
           #CI/CD上のMysqlへの接続はユーザーを予め設定していわけではないためrootユーザーでアクセス
           DATABASE_HOST: '127.0.0.1'
           DATABASE_USER: TEST_MYSQL_USER
+          TZ: "Japan"
       - image: circleci/mysql:5.7
        #CI/CD上で使用するrubyのイメージを作成
         environment:
@@ -55,6 +56,7 @@ commands:
             - vendor/bundle
  
       - run:
+        #テスト用DBの作成
           name: Database create
           command: DISABLE_SPRING=true bin/rails db:create --trace
  
@@ -63,6 +65,7 @@ commands:
           command: DISABLE_SPRING=true bin/rails db:schema:load --trace
  
       - run:
+        #rspecの実行
           name: Run rspec
           command: |
             TZ=Asia/Tokyo \
