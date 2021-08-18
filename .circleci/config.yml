@@ -23,7 +23,7 @@ executors:
        #CI/CD上で使用するrubyのイメージを作成
         environment:
           #CI/CD上のMysqlへの接続パスワードは「空」であることを差す
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
           #「%」は全てのホストを差す
           MYSQL_HOST: '%'
 
