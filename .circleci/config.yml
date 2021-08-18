@@ -27,7 +27,6 @@ executors:
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
           #「%」は全てのホストを差す
           MYSQL_HOST: '%'
-          MYSQL_USER: 'root'
 
 
 commands:
