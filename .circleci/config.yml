@@ -39,8 +39,8 @@ commands:
       #save_cacheでキャッシュを保存していれば読み込みが早くなり、ジョブが高速化
       - restore_cache:
           keys:
-            - rails-cache-gem-{{ checksum "Gemfile.lock" }}
-            - rails-cache-gem-
+            - rails-cache-gem-v2-{{ checksum "Gemfile.lock" }}
+            - rails-cache-gem-v2-
  
       - run:
         #Gemfile内の依存関係を現在インストールされているGemが満たされていることを確認、gemのインストール
@@ -50,7 +50,7 @@ commands:
       #Gemfile.lockをキャッシュとして保存
       - save_cache:
           #キャッシュ名を設定する
-          key: rails-cache-gem-{{ checksum "Gemfile.lock" }}
+          key: rails-cache-gem-v2-{{ checksum "Gemfile.lock" }}
           #キャッシュするファイルの指定。working_directoryから相対的な位置にあるパスを示す。
           paths:
             - vendor/bundle
