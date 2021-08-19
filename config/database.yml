@@ -17,7 +17,8 @@ development:
 test:
   <<: *default
   database: food_share_app_database_test
-  username: <%= ENV['TEST_MYSQL_USER'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password:
   host: 127.0.0.1
 
 prd:

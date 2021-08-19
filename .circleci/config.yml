@@ -17,16 +17,20 @@ executors:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
           #CI/CD上のMysqlへの接続はユーザーを予め設定していわけではないためrootユーザーでアクセス
-          DATABASE_HOST: '127.0.0.1'
-          DATABASE_USER: 'circleci'
+          DB_HOST: '127.0.0.1'
+          DB_USERNAME: 'root'
+          DB_PASSWORD: ''
           TZ: "Japan"
       - image: circleci/mysql:5.7
        #CI/CD上で使用するrubyのイメージを作成
         environment:
+          #「%」は全てのホストを差す
+          MYSQL_ROOT_HOST: '%'
           #CI/CD上のMysqlへの接続パスワードは「空」であることを差す
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-          #「%」は全てのホストを差す
-          MYSQL_HOST: '%'
+          MYSQL_DATABASE: 'food_share_app_database_test'
+
+
 
 
 commands:
@@ -61,6 +65,7 @@ commands:
           command: DISABLE_SPRING=true bin/rails db:create --trace
  
       - run:
+        #スキーマファイルを元にして既にテータベースがある場合は一旦テーブルを削除して作り直す
           name: Database setup
           command: DISABLE_SPRING=true bin/rails db:schema:load --trace
  
