@@ -100,15 +100,10 @@ jobs:
       - setup_remote_docker
       #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
       - checkout
-      # - run:
-      #     name: echo authorized_keys
-      #     command: |
-      #       echo ${DEVOPS_KEY_STG} >> authorized_keys
-      # aws cliインストール
-      - run:
-          name: install awscli
-          command: | 
-            sudo apt-get install awscli -y
+      #aws-cliをインストール
+      - aws-cli/install:
+        #aws-cliの他バージョンの上書きを許可
+          override-installed: true
       # aws configureコマンドでaws認証情報を設定
       - run:
           name: setting and configure
