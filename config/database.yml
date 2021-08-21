@@ -17,6 +17,7 @@ development:
 test:
   <<: *default
   database: food_share_app_database_test
+  # .circleci/configの環境変数から取得
   username: <%= ENV['DB_USERNAME'] %>
   password:
   host: 127.0.0.1

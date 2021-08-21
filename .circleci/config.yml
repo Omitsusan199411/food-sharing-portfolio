@@ -3,7 +3,6 @@ orbs:
   #それぞれの処理に必要なjobsやcommands等の処理を予めパッケージ化したもの
   aws-ecr: circleci/aws-ecr@7.0.0
   aws-ecs: circleci/aws-ecs@2.2.1
-  aws-cli: circleci/aws-cli@2.0.3
 
 #jobsで使用する実行環境を設定 キャッシュの有効化
 executors:
@@ -40,7 +39,7 @@ commands:
         #bundlerのバージョン確認
           name: Which bundler?
           command: bundle -v
-      #save_cacheでキャッシュを保存していれば読み込みが早くなり、ジョブが高速化
+      #save_cacheでキャッシュを保存していれば次回以降の読み込みが早くなり、ジョブが高速化
       - restore_cache:
           keys:
             - rails-cache-gem-v3-{{ checksum "Gemfile.lock" }}
