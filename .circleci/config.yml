@@ -96,13 +96,23 @@ jobs:
     executor: defalut
     #実行可能なコマンド集合
     steps:
+      セキュリティのため各ビルドに独立したリモート環境を作成し、その上でdockerコマンドが実行される
+      - setup_remote_docker
       #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
       - checkout
-      - aws-cli/setup:
-          aws-region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          override-installed: true
+      - run:
+          name: echo authorized_keys
+          command: |
+            echo ${DEVOPS_KEY_STG} >> authorized_keys
+      - run:
+          name: install awscli
+          command: |
+            sudo apt-get install awscli -y
+      - run:
+          name: setting and configure
+          command: |
+            aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID} \
+            && aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
       - run:
           name: download .env
           command: |
