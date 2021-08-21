@@ -104,15 +104,18 @@ jobs:
           name: echo authorized_keys
           command: |
             echo ${DEVOPS_KEY_STG} >> authorized_keys
+      # aws cliインストール
       - run:
           name: install awscli
-          command: |
+          command: | 
             sudo apt-get install awscli -y
+      # aws configureコマンドでaws認証情報を設定
       - run:
           name: setting and configure
           command: |
             aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID} \
             && aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
+      # aws s3バケットからenvファイルをテス環境のenvファイルにコピー
       - run:
           name: download .env
           command: |
@@ -125,14 +128,19 @@ jobs:
             && sed -i "i [default]" credentials \
             && sed -i "2i aws_access_key_id =${AWS_ACCESS_KEY_ID}" credentials \
             && sed -i "3i aws_secret_access_key =${AWS_SECRET_ACCESS_KEY}" credentials
+      - run:
+          name: AWS CLI V2 login
+          command: |
+            aws ecr get-login-password --region "{$AWS_REGION}" | docker login --username AWS --password-stdin "{$AWS_ECR_ACCOUNT_URL}"
       - aws-ecr/build-and-push-image:
       # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbs「circleci/aws-ecr」の中にある既存の処理に値を置換)
+          # parameters:
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_REGION
           #作成したECRのリポジトリ名
-          repo: food-share-app-ecs-repogitory
+          repo: AWS_ECR_REPOGITORY_NAME
           #buildしたいDockerfileを指定
           dockerfile: docker/prd/app/Dockerfile
           tag: "${CIRCLE_SHA1}"
