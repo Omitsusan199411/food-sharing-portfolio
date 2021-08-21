@@ -100,50 +100,45 @@ jobs:
       - setup_remote_docker
       #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
       - checkout
-      - run:
-          name: echo authorized_keys
-          command: |
-            echo ${DEVOPS_KEY_STG} >> authorized_keys
-      # aws cliインストール
-      - run:
-          name: install awscli
-          command: | 
-            sudo apt-get install awscli -y
-      # aws configureコマンドでaws認証情報を設定
-      - run:
-          name: setting and configure
-          command: |
-            aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID} \
-            && aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
+      # - run:
+      #     name: echo authorized_keys
+      #     command: |
+      #       echo ${DEVOPS_KEY_STG} >> authorized_keys
+      # # aws cliインストール
+      # - run:
+      #     name: install awscli
+      #     command: | 
+      #       sudo apt-get install awscli -y
+      # # aws configureコマンドでaws認証情報を設定
+      # - run:
+      #     name: setting and configure
+      #     command: |
+      #       aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID} \
+      #       && aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
       # aws s3バケットからenvファイルをテス環境のenvファイルにコピー
       - run:
           name: download .env
           command: |
             aws s3 cp s3://food-sharing-service-env/.env .env
       #CircleCi上の環境からAWSへのアクセスを可能にするためにcredentialsをCI/CD上の環境に作成
-      - run:
-          name: touch and echo aws credentials
-          command: |
-            touch credentials \
-            && sed -i "i [default]" credentials \
-            && sed -i "2i aws_access_key_id =${AWS_ACCESS_KEY_ID}" credentials \
-            && sed -i "3i aws_secret_access_key =${AWS_SECRET_ACCESS_KEY}" credentials
-      - run:
-          name: AWS CLI V2 login
-          command: |
-            aws ecr get-login-password --region "{$AWS_REGION}" | docker login --username AWS --password-stdin "{$AWS_ECR_ACCOUNT_URL}"
+      # - run:
+      #     name: touch and echo aws credentials
+      #     command: |
+      #       touch credentials \
+      #       && sed -i "i [default]" credentials \
+      #       && sed -i "2i aws_access_key_id =${AWS_ACCESS_KEY_ID}" credentials \
+      #       && sed -i "3i aws_secret_access_key =${AWS_SECRET_ACCESS_KEY}" credentials
       - aws-ecr/build-and-push-image:
       # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbs「circleci/aws-ecr」の中にある既存の処理に値を置換)
-          # parameters:
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_REGION
           #作成したECRのリポジトリ名
-          repo: AWS_ECR_REPOGITORY_NAME
+          repo: food-share-app-ecs-repogitory
           #buildしたいDockerfileを指定
           dockerfile: docker/prd/app/Dockerfile
-          tag: "${CIRCLE_SHA1}"
+          tag: "$CIRCLE_SHA1"
       - aws-ecs/update-service:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義
