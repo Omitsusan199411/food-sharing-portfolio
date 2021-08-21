@@ -29,7 +29,6 @@ executors:
           #CI/CD上のMysqlへの接続パスワードは「空」であることを差す
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
           MYSQL_DATABASE: 'food_share_app_database_test'
-    parallelism: 3
 
 
 
