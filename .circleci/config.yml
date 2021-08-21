@@ -101,7 +101,7 @@ jobs:
       #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
       - checkout
       #aws-cliをインストール
-      - aws-cli/install:
+      - install:
         #aws-cliの他バージョンの上書きを許可
           override-installed: true
       # aws configureコマンドでaws認証情報を設定
