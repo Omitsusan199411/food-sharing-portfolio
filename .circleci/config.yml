@@ -80,8 +80,6 @@ commands:
                                 $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
  
 
-
-
 # prd
 jobs:
   rspec:
@@ -101,19 +99,19 @@ jobs:
       #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
       - checkout
       - run:
-          name: echo authorized_keys
+          name: aws-cli package download
           command: |
-            echo ${DEVOPS_KEY_STG} >> authorized_keys
-      - aws-cli/install:
-        #aws-cliの他バージョンの上書きを許可
-          override-installed: true
+            curl "https://awscli.amazonaws.com/AWSCLIV2-2.0.30.pkg" -o "AWSCLIV2.pkg"
+      - run:
+          name: aws-cli v2.0.3 install
+          command: |
+            sudo installer -pkg ./AWSCLIV2.pkg -target /
       # aws configureコマンドでaws認証情報を設定
       - run:
           name: setting and configure
           command: |
             aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID} \
             && aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
-            #aws-cliをインストール
       # aws s3バケットからenvファイルをテス環境のenvファイルにコピー
       - run:
           name: download .env
