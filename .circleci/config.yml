@@ -120,16 +120,8 @@ jobs:
       - run:
           name: master.key
           command: |
-            touch config/master.key \
-            && sed -i "i ${FOOD_APP_MASTER_KEY}" config/master.key
-      #CircleCi上の環境からAWSへのアクセスを可能にするためにcredentialsをCI/CD上の環境に作成
-      # - run:
-      #     name: touch and echo aws credentials
-      #     command: |
-      #       touch credentials \
-      #       && sed -i "i [default]" credentials \
-      #       && sed -i "2i aws_access_key_id =${AWS_ACCESS_KEY_ID}" credentials \
-      #       && sed -i "3i aws_secret_access_key =${AWS_SECRET_ACCESS_KEY}" credentials
+            touch ./config/master.key \
+            && sed -i "i ${FOOD_APP_MASTER_KEY}" ./config/master.key
       - aws-ecr/build-and-push-image:
       # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbs「circleci/aws-ecr」の中にある既存の処理に値を置換)
           account-url: AWS_ECR_ACCOUNT_URL
