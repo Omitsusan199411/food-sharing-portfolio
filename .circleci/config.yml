@@ -8,6 +8,7 @@ orbs:
 #jobsで使用する実行環境を設定 キャッシュの有効化
 executors:
   defalut:
+    # dockerhubから既存のイメージをpullする（circleci/ruby2.6.6 circleci/mysql5.7）
     docker:
       - image: circleci/ruby:2.6.6-node
       #CI/CD上で使用するrubyのイメージを作成
@@ -16,6 +17,7 @@ executors:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
+          RAILS_MASTER_KEY: RAILS_MASTER_KEY
           #CI/CD上のMysqlへの接続はユーザーを予め設定していわけではないためrootユーザーでアクセス
           DB_HOST: '127.0.0.1'
           DB_USERNAME: 'root'
@@ -127,14 +129,14 @@ jobs:
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          # 「docker build --build-arg 変数名=値」と同様の処理をする。ビルドするdockerfile内のARG変数の値を設定
-          extra-build-args: '--build-arg RAILS_MASTER_KEY=${FOOD_APP_MASTER_KEY}  --build-arg RAILS_ENV=${FOOD_PRD_RAILS_ENV}'
           region: AWS_REGION
           #作成したECRのリポジトリ名
           repo: food-share-app-ecs-repogitory
           #buildしたいDockerfileを指定
           dockerfile: docker/prd/app/Dockerfile
           tag: "$CIRCLE_SHA1"
+          # 「docker build --build-arg 変数名=値」と同様の処理をする。ビルドするdockerfile内のARG変数の値を設定
+          extra-build-args: '--build-arg RAILS_MASTER_KEY=${FOOD_APP_MASTER_KEY}  --build-arg RAILS_ENV=${FOOD_PRD_RAILS_ENV}'
       - aws-ecs/update-service:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義

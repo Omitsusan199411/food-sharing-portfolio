@@ -66,9 +66,9 @@ COPY . $APP_ROOT
 
 # circleci master.key .circleci/comfigの「--build-arg RAILS_MASTER_KEY=${FOOD_APP_MASTER_KEY}」で設定した値を環境変数として使う
 ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
 ARG RAILS_ENV
-ENV RAILS_MASTER_KEY ${FOOD_APP_MASTER_KEY}
-ENV RAILS_ENV ${FOOD_PRD_RAILS_ENV}
+ENV RAILS_ENV ${RAILS_ENV}
 
 # bundle install
 RUN bundle install --path vendor/bundle
