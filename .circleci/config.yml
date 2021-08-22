@@ -57,17 +57,17 @@ commands:
           #キャッシュするファイルの指定。working_directoryから相対的な位置にあるパスを示す。
           paths:
             - vendor/bundle
- 
+
       - run:
         #テスト用DBの作成
           name: Database create
           command: DISABLE_SPRING=true bin/rails db:create --trace
- 
+
       - run:
         #スキーマファイルを元にして既にテータベースがある場合は一旦テーブルを削除して作り直す
           name: Database setup
           command: DISABLE_SPRING=true bin/rails db:schema:load --trace
- 
+
       - run:
         #rspecの実行
           name: Run rspec
@@ -96,7 +96,7 @@ jobs:
       # セキュリティのため各ビルドに独立したリモート環境を作成し、その上でdockerコマンドが実行される
       - setup_remote_docker
       # #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
-      # - checkout
+      - checkout
       - run:
           name: aws-cli package download
           command: |
@@ -128,7 +128,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           # 「docker build --build-arg 変数名=値」と同様の処理をする。ビルドするdockerfile内のARG変数の値を設定
-          extra-build-args: "--build-arg RAILS_MASTER_KEY=${FOOD_APP_MASTER_KEY}"
+          extra-build-args: '--build-arg RAILS_MASTER_KEY=${FOOD_APP_MASTER_KEY}  --build-arg RAILS_ENV=${FOOD_PRD_RAILS_ENV}'
           region: AWS_REGION
           #作成したECRのリポジトリ名
           repo: food-share-app-ecs-repogitory
