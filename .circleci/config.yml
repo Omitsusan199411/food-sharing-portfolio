@@ -117,6 +117,11 @@ jobs:
           name: download .env
           command: |
             aws s3 cp s3://food-sharing-service-env/.env .env
+      - run:
+          name: master.key
+          command: |
+            touch config/master.key \
+            && sed -i "i ${FOOD_APP_MASTER_KEY}" config/master.key
       #CircleCi上の環境からAWSへのアクセスを可能にするためにcredentialsをCI/CD上の環境に作成
       # - run:
       #     name: touch and echo aws credentials
@@ -130,6 +135,7 @@ jobs:
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          # 「docker build --build-arg 変数名=値」と同様の処理をする。ビルドするdockerfile内のARG変数の値を設定
           extra-build-args: "--build-arg RAILS_MASTER_KEY=${FOOD_APP_MASTER_KEY}"
           region: AWS_REGION
           #作成したECRのリポジトリ名

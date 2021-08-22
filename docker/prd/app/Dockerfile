@@ -64,7 +64,7 @@ RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 COPY . $APP_ROOT
 
-# circleci master.key
+# circleci master.key .circleci/comfigの「--build-arg RAILS_MASTER_KEY=${FOOD_APP_MASTER_KEY}」で設定した値を環境変数として使う
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY ${FOOD_APP_MASTER_KEY}
 
