@@ -95,8 +95,8 @@ jobs:
     steps:
       # セキュリティのため各ビルドに独立したリモート環境を作成し、その上でdockerコマンドが実行される
       - setup_remote_docker
-      #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
-      - checkout
+      # #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
+      # - checkout
       - run:
           name: aws-cli package download
           command: |
