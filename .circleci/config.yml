@@ -121,7 +121,7 @@ jobs:
           name: master.key
           command: |
             touch ./config/master.key \
-            && sed -i "i ${FOOD_APP_MASTER_KEY}" ./config/master.key
+            && echo "${FOOD_APP_MASTER_KEY}" >> ./config/master.key
       - aws-ecr/build-and-push-image:
       # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbs「circleci/aws-ecr」の中にある既存の処理に値を置換)
           account-url: AWS_ECR_ACCOUNT_URL
