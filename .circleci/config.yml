@@ -123,7 +123,7 @@ jobs:
           name: master.key
           command: |
             touch ./config/master.key \
-            && echo "${FOOD_APP_MASTER_KEY}" >> ./config/master.key
+            && echo "${RAILS_MASTER_KEY}" >> ./config/master.key
       - aws-ecr/build-and-push-image:
       # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbs「circleci/aws-ecr」の中にある既存の処理に値を置換)
           account-url: AWS_ECR_ACCOUNT_URL
@@ -136,7 +136,7 @@ jobs:
           dockerfile: docker/prd/app/Dockerfile
           tag: "$CIRCLE_SHA1"
           # 「docker build --build-arg 変数名=値」と同様の処理をする。ビルドするdockerfile内のARG変数の値を設定
-          extra-build-args: '--build-arg RAILS_MASTER_KEY=${FOOD_APP_MASTER_KEY}  --build-arg RAILS_ENV=${FOOD_PRD_RAILS_ENV}'
+          extra-build-args: '--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}  --build-arg RAILS_ENV=${RAILS_ENV}'
       - aws-ecs/update-service:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義
