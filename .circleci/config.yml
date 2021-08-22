@@ -16,6 +16,7 @@ executors:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
+          RAILS_MASTER_KEY: FOOD_APP_MASTER_KEY
           #CI/CD上のMysqlへの接続はユーザーを予め設定していわけではないためrootユーザーでアクセス
           DB_HOST: '127.0.0.1'
           DB_USERNAME: 'root'
