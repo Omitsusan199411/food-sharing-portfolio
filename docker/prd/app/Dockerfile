@@ -66,7 +66,7 @@ COPY . $APP_ROOT
 
 # circleci master.key
 ARG RAILS_MASTER_KEY
-ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
+ENV RAILS_MASTER_KEY ${FOOD_APP_MASTER_KEY}
 
 # bundle install
 RUN bundle install --path vendor/bundle
