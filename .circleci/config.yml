@@ -16,8 +16,7 @@ executors:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
-          RAILS_ENV: test
-          RAILS_MASTER_KEY: $RAILS_MASTER_KEY
+          # RAILS_ENV: test
           #CI/CD上のMysqlへの接続はユーザーを予め設定していわけではないためrootユーザーでアクセス
           DB_HOST: '127.0.0.1'
           DB_USERNAME: 'root'
@@ -63,12 +62,12 @@ commands:
       - run:
         #テスト用DBの作成
           name: Database create
-          command: DISABLE_SPRING=true bin/rails db:create --trace
+          command: DISABLE_SPRING=true bin/rails db:create RAILS_ENV=test --trace
 
       - run:
         #スキーマファイルを元にして既にテータベースがある場合は一旦テーブルを削除して作り直す
           name: Database setup
-          command: DISABLE_SPRING=true bin/rails db:schema:load --trace
+          command: DISABLE_SPRING=true bin/rails db:schema:load RAILS_ENV=test --trace
 
       - run:
         #rspecの実行
@@ -136,7 +135,7 @@ jobs:
           dockerfile: docker/prd/app/Dockerfile
           tag: "$CIRCLE_SHA1"
           # 「docker build --build-arg 変数名=値」と同様の処理をする。ビルドするdockerfile内のARG変数の値を設定
-          extra-build-args: '--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}  --build-arg RAILS_ENV=${RAILS_ENV}'
+          extra-build-args: '--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}'
       - aws-ecs/update-service:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義
