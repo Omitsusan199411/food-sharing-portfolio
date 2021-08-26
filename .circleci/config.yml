@@ -16,7 +16,7 @@ executors:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
-          # RAILS_ENV: test
+          RAILS_ENV: test
           #CI/CD上のMysqlへの接続はユーザーを予め設定していわけではないためrootユーザーでアクセス
           DB_HOST: '127.0.0.1'
           DB_USERNAME: 'root'
@@ -118,11 +118,11 @@ jobs:
           name: download .env
           command: |
             aws s3 cp s3://food-sharing-service-env/.env .env
-      - run:
-          name: master.key
-          command: |
-            touch ./config/master.key \
-            && echo "${RAILS_MASTER_KEY}" >> ./config/master.key
+      # - run:
+      #     name: master.key
+      #     command: |
+      #       touch ./config/master.key \
+      #       && echo "${RAILS_MASTER_KEY}" >> ./config/master.key
       - aws-ecr/build-and-push-image:
       # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbs「circleci/aws-ecr」の中にある既存の処理に値を置換)
           account-url: AWS_ECR_ACCOUNT_URL
@@ -135,7 +135,7 @@ jobs:
           dockerfile: docker/prd/app/Dockerfile
           tag: "$CIRCLE_SHA1"
           # 「docker build --build-arg 変数名=値」と同様の処理をする。ビルドするdockerfile内のARG変数の値を設定
-          extra-build-args: '--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}'
+          extra-build-args: "--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}"
       - aws-ecs/update-service:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義
