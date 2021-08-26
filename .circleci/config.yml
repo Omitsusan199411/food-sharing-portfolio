@@ -118,11 +118,6 @@ jobs:
           name: download .env
           command: |
             aws s3 cp s3://food-sharing-service-env/.env .env
-      # - run:
-      #     name: master.key
-      #     command: |
-      #       touch ./config/master.key \
-      #       && echo "${RAILS_MASTER_KEY}" >> ./config/master.key
       - aws-ecr/build-and-push-image:
       # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbs「circleci/aws-ecr」の中にある既存の処理に値を置換)
           account-url: AWS_ECR_ACCOUNT_URL
@@ -162,7 +157,7 @@ workflows:
   version: 2
   rspec_deploy_prd:
     jobs:
-      - rspec
+      - rspec:
       - deploy_app_prd:
           requires:
             - rspec

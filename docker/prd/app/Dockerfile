@@ -65,6 +65,7 @@ RUN wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERS
 # copy app
 RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
+# docker buildコマンドを実行した時に滞在しているディレクトリが基準（ . ）となる。COPYは単純にローカルファイル、ディレクトリをコピーするのみ
 COPY . $APP_ROOT
 
 # bundle install
@@ -76,13 +77,14 @@ RUN npm install n -g
 RUN n 12.18.4
 
 # aws-cli install
-RUN curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
-RUN python get-pip.py && sudo pip install awscli
-RUN rm get-pip.py
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip && sudo ./aws/install
+RUN rm awscliv2.zip
 
 ##nginx
 RUN groupadd nginx
 RUN useradd -g nginx nginx
+# 圧縮ファイルを解凍してコピーしたい時はADDを使う
 ADD ./docker/prd/app/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD ./docker/prd/app/nginx/dev.defalut.conf /etc/nginx/conf.d/dev.defalut.conf
 
