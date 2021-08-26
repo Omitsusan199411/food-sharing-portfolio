@@ -157,7 +157,7 @@ workflows:
   version: 2
   rspec_deploy_prd:
     jobs:
-      - rspec:
+      - rspec
       - deploy_app_prd:
           requires:
             - rspec
