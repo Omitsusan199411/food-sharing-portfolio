@@ -94,25 +94,26 @@ jobs:
     working_directory: ~/local_docker_rails/food_sharing_service
     executor: defalut
     environment:
-      RAILS_ENV: prd
-      DB_HOST: $PRD_MYSQL_HOST
-      DB_USERNAME: $PRD_MYSQL_USER
-      DB_PASSWORD: $PRD_MYSQL_PASSWORD
-      MYSQL_DATABASE: $PRD_MYSQL_DATABASE
+        RAILS_ENV: prd
+        DB_HOST: $PRD_MYSQL_HOST
+        DB_USERNAME: $PRD_MYSQL_USER
+        DB_PASSWORD: $PRD_MYSQL_PASSWORD
+        MYSQL_DATABASE: $PRD_MYSQL_DATABASE
     steps:
       # セキュリティのため各ビルドに独立したリモート環境を作成し、その上でdockerコマンドが実行される
       - setup_remote_docker
       # #ソースコードを作業ディレクトリにチェックアウトするステップ (github上のコードを持ってくる)
       - checkout
-      # - run:
-      #     name: aws-cli package download
-      #     command: |
-      #       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
-      # - run:
-      #     name: aws-cli v2.0.3 install
-      #     command: |
-      #       unzip awscliv2.zip \
-            # && sudo ./aws/install
+      - run:
+          name: aws-cli package download
+          command: |
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
+      - run:
+          name: aws-cli v2.0.3 install
+          command: |
+            unzip awscliv2.zip \
+            && sudo ./aws/install \
+            && rm awscliv2.zip
       # aws configureコマンドでaws認証情報を設定
       - run:
           name: setting and configure
