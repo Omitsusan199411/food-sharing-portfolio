@@ -140,7 +140,7 @@ jobs:
       - aws-ecs/update-service:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義
-          family: '$AWS_ECS_APP_NAME_TASKDEF'
+          family: AWS_ECS_APP_NAME_TASKDEF
           service-name: '${AWS_ECS_APP_NAME}-serv'
           cluster-name: '${AWS_ECS_APP_NAME}-cluster'
           #タスク定義内で定義したコンテナイメージURLの更新
@@ -154,8 +154,8 @@ jobs:
           #タスクを実行するタイプ（EC2 or Fargate）
           launch-type: FARGATE
           awsvpc: true
-          subnet-ids: '$AWS_SUBNET_ID_NUMBER_ONE,$AWS_SUBNET_ID_NUMBER_TWO'
-          security-group-ids: $AWS_SECURITY_GROUP_ID
+          subnet-ids: AWS_SUBNET_ID_NUMBER_ONE,AWS_SUBNET_ID_NUMBER_TWO
+          security-group-ids: AWS_SECURITY_GROUP_ID
           overrides: "{\"containerOverrides\":[{\"name\": \"${AWS_ECS_APP_NAME_TASKDEF}\",\"command\": [\"bundle\", \"exec\", \"rails\", \"db:migrate\", \"RAILS_ENV=prd\"]}]}"
 
 
