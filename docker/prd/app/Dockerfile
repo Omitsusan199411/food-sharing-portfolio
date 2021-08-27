@@ -3,9 +3,6 @@ ENV LANG C.UTF-8
 ENV ENTRYKIT_VERSION 0.4.0
 ENV QMAKE=/usr/lib/qt5/bin/qmake
 ENV APP_ROOT /var/www/app
-# circleci master.key .circleci/comfigの「--build-arg RAILS_MASTER_KEY=${FOOD_APP_MASTER_KEY}」で設定した値を環境変数として使う
-ARG RAILS_MASTER_KEY
-ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
 
 
 RUN mkdir -p /root/tmp
@@ -65,7 +62,7 @@ RUN wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERS
 # copy app
 RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
-# docker buildコマンドを実行した時に滞在しているディレクトリが基準（ . ）となる。COPYは単純にローカルファイル、ディレクトリをコピーするのみ
+# docker buildコマンドを実行した時に滞在しているディレクトリが基準（ . ）となる。COPYは単純にローカルファイルやディレクトリをコピーするのみ
 COPY . $APP_ROOT
 
 # bundle install
