@@ -137,7 +137,7 @@ jobs:
           #buildしたいDockerfileを指定
           dockerfile: docker/prd/app/Dockerfile
           tag: "$CIRCLE_SHA1"
-      - aws-ecs/update-service:
+      - aws-ecs/deploy-service-update:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義
           family: AWS_ECS_APP_NAME_TASKDEF
