@@ -74,7 +74,7 @@ RUN npm install n -g
 RUN n 12.18.4
 
 # aws-cli install
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
+RUN apt-get install less && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
 RUN unzip -n awscliv2.zip && sudo ./aws/install
 RUN rm awscliv2.zip
 
