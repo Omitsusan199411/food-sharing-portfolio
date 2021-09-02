@@ -47,6 +47,7 @@ RUN apt-get update -y && \
     supervisor \
     nodejs \
     yarn \
+    less \
     zlib1g-dev && \
     apt-get clean -y && \
     rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
@@ -74,7 +75,7 @@ RUN npm install n -g
 RUN n 12.18.4
 
 # aws-cli install
-RUN apt-get install less && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
 RUN unzip -n awscliv2.zip && sudo ./aws/install
 RUN rm awscliv2.zip
 
