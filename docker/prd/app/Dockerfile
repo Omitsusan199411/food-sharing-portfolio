@@ -23,6 +23,7 @@ RUN apt-get update -y && \
     bash \
     build-essential \
     sudo \
+    less \
     perl \
     curl \
     wget \
@@ -50,8 +51,6 @@ RUN apt-get update -y && \
     zlib1g-dev && \
     apt-get clean -y && \
     rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
-
-RUN sudo apt-get install less -y
 
 
 RUN wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERSION}/entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz \
