@@ -99,7 +99,9 @@ jobs:
         DB_USERNAME: $PRD_MYSQL_USER
         DB_PASSWORD: $PRD_MYSQL_PASSWORD
         MYSQL_DATABASE: $PRD_MYSQL_DATABASE
-        AWS_DEFAULT_REGION: AWS_REGION
+        ECS_PARAM_FAMILY: AWS_ECS_APP_NAME_TASKDEF
+        ECS_PARAM_CLUSTER_NAME: '${AWS_ECS_APP_NAME}-cluster'
+        ECS_PARAM_SERVICE_NAME: '${AWS_ECS_APP_NAME}-serv'
     steps:
       # セキュリティのため各ビルドに独立したリモート環境を作成し、その上でdockerコマンドが実行される
       - setup_remote_docker
