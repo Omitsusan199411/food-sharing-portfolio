@@ -99,9 +99,6 @@ jobs:
         DB_USERNAME: $PRD_MYSQL_USER
         DB_PASSWORD: $PRD_MYSQL_PASSWORD
         MYSQL_DATABASE: $PRD_MYSQL_DATABASE
-        ECS_PARAM_FAMILY: AWS_ECS_APP_NAME_TASKDEF
-        ECS_PARAM_CLUSTER_NAME: '${AWS_ECS_APP_NAME}-cluster'
-        ECS_PARAM_SERVICE_NAME: '${AWS_ECS_APP_NAME}-serv'
     steps:
       # セキュリティのため各ビルドに独立したリモート環境を作成し、その上でdockerコマンドが実行される
       - setup_remote_docker
@@ -143,14 +140,14 @@ jobs:
       - aws-ecs/update-service:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義
+          cluster-name: AWS_ECS_APP_CLUSTER_NAME
           family: AWS_ECS_APP_NAME_TASKDEF
-          service-name: '${AWS_ECS_APP_NAME}-serv'
-          cluster-name: '${AWS_ECS_APP_NAME}-cluster'
+          service-name: AWS_ECS_APP_SERVICE_NAME
           #タスク定義内で定義したコンテナURLの更新
           container-image-name-updates: 'container=${AWS_ECS_APP_NAME}-nginx-rails-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/food-share-app-ecs-repogitory:${CIRCLE_SHA1}'
       - aws-ecs/run-task:
       # タスクの立ち上げ
-          cluster: '${AWS_ECS_APP_NAME}-cluster'
+          cluster: AWS_ECS_APP_CLUSTER_NAME
           task-definition: AWS_ECS_APP_NAME_TASKDEF
           #クラスターに配置する指定されたタスクのインスタンス化の数
           count: 1
