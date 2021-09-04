@@ -144,7 +144,7 @@ jobs:
           family: "food-sharing-service-task-definition"
           service-name: "food-sharing-service-serv"
           #タスク定義内で定義したコンテナURLの更新
-          container-image-name-updates: "container=${AWS_ECS_APP_NAME}-nginx-rails-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/food-share-app-ecs-repogitory:${CIRCLE_SHA1}"
+          container-image-name-updates: "container=food-sharing-service-nginx-rails-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/food-share-app-ecs-repogitory:${CIRCLE_SHA1}"
       - aws-ecs/run-task:
       # タスクの立ち上げ
           cluster: "food-sharing-service-cluster"
