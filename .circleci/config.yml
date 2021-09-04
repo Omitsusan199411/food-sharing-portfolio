@@ -154,8 +154,8 @@ jobs:
           #タスクを実行するタイプ（EC2 or Fargate）
           launch-type: FARGATE
           awsvpc: true
-          subnet-ids: "subnet-0e539061905f8ef47","subnet-03dd2ef4f961c7fd2"
-          security-group-ids: "sg-0fc6437d698cfb6e0","sg-069a816ed1ba54d54"
+          subnet-ids: subnet-0e539061905f8ef47, subnet-03dd2ef4f961c7fd2
+          security-group-ids: sg-0fc6437d698cfb6e0, sg-069a816ed1ba54d54
           overrides: "{\\\"containerOverrides\\\":[{\\\"name\\\": \\\"food-sharing-service-task-definition\\\",\\\"command\\\": [\\\"bundle\\\", \\\"exec\\\", \\\"rails\\\", \\\"db:migrate\\\", \\\"RAILS_ENV=prd\\\"]}]}"
 
 
