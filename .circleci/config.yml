@@ -125,6 +125,10 @@ jobs:
           name: download .env
           command: |
             aws s3 cp s3://food-sharing-service-env/.env .env
+      - run:
+          name: less install
+          command: |
+            apt-get install -y less
     #実行可能なコマンド集合
       - aws-ecr/build-and-push-image:
       # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbs「circleci/aws-ecr」の中にある既存の処理に値を置換)
