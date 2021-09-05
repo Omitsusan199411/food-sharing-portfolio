@@ -152,7 +152,7 @@ jobs:
             --cluster "food-sharing-service-cluster" \
             --task-definition "food-sharing-service-task-definition" \
             --network-configuration "awsvpcConfiguration={subnets=["subnet-0e539061905f8ef47", "subnet-03dd2ef4f961c7fd2"],securityGroups=["sg-0fc6437d698cfb6e0", "sg-069a816ed1ba54d54"],assignPublicIp=ENABLED}" \
-            --overrides '{"containerOverrides": [{"name":"food-sharing-service-task-definition","command":["bundle", "exec", "rails", "db:migrate", "RAILS_ENV=prd"]}]}'
+            --overrides '{"containerOverrides": [{"name":"food-sharing-service-nginx-rails-container","command":["bundle", "exec", "rails", "db:migrate", "RAILS_ENV=prd"]}]}'
       # - aws-ecs/run-task:
       # # タスクの立ち上げ
       #     cluster: "food-sharing-service-cluster"
