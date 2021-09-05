@@ -165,7 +165,7 @@ jobs:
           subnet-ids: subnet-0e539061905f8ef47, subnet-03dd2ef4f961c7fd2
           security-group-ids: sg-0fc6437d698cfb6e0, sg-069a816ed1ba54d54
           # 記述したタスク定義（food-sharing-service-task-definition）に記述したコマンド（rails db:migrate）をJSON形式で渡す
-          overrides: "{\"containerOverrides\":[{\"name\": \"food-sharing-service-task-definition\",\"command\": [\"bundle\", \"exec\", \"rails\", \"db:migrate\", \"RAILS_ENV=prd\"]}]}"
+          overrides: "{\"containerOverrides\":[{\"name\": \"food-sharing-service-nginx-rails-container\",\"command\": [\"bundle\", \"exec\", \"rails\", \"db:migrate\", \"RAILS_ENV=prd\"]}]}"
 
 
 
