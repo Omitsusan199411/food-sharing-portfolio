@@ -17,7 +17,6 @@ executors:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           TZ: "Japan"
-          TIMEOUT: "20m"
       - image: circleci/mysql:5.7
        #CI/CD上で使用するrubyのイメージを作成
         environment:
