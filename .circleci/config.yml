@@ -129,7 +129,7 @@ jobs:
           name: less install
           command: |
             sudo apt-get install -y less
-    #実行可能なコマンド集合
+      #実行可能なコマンド集合
       - aws-ecr/build-and-push-image:
       # Dockerfileのイメージをビルドし、ECRへのプッシュ(orbs「circleci/aws-ecr」の中にある既存の処理に値を置換)
           account-url: AWS_ECR_ACCOUNT_URL
@@ -149,14 +149,6 @@ jobs:
           service-name: "food-sharing-service-serv"
           #タスク定義内で定義したコンテナURLの更新
           container-image-name-updates: "container=food-sharing-service-nginx-rails-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/food-share-app-ecs-repogitory:${CIRCLE_SHA1}"
-      # - run:
-      #     name: 'rails db_migrate RAILS_ENV=prd'
-      #     command: |
-      #       aws ecs run-task \
-      #       --cluster "food-sharing-service-cluster" \
-      #       --task-definition "food-sharing-service-task-definition" \
-      #       --network-configuration "awsvpcConfiguration={subnets=["subnet-0e539061905f8ef47", "subnet-03dd2ef4f961c7fd2"],securityGroups=["sg-0fc6437d698cfb6e0", "sg-069a816ed1ba54d54"],assignPublicIp=DISABLED}" \
-      #       --overrides '{"containerOverrides": [{"name":"food-sharing-service-nginx-rails-container","command":["bundle", "exec", "rails", "db:migrate", "RAILS_ENV=prd"]}]}'
       - aws-ecs/run-task:
       # タスクの立ち上げ
           cluster: "food-sharing-service-cluster"
@@ -169,9 +161,7 @@ jobs:
           subnet-ids: subnet-0e539061905f8ef47, subnet-03dd2ef4f961c7fd2
           security-group-ids: sg-0fc6437d698cfb6e0, sg-069a816ed1ba54d54
           # 記述したタスク定義（food-sharing-service-task-definition）に記述したコマンド（rails db:migrate）をJSON形式で渡す
-          overrides: "{\"containerOverrides\":[{\"name\": \"food-sharing-service-nginx-rails-container\",\"command\": [\"bundle\", \"exec\", \"rails\", \"db:migrate\", \"RAILS_ENV=prd\"]}]}"
-
-
+          overrides: "{\"containerOverrides\":[{\"name\": \"food-sharing-service-nginx-rails-container\",\"command\": [\"bundle\", \"exec\", \"rails\", \"db:migrate\", \"RAILS_ENV=prd\"], \"timeout\": \"20m\"}]}"
 
 
 
