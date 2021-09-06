@@ -23,7 +23,6 @@ RUN apt-get update -y && \
     bash \
     build-essential \
     sudo \
-    less \
     perl \
     curl \
     wget \
