@@ -2,7 +2,7 @@
   "containerOverrides":[
     {
       "name": "food-sharing-service-nginx-rails-container",
-      "command": ["bundle exec rails db:migrate RAILS_ENV=prd"]
+      "command": ["bundle", "exec", "rails", "db:migrate", "RAILS_ENV=prd"]
     }
   ]
 }
