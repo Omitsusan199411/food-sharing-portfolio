@@ -177,8 +177,8 @@ jobs:
               --cluster food-sharing-service-cluster \
               --task-definition food-sharing-service-task-definition \
               --count 1 \
-              --launch-type FARGATE
-              --network-configuration "awsvpcConfiguration={subnets=[subnet-0e539061905f8ef47,subnet-03dd2ef4f961c7fd2,subnet-00192102ec4e6e9b8],securityGroups=[sg-0fc6437d698cfb6e0,sg-069a816ed1ba54d54]}"
+              --launch-type FARGATE \
+              --network-configuration "awsvpcConfiguration={subnets=[subnet-0e539061905f8ef47,subnet-03dd2ef4f961c7fd2,subnet-00192102ec4e6e9b8],securityGroups=[sg-0fc6437d698cfb6e0,sg-069a816ed1ba54d54]}" \
               --overrides file://docker/prd/app/db_migrate/run_task_db_migrate_prd.json
 
 
