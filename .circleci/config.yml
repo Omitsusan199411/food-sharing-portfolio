@@ -149,6 +149,16 @@ jobs:
           service-name: "food-sharing-service-serv"
           #タスク定義内で定義したコンテナURLの更新
           container-image-name-updates: "container=food-sharing-service-nginx-rails-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/food-share-app-ecs-repogitory:${CIRCLE_SHA1}"
+      - run:
+          name: "prd db migrate"
+          command: |
+            aws ecs run-task --region $AWS_REGION \
+              --cluster food-sharing-service-cluster \
+              --task-definition food-sharing-service-task-definition \
+              --count 1 \
+              --launch-type FARGATE \
+              --overrides file://~/local_docker_rails/food_sharing_service/docker/prd/app/db_migrate/run_task_db_migrate_prd.json \
+              --network-configuration "awsvpcConfiguration={subnets=[subnet-0e539061905f8ef47,subnet-03dd2ef4f961c7fd2,subnet-00192102ec4e6e9b8],securityGroups=[sg-0fc6437d698cfb6e0,sg-069a816ed1ba54d54]}"
       # - aws-ecs/run-task:
       # # タスクの立ち上げ
       #     cluster: "food-sharing-service-cluster"
@@ -162,24 +172,24 @@ jobs:
       #     security-group-ids: sg-0fc6437d698cfb6e0,sg-069a816ed1ba54d54
       #     # 記述したタスク定義（food-sharing-service-task-definition）に記述したコマンド（rails db:migrate）をJSON形式で渡す
       #     overrides: "{\"containerOverrides\":[{\"name\": \"food-sharing-service-nginx-rails-container\",\"command\": [\"bundle\", \"exec\", \"rails\", \"db:migrate\", \"RAILS_ENV=prd\"]}]}"
-  prd_db_migrate:
-    working_directory: /var/app/app
-    executor: defalut
-    steps:
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_REGION
-      - run:
-          name: "prd db migrate"
-          command: |
-            aws ecs run-task --region $AWS_REGION \
-              --cluster food-sharing-service-cluster \
-              --task-definition food-sharing-service-task-definition \
-              --count 1 \
-              --launch-type FARGATE \
-              --overrides file://docker/prd/app/db_migrate/run_task_db_migrate_prd.json.rb \
-              --network-configuration "awsvpcConfiguration={subnets=[subnet-0e539061905f8ef47,subnet-03dd2ef4f961c7fd2,subnet-00192102ec4e6e9b8],securityGroups=[sg-0fc6437d698cfb6e0,sg-069a816ed1ba54d54]}"
+  # prd_db_migrate:
+  #   working_directory: ~/local_docker_rails/food_sharing_service
+  #   executor: defalut
+  #   steps:
+  #     - aws-cli/setup:
+  #         aws-access-key-id: AWS_ACCESS_KEY_ID
+  #         aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+  #         aws-region: AWS_REGION
+  #     - run:
+  #         name: "prd db migrate"
+  #         command: |
+  #           aws ecs run-task --region $AWS_REGION \
+  #             --cluster food-sharing-service-cluster \
+  #             --task-definition food-sharing-service-task-definition \
+  #             --count 1 \
+  #             --launch-type FARGATE \
+  #             --overrides file://var/www/app/docker/prd/app/db_migrate/run_task_db_migrate_prd.json\
+  #             --network-configuration "awsvpcConfiguration={subnets=[subnet-0e539061905f8ef47,subnet-03dd2ef4f961c7fd2,subnet-00192102ec4e6e9b8],securityGroups=[sg-0fc6437d698cfb6e0,sg-069a816ed1ba54d54]}"
 
 
 
@@ -196,6 +206,6 @@ workflows:
               only:
                 - master
                 - circleci
-      - prd_db_migrate:
-          requires:
-            - deploy_app_prd
+      # - prd_db_migrate:
+      #     requires:
+      #       - deploy_app_prd
