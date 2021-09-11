@@ -145,7 +145,7 @@ jobs:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義
           cluster-name: "food-sharing-service-cluster"
-          family: "food-sharing-service-task-definition"
+          family: "arn:aws:ecs:${AWS_REGION}:${AWS_ACCOUNT_ID}:task-definition/food-sharing-service-task-definition"
           service-name: "food-sharing-service-serv"
           #タスク定義内で定義したコンテナURLの更新
           container-image-name-updates: "container=food-sharing-service-nginx-rails-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/food-share-app-ecs-repogitory:${CIRCLE_SHA1}"
@@ -154,9 +154,10 @@ jobs:
           command: |
             aws ecs run-task --region $AWS_REGION \
               --cluster food-sharing-service-cluster \
-              --task-definition food-sharing-service-task-definition \
+              --task-definition "arn:aws:ecs:${AWS_REGION}:${AWS_ACCOUNT_ID}:task-definition/food-sharing-service-task-definition" \
               --count 1 \
               --launch-type FARGATE \
+              --enable-execute-command \
               --overrides file://~/local_docker_rails/food_sharing_service/docker/prd/app/db_migrate/run_task_db_migrate_prd.json \
               --network-configuration "awsvpcConfiguration={subnets=[subnet-0e539061905f8ef47],securityGroups=[sg-0fc6437d698cfb6e0]}"
           no_output_timeout: 10m
