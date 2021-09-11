@@ -157,7 +157,6 @@ jobs:
               --task-definition "arn:aws:ecs:${AWS_REGION}:${AWS_ACCOUNT_ID}:task-definition/food-sharing-service-task-definition" \
               --count 1 \
               --launch-type FARGATE \
-              --enable-execute-command \
               --overrides file://~/local_docker_rails/food_sharing_service/docker/prd/app/db_migrate/run_task_db_migrate_prd.json \
               --network-configuration "awsvpcConfiguration={subnets=[subnet-0e539061905f8ef47],securityGroups=[sg-0fc6437d698cfb6e0]}"
           no_output_timeout: 10m
