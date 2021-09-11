@@ -145,7 +145,7 @@ jobs:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
           # ECSのタスク定義
           cluster-name: "food-sharing-service-cluster"
-          family: "arn:aws:ecs:${AWS_REGION}:${AWS_ACCOUNT_ID}:task-definition/food-sharing-service-task-definition"
+          family: food-sharing-service-task-definition"
           service-name: "food-sharing-service-serv"
           #タスク定義内で定義したコンテナURLの更新
           container-image-name-updates: "container=food-sharing-service-nginx-rails-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/food-share-app-ecs-repogitory:${CIRCLE_SHA1}"
