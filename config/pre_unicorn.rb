@@ -1,12 +1,17 @@
-
-app_path = File.expand_path('..', __dir__)
+# 全てコンテナ内に適用されるもの（ローカルPCではない）
+# __FILE__は現在実行中のソースファイルファイル名（ここではpre_unicorn.rbのこと）を基点にして、第一引数のパスを探す。第二引数の相対パスで返す。なお、supervisorからpre_unicorn.rbにつながっている
+# File.expand_pathで相対パスを絶対パスに変換する。
+# app_path = /var/www/app
+app_path = File.expand_path('../../', __FILE__)
 
 worker_processes 2
 
 working_directory app_path
 
+# listen = /var/www/app/root/tmp/unicorn.sock
 listen File.expand_path('/root/tmp/unicorn.sock', app_path)
 
+# listen = /var/www/app/root/tmp/unicorn.pid
 pid File.expand_path('/root/tmp/unicorn.pid', app_path)
 
 
