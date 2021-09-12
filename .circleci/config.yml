@@ -149,20 +149,6 @@ jobs:
           service-name: "food-sharing-service-serv"
           #タスク定義内で定義したコンテナURLの更新
           container-image-name-updates: "container=food-sharing-service-nginx-rails-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/food-share-app-ecs-repogitory:${CIRCLE_SHA1}"
-      - aws-ecs/run-task:
-      # タスクの立ち上げ
-          cluster: "food-sharing-service-cluster"
-          task-definition: "food-sharing-service-task-definition"
-          #クラスターに配置する指定されたタスクのインスタンス化の数
-          count: 1
-          #タスクを実行するタイプ（EC2 or Fargate）
-          launch-type: FARGATE
-          awsvpc: true
-          subnet-ids: subnet-0e539061905f8ef47
-          security-group-ids: sg-0fc6437d698cfb6e0
-          # 記述したタスク定義（food-sharing-service-task-definition）に記述したコマンド（rails db:migrate）をJSON形式で渡す
-          # overrides: "{\"containerOverrides\":[{\"name\": \"food-sharing-service-nginx-rails-container\",\"command\": [\"bundle\", \"exec\", \"rails\", \"db:migrate\", \"RAILS_ENV=prd\"]}]}"
-
 
 
 workflows:
