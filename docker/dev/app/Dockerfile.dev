@@ -1,5 +1,6 @@
 FROM ruby:2.6.6
 ENV APP_ROOT /var/www/app
+RUN mkdir /var/www/app
 WORKDIR $APP_ROOT
 
 RUN mkdir -p /root/tmp
@@ -43,17 +44,12 @@ RUN localedef -f UTF-8 -i en_US en_US.UTF-8
 RUN cp -p /etc/localtime /etc/localtime.UTC \
     && cp -p /usr/share/zoneinfo/Japan /etc/localtime
 
-COPY ./.env $APP_ROOT/.env
-ADD ./Gemfile $APP_ROOT/Gemfile
-ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
-# # copy app
-# RUN mkdir -p $APP_ROOT
-# # docker buildコマンドを実行した時に滞在しているディレクトリが基準（ . ）となる。COPYは単純にローカルファイルやディレクトリをコピーするのみ
-# COPY . $APP_ROOT
 
+COPY ./Gemfile $APP_ROOT/Gemfile
+COPY ./Gemfile.lock $APP_ROOT/Gemfile.lock
 # bundle install
-RUN gem install bundler -v 1.17.2
-RUN bundle install --path vendor/bundle
+RUN gem install bundler -v 1.17.3 && bundle install
+COPY . $APP_ROOT
 
 # yarn install Preparation
 RUN npm install n -g
