@@ -39,8 +39,9 @@ public/uploads/*
 /.env
 
 #dockerフォルダ関係
-/docker/prd/app/.env.example
+/docker/dev/app/.env.example
 /docker/prd/mysql/db_data
+/docker/dev/mysql/db_data
 
 #carrierwaveローカル環境画像保存箇所
 /public/uploads*

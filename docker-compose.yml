@@ -4,11 +4,11 @@ services:
     container_name: app-rails
     build:
       context: .
-      dockerfile: ./docker/prd/app/Dockerfile
+      dockerfile: ./docker/dev/app/Dockerfile.dev
     ports:
       - '80:80'
     volumes:
-      - ~/git/github/food_share_app:/var/www/app/
+      - ~/git/github/food-sharing-portfolio:/var/www/app/
     tty: true
     depends_on:
       - db
@@ -16,7 +16,7 @@ services:
     container_name: mysql-57
     build: 
       context: .
-      dockerfile: ./docker/prd/mysql/Dockerfile
+      dockerfile: ./docker/dev/mysql/Dockerfile
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - '3308:3306'
@@ -27,5 +27,4 @@ services:
       MYSQL_HOST: $MYSQL_DOCKER_HOST
       TZ: "Asia/Tokyo"
     volumes:
-      - ./docker/prd/mysql/db_data:/var/lib/mysql
-      - ./docker/prd/mysql/mysql.cnf:/etc/mysql/mysql.cnf
+      - ./docker/dev/mysql/db_data:/var/lib/mysql

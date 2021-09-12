@@ -1,0 +1,72 @@
+FROM ruby:2.6.6
+ENV APP_ROOT /var/www/app
+WORKDIR $APP_ROOT
+
+RUN mkdir -p /root/tmp
+
+RUN cp -p /etc/localtime /etc/localtime.UTC \
+    && cp -p /usr/share/zoneinfo/Japan /etc/localtime
+RUN curl https://deb.nodesource.com/setup_12.x | bash
+RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+RUN touch /tmp/mysql.sock
+RUN chmod 700 /tmp/mysql.sock
+RUN ./docker/dev/mysql/mysql.cnf /etc/mysql/mysql.cnf
+
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+    bash \
+    build-essential \
+    sudo \
+    curl \
+    git \
+    default-mysql-client \
+    locales \
+    sudo \
+    libpq-dev \
+    nodejs \
+    vim \
+    nginx \
+    supervisor \
+    nodejs \
+    yarn \
+    zlib1g-dev && \
+    apt-get clean -y && \
+    rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+
+# setting locales
+RUN localedef -f UTF-8 -i en_US en_US.UTF-8
+
+# Setup UTC+9
+RUN cp -p /etc/localtime /etc/localtime.UTC \
+    && cp -p /usr/share/zoneinfo/Japan /etc/localtime
+
+COPY ./.env $APP_ROOT
+# # copy app
+# RUN mkdir -p $APP_ROOT
+# # docker buildコマンドを実行した時に滞在しているディレクトリが基準（ . ）となる。COPYは単純にローカルファイルやディレクトリをコピーするのみ
+# COPY . $APP_ROOT
+
+# bundle install
+RUN gem install bundler
+RUN bundle install --path vendor/bundle
+
+# yarn install Preparation
+RUN npm install n -g
+RUN n 12.18.4
+
+##nginx
+RUN groupadd nginx
+RUN useradd -g nginx nginx
+# 圧縮ファイルを解凍してコピーしたい時はADDを使う
+ADD ./docker/dev/app/nginx/nginx.conf /etc/nginx/nginx.conf
+ADD ./docker/dev/app/nginx/dev.defalut.conf /etc/nginx/conf.d/defalut.conf
+
+##supervisor
+RUN mkdir -p /var/log/supervisor
+ADD ./docker/dev/app/supervisor/dev.app.conf /etc/supervisor/conf.d/app.conf
+
+EXPOSE 80
+CMD ["/usr/bin/supervisord"]

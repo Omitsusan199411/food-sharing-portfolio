@@ -8,5 +8,5 @@ RUN apt-get update && \
   locale-gen ja_JP.UTF-8
 
 ENV LC_ALL ja_JP.UTF-8
-ADD ./docker/prd/mysql/mysql.cnf /etc/mysql/mysql.cnf
+ADD ./docker/dev/mysql/mysql.cnf /etc/mysql/mysql.cnf
 EXPOSE 3306
