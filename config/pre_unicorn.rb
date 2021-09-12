@@ -1,6 +1,8 @@
 # 全てコンテナ内に適用されるもの（ローカルPCではない）
-# __FILE__は現在実行中のソースファイルファイル名（ここではpre_unicorn.rbのこと）を基点にして、第一引数のパスを探す。第二引数の相対パスで返す。なお、supervisorからpre_unicorn.rbにつながっている
-# File.expand_pathで相対パスを絶対パスに変換する。
+# __FILE__は現在実行中のソースファイルファイル名（ここではpre_unicorn.rbのこと）のこと。
+# File.expand_pathにより、第二引数（__FILE__）を基点にして、第一引数のパスを探し、第二引数の相対パスとして返す。なお、supervisorからpre_unicorn.rbにつながっている。
+# File.expand_pathは、さらに得た相対パスを絶対パスに変換する。
+# ../../はpre_unicorn.rbから２階層上のパスを指定している。
 # app_path = /var/www/app
 app_path = File.expand_path('../../', __FILE__)
 
