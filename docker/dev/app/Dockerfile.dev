@@ -44,8 +44,8 @@ RUN cp -p /etc/localtime /etc/localtime.UTC \
     && cp -p /usr/share/zoneinfo/Japan /etc/localtime
 
 
-COPY ./Gemfile $APP_ROOT/Gemfile
-COPY ./Gemfile.lock $APP_ROOT/Gemfile.lock
+ADD ./Gemfile $APP_ROOT/Gemfile
+ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 # bundle install
 RUN gem install bundler -v 1.17.3 && bundle install
 COPY . $APP_ROOT
