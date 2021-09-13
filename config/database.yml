@@ -13,6 +13,7 @@ development:
   username: <%= ENV['MYSQL_USER'] %>
   password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
   host: 127.0.0.1
+  port: 3306
 
 test:
   <<: *default

@@ -11,7 +11,7 @@ RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 RUN touch /tmp/mysql.sock
-RUN chmod 700 /tmp/mysql.sock
+RUN chmod 777 /tmp/mysql.sock
 ADD ./docker/dev/mysql/mysql.cnf /etc/mysql/mysql.cnf
 
 RUN apt-get update -y && \
