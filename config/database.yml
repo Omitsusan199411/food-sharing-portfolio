@@ -12,6 +12,7 @@ development:
   database: food_share_app_database_dev
   username: <%= ENV['MYSQL_USER'] %>
   password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
+  #docker-compose.ymlのサービス名もしくはコンテナ名を指定する
   host: db
   port: 3306
 

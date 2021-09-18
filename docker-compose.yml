@@ -10,6 +10,7 @@ services:
     env_file: .env
     ports:
       - '80:80'
+    # バインドマウントにより、food-sharing-portfolioのコードをコンテナ内にする
     volumes:
       - ~/git/github/food-sharing-portfolio:/var/www/app/
     tty: true
@@ -21,8 +22,9 @@ services:
       context: .
       dockerfile: ./docker/dev/mysql/Dockerfile.dev
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    # ports番号の前者はホストからのアクセスポート、後者はdockerネットワーク内（appコンテナと同じネットワーク）でのアクセスポート
     ports:
-      - '3306:3306'
+      - '3308:3306'
     environment:
       MYSQL_DATABASE: food_share_app_database_dev
       MYSQL_USER: user

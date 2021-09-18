@@ -48,7 +48,6 @@ ADD ./Gemfile $APP_ROOT/Gemfile
 ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 # bundle install
 RUN gem install bundler -v 1.17.3 && bundle install
-COPY . $APP_ROOT
 
 # yarn install Preparation
 RUN npm install n -g
