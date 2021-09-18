@@ -139,7 +139,7 @@ jobs:
           #作成したECRのリポジトリ名
           repo: food-share-app-ecs-repogitory
           #buildしたいDockerfileを指定
-          dockerfile: docker/prd/app/Dockerfile
+          dockerfile: docker/prd/app/Dockerfile.prd
           tag: "${CIRCLE_SHA1}"
       - aws-ecs/update-service:
       # 新しいDockerイメージを既存のECSサービスにデプロイする(orbs「circleci/aws-ecs」の中の既存の処理に値を置換）
