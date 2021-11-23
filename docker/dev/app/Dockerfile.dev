@@ -4,8 +4,6 @@ WORKDIR $APP_ROOT
 
 RUN mkdir -p /root/tmp
 
-RUN cp -p /etc/localtime /etc/localtime.UTC \
-    && cp -p /usr/share/zoneinfo/Japan /etc/localtime
 RUN curl https://deb.nodesource.com/setup_12.x | bash
 RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
@@ -14,6 +12,8 @@ RUN touch /tmp/mysql.sock
 RUN chmod 777 /tmp/mysql.sock
 ADD ./docker/dev/mysql/mysql.cnf /etc/mysql/mysql.cnf
 
+# dockerfileの推奨はapt-getで実行ファイルをインストール
+# apt-get updateとapt-get upgrade、apt-get install -y は&&で繋げないとキャッシュ問題などでエラーが出る。「RUN apt-get update && apt-get install -y」が推奨
 RUN apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -34,6 +34,7 @@ RUN apt-get update -y && \
     yarn \
     zlib1g-dev && \
     apt-get clean -y && \
+    # apt-getでインストールした実行ファイルのキャッシュを削除して、コンテナを軽くする
     rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 # setting locales
@@ -42,7 +43,6 @@ RUN localedef -f UTF-8 -i en_US en_US.UTF-8
 # Setup UTC+9
 RUN cp -p /etc/localtime /etc/localtime.UTC \
     && cp -p /usr/share/zoneinfo/Japan /etc/localtime
-
 
 ADD ./Gemfile $APP_ROOT/Gemfile
 ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock

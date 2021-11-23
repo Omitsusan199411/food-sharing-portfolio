@@ -1,4 +1,4 @@
-# 全てコンテナ内に適用されるもの（ローカルPCではない）
+# 全てコンテナ内のディレクトリを表す（ローカルPCではない）
 # __FILE__は現在実行中のソースファイルファイル名（ここではpre_unicorn.rbのこと）のこと。
 # File.expand_pathにより、第二引数（__FILE__）を基点にして、第一引数のパスを探し、第二引数の相対パスとして返す。なお、supervisorからpre_unicorn.rbにつながっている。
 # File.expand_pathは、さらに得た相対パスを絶対パスに変換する。
@@ -16,10 +16,9 @@ listen File.expand_path('/root/tmp/unicorn.sock', app_path)
 # listen = /var/www/app/root/tmp/unicorn.pid
 pid File.expand_path('/root/tmp/unicorn.pid', app_path)
 
-
-stderr_path = "#{app_path}/log/unicorn.stderr.log"
-
-stdout_path = "#{app_path}/log/unicorn.stdout.log"
+# unicornのエラログー・出力ログを標準エラー・標準出力に吐き出す
+stderr_path = $stderr
+stdout_path = $stdout
 
 timeout 60
 

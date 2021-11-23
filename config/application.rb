@@ -10,7 +10,6 @@ module Foodshareapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     # config.load_defaults 5.2
-
     # 本番環境でapp以下のフォルダを自動で読み込むために
     # config.eager_load_paths += Dir["#{config.root}/app/validators"]
     

@@ -9,7 +9,7 @@ services:
       RAILS_ENV: development
     env_file: .env
     ports:
-      - '80:80'
+      - '8080:80'
     # バインドマウントにより、food-sharing-portfolioのコードをコンテナ内にする
     volumes:
       - ~/git/github/food-sharing-portfolio:/var/www/app/

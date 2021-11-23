@@ -13,7 +13,8 @@ RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 
-# Setup UTC+9
+# dockerfileの推奨はapt-getで実行ファイルをインストール
+# apt-get updateとapt-get upgrade、apt-get install -y は&&で繋げないとキャッシュ問題などでエラーが出る。「RUN apt-get update && apt-get install -y」が推奨
 RUN apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -45,6 +46,7 @@ RUN apt-get update -y && \
     yarn \
     zlib1g-dev && \
     apt-get clean -y && \
+    # apt-getでインストールした実行ファイルのキャッシュを削除して、コンテナを軽くする
     rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 
@@ -74,21 +76,34 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "a
 RUN unzip -n awscliv2.zip && sudo ./aws/install
 RUN rm awscliv2.zip
 
-##nginx
+#nginx
+#nginxのグループを作成
 RUN groupadd nginx
+#nginxのユーザーを作成
 RUN useradd -g nginx nginx
 # 圧縮ファイルを解凍してコピーしたい時はADDを使う
+# nginxのデフォルト設定ファイルのパスは/etc/nginx/nginx.conf
 ADD ./docker/prd/app/nginx/nginx.conf /etc/nginx/nginx.conf
+# 追加のnginx設定ファイルのパスは/etc/nginx/conf.d/defalut.conf/以下に配置すること
 ADD ./docker/prd/app/nginx/prd.defalut.conf /etc/nginx/conf.d/defalut.conf
 
-# link logs
-RUN ln -sf /dev/stdout /var/log/nginx/access.log
-RUN ln -sf /dev/stderr /var/log/nginx/error.log
-RUN ln -sf /dev/stdout /var/www/app/log/delayed_job.log
+# nginxのログを標準出力、標準エラーの特殊ファイルに出力するための処理
+# （例）/var/log/nginx/access.logファイルは、/dev/stdoutへとシンボリックリンクされる（access.log -> /dev/stdout）
+# RUN ln -sf /dev/stdout /var/log/nginx/prd.access.log
+# RUN ln -sf /dev/stderr /var/log/nginx/prd.error.log
+# RUN ln -sf /dev/stdout /var/www/app/log/delayed_job.log
+# # nginxそのもののエラーログ
+# RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
+# unicornのログを標準出力、標準エラーの特殊ファイルに出力するための処理
+# 
+RUN ln -sf /dev/stdout /
+RUN ln -sf /dev/stderr /
 
 ##supervisor
 RUN mkdir -p /var/log/supervisor
 ADD ./docker/prd/app/supervisor/app.conf /etc/supervisor/conf.d/app.conf
 
 EXPOSE 80
+# exec形式で実行
 CMD ["/usr/bin/supervisord"]
