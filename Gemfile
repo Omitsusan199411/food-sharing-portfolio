@@ -47,6 +47,7 @@ group :development, :test, :production, :prd do
   gem 'devise'
   gem 'rails-i18n', '~> 5.1'
   gem 'enum_help'
+  # 環境変数を.envファイルで管理する
   gem 'dotenv-rails'
   gem 'active_model_serializers'
   gem 'omniauth'
