@@ -10,11 +10,11 @@ worker_processes 2
 
 working_directory app_path
 
-# listen = /var/www/app/tmp/unicorn.sock
-listen File.expand_path('/tmp/unicorn.sock', app_path)
+# listen = /var/www/app/tmp/sockets/unicorn.sock
+listen File.expand_path('../../tmp/sockets/unicorn.sock', __FILE__)
 
-# listen = /var/www/app/root/tmp/unicorn.pid
-pid File.expand_path('/tmp/unicorn.pid', app_path)
+# listen = /var/www/app//tmp/sockets/unicorn.pid
+pid File.expand_path('../../tmp/sockets/unicorn.pid', __FILE__)
 
 # unicornのエラログー・出力ログを標準エラー・標準出力に吐き出す
 stderr_path = $stderr
