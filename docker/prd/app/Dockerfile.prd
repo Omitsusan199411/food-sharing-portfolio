@@ -2,6 +2,7 @@ FROM ruby:2.6.6
 ENV LANG C.UTF-8
 ENV ENTRYKIT_VERSION 0.4.0
 ENV QMAKE=/usr/lib/qt5/bin/qmake
+RUN mkdir -p /var/www/app
 ENV APP_ROOT /var/www/app
 
 RUN chmod -R 777 /var/www/app/tmp/sockets
