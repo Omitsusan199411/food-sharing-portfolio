@@ -2,11 +2,10 @@ FROM ruby:2.6.6
 ENV LANG C.UTF-8
 ENV ENTRYKIT_VERSION 0.4.0
 ENV QMAKE=/usr/lib/qt5/bin/qmake
+RUN mkdir -p　/var/www/app
 ENV APP_ROOT /var/www/app
 
-
-RUN mkdir -p /root/tmp
-RUN chmod -R 777 /root/tmp
+RUN chmod -R 777 /var/www/app/tmp/sockets
 RUN cp -p /etc/localtime /etc/localtime.UTC \
     && cp -p /usr/share/zoneinfo/Japan /etc/localtime
 RUN curl https://deb.nodesource.com/setup_12.x | bash
