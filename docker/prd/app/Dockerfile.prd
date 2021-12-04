@@ -4,8 +4,12 @@ ENV ENTRYKIT_VERSION 0.4.0
 ENV QMAKE=/usr/lib/qt5/bin/qmake
 ENV APP_ROOT /var/www/app
 
+# unicorn.rbのソケットとプロセスIDを格納するフォルダを権限付きで作成する。
 RUN mkdir -p /var/www/app/tmp/sockets
-RUN chmod -R 777 /var/www/app/tmp/sockets
+RUN chmod -R 755 /var/www/app/tmp/sockets
+RUN mkdir -p /var/www/app/tmp/pids
+RUN chmod -R 755 /var/www/app/tmp/pids
+
 RUN cp -p /etc/localtime /etc/localtime.UTC \
     && cp -p /usr/share/zoneinfo/Japan /etc/localtime
 RUN curl https://deb.nodesource.com/setup_12.x | bash
