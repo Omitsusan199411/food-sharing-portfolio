@@ -5,13 +5,11 @@ worker_processes 2
 
 working_directory app_path
 
-listen File.expand_path('/root/tmp/unicorn.sock', app_path)
-
-pid File.expand_path('/root/tmp/unicorn.pid', app_path)
+listen '/var/www/app/tmp/sockets/unicorn.sock'
+pid '/var/www/app/tmp/pids/unicorn.pid'
 
 
 stderr_path = "#{app_path}/log/unicorn.stderr.log"
-
 stdout_path = "#{app_path}/log/unicorn.stdout.log"
 
 timeout 60

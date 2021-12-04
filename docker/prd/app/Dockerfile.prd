@@ -4,12 +4,6 @@ ENV ENTRYKIT_VERSION 0.4.0
 ENV QMAKE=/usr/lib/qt5/bin/qmake
 ENV APP_ROOT /var/www/app
 
-# unicorn.rbのソケットとプロセスIDを格納するフォルダを権限付きで作成する。
-RUN mkdir -p /var/www/app/tmp/sockets
-RUN chmod -R 755 /var/www/app/tmp/sockets
-RUN mkdir -p /var/www/app/tmp/pids
-RUN chmod -R 755 /var/www/app/tmp/pids
-
 RUN cp -p /etc/localtime /etc/localtime.UTC \
     && cp -p /usr/share/zoneinfo/Japan /etc/localtime
 RUN curl https://deb.nodesource.com/setup_12.x | bash
@@ -67,6 +61,12 @@ WORKDIR $APP_ROOT
 # docker buildコマンドを実行した時に滞在しているディレクトリが基準（ . ）となる。COPYは単純にローカルファイルやディレクトリをコピーするのみ
 COPY . $APP_ROOT
 
+# unicorn.rbのソケットとプロセスIDを格納するフォルダを権限付きで作成する。
+RUN mkdir -p /var/www/app/tmp/sockets
+RUN chmod -R 755 /var/www/app/tmp/sockets
+RUN mkdir -p /var/www/app/tmp/pids
+RUN chmod -R 755 /var/www/app/tmp/pids
+
 # bundle install
 RUN bundle install --path vendor/bundle
 RUN bundle exec rails assets:precompile RAILS_ENV=prd
@@ -86,23 +86,10 @@ RUN groupadd nginx
 #nginxのユーザーを作成
 RUN useradd -g nginx nginx
 # 圧縮ファイルを解凍してコピーしたい時はADDを使う
-# nginxのデフォルト設定ファイルのパスは/etc/nginx/nginx.conf
+# nginxのデフォルト設定ファイルのパスは/etc/nginx/nginx.confであるため、コンテナ上はデフォルトの設定パスに保存すること。
 ADD ./docker/prd/app/nginx/nginx.conf /etc/nginx/nginx.conf
 # 追加のnginx設定ファイルのパスは/etc/nginx/conf.d/defalut.conf/以下に配置すること
 ADD ./docker/prd/app/nginx/prd.defalut.conf /etc/nginx/conf.d/defalut.conf
-
-# nginxのログを標準出力、標準エラーの特殊ファイルに出力するための処理
-# （例）/var/log/nginx/access.logファイルは、/dev/stdoutへとシンボリックリンクされる（access.log -> /dev/stdout）
-# RUN ln -sf /dev/stdout /var/log/nginx/prd.access.log
-# RUN ln -sf /dev/stderr /var/log/nginx/prd.error.log
-# RUN ln -sf /dev/stdout /var/www/app/log/delayed_job.log
-# # nginxそのもののエラーログ
-# RUN ln -sf /dev/stderr /var/log/nginx/error.log
-
-# unicornのログを標準出力、標準エラーの特殊ファイルに出力するための処理
-# 
-RUN ln -sf /dev/stdout /
-RUN ln -sf /dev/stderr /
 
 ##supervisor
 RUN mkdir -p /var/log/supervisor
