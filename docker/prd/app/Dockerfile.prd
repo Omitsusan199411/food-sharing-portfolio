@@ -1,3 +1,4 @@
+# ruby:2.6.6はimage作成の際にapt-getを使用してるのでDebian系のOSを使用していることがわかる（詳しくはdockerhubを参照）
 FROM ruby:2.6.6
 ENV LANG C.UTF-8
 ENV ENTRYKIT_VERSION 0.4.0
@@ -69,6 +70,7 @@ RUN chmod -R 755 /var/www/app/tmp/pids
 
 # bundle install
 RUN bundle install --path vendor/bundle
+# railsの本番環境では自動でコンパイルしてくれないので、assets:precompileさせる必要がある。precompile後のファイルを参照する必要があり、/var/www/app/public/asset配下に作られる
 RUN bundle exec rails assets:precompile RAILS_ENV=prd
 
 # yarn install Preparation

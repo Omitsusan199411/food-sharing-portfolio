@@ -57,6 +57,7 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
+  # プリコンパイル後にコンパイルされた静的ファイルにアルファベットの記号を付与する。ファイル名にハッシュが付く
   config.assets.debug = true
 
   # Suppress logger output for asset requests.

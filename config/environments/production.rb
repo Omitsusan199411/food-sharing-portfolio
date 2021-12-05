@@ -22,12 +22,17 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  # Compress JavaScripts and CSS.
+  # Compress JavaScripts and CSS.(アセットプリコンパイル処理のためにjsファイルとsassファイルを圧縮する)
   config.assets.js_compressor = Uglifier.new(harmony: true)
+  # sass-railsのgemがGemfileにある場合は、自動的にCSSを圧縮に使用されるのでconfig.assets.css_compressorは設定されない
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  # 　trueの場合は、public/assetsの中に必要なファイルが見つからなかった時にapp/assetsなどからファイルから探しに行くコンパイル処理を行う。
+  config.assets.compile = false
+  # プリコンパイル後にコンパイルされた静的ファイルにアルファベットの記号を付与する。ファイル名の末尾にハッシュ値が付く。
+  # コードの内容からハッシュ値を算出しているので、コードが変更されればファイル名が変更されるためブラウザのキャッシュの影響で修正が反映されないなどの問題を防ぐ
+  config.assets.digest = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
