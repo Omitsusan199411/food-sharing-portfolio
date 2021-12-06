@@ -28,8 +28,9 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  # 　trueの場合は、public/assetsの中に必要なファイルが見つからなかった時にapp/assetsなどからファイルから探しに行くコンパイル処理を行う。
-  config.assets.compile = false
+  # trueの場合は、public/assetsの中に必要なファイルが見つからなかった時にapp/assetsなどからファイルから探しに行くコンパイル処理を行う。
+  # app/assetsに静的ファイルを保存している場合は、trueにしないとcssやjsがブラウザに反映されない。
+  config.assets.compile = true
   # プリコンパイル後にコンパイルされた静的ファイルにアルファベットの記号を付与する。ファイル名の末尾にハッシュ値が付く。
   # コードの内容からハッシュ値を算出しているので、コードが変更されればファイル名が変更されるためブラウザのキャッシュの影響で修正が反映されないなどの問題を防ぐ
   config.assets.digest = true
