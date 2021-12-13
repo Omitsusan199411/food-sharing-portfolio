@@ -1,3 +1,4 @@
+// cssのマニュフェストファイルでは、「require_tree .」で同階層のファイルを全て指定してしまうと読み込み順がわからなくなり、エラーの原因に繋がるので@importを使用する
 @import "reset";
 @import "modules/products";
 @import "modules/mixin";

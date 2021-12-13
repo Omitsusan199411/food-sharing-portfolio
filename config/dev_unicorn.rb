@@ -9,8 +9,8 @@ listen '/var/www/app/tmp/sockets/unicorn.sock'
 pid '/var/www/app/tmp/pids/unicorn.pid'
 
 
-stderr_path = "#{app_path}/log/unicorn.stderr.log"
-stdout_path = "#{app_path}/log/unicorn.stdout.log"
+stderr_path = "/var/www/app/log/unicorn.stderr.log"
+stdout_path = "/var/www/app/log/unicorn.stdout.log"
 
 timeout 60
 
