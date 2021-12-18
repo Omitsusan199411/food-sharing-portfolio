@@ -34,7 +34,7 @@ run_once = true
 # フォーク前の処理
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) &&
-    # nicornとActiveRecord（データベース）との接続を切断する。
+    # unicornとActiveRecord（データベース）との接続を切断する。
     ActiveRecord::Base.connection.disconnect!
 
   if run_once

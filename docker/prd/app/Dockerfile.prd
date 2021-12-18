@@ -62,7 +62,7 @@ WORKDIR $APP_ROOT
 # docker buildコマンドを実行した時に滞在しているディレクトリが基準（ . ）となる。COPYは単純にローカルファイルやディレクトリをコピーするのみ
 COPY . $APP_ROOT
 
-# unicorn.rbのソケットとプロセスIDを格納するフォルダを権限付きで作成する。
+# unicorn.rbのソケットとプロセスIDを格納するフォルダを権限付きで作成する。unixドメインソケットで通信するため
 RUN mkdir -p /var/www/app/tmp/sockets
 RUN chmod -R 755 /var/www/app/tmp/sockets
 RUN mkdir -p /var/www/app/tmp/pids
@@ -70,7 +70,7 @@ RUN chmod -R 755 /var/www/app/tmp/pids
 
 # bundle install
 RUN bundle install --path vendor/bundle
-# railsの本番環境では自動でコンパイルしてくれないので、assets:precompileさせる必要がある。precompile後のファイルを参照する必要があり、/var/www/app/public/asset配下に作られる
+# railsの本番環境では自動でコンパイルしてくれないので、assets:precompileさせる必要がある。静的ファイル(css、js、画像)は、precompile後のファイルを参照する必要があり、/var/www/app/public/asset配下に作られる
 RUN bundle exec rails assets:precompile RAILS_ENV=prd
 
 # yarn install Preparation
