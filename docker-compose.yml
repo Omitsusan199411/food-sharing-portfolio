@@ -12,7 +12,8 @@ services:
     # ports番号の後者はdockerネットワーク内でのアクセスポートとなる（関係するのはdbコンテナ）
     ports:
       - '8080:80'
-    # バインドマウントにより、food-sharing-portfolioのコードをコンテナ内にする
+    # バインドマウントにより、github上のfood-sharing-portfolioのコードをコンテナ内にマウントする
+    # バインドする前に手動で~/git/github以下にgithub上のfood-sharing-portfolioのコードをクローンしておく必要がある。クローンしないとローカル上でコードを修正しても変更が反映されないので注意
     volumes:
       - ~/git/github/food-sharing-portfolio:/var/www/app/
     tty: true
