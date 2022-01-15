@@ -12,7 +12,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  # アップロードファイルの保存先(public1ディレクトリ以下に保存、modelは対象のモデル名、mounted_asは対象モデルに保存するカラム名)
+  # アップロードファイルの保存先(public1ディレクトリ以下に保存、modelは対象のモデル名、mounted_asは対象モデルに保存するカラム名（列）)
   def store_dir
     if model.present?
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"

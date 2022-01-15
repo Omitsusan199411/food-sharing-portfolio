@@ -22,7 +22,7 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  # Compress JavaScripts and CSS.(アセットプリコンパイル処理のためにjsファイルとcss(sass)ファイルを圧縮する)
+  # Compress JavaScripts and CSS.(アセットプリコンパイル処理のためにjsファイルとcss(sa ss)ファイルを圧縮する)
   config.assets.js_compressor = Uglifier.new(harmony: true)
   # sass-railsのgemがGemfileにある場合は、自動的にCSSを圧縮に使用されるのでconfig.assets.css_compressorは設定されない
   # config.assets.css_compressor = :sass

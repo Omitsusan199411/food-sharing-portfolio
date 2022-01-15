@@ -4,6 +4,6 @@ require Rails.root.join('config', 'environments', 'production')
 Rails.application.configure do
   # デバック以上のログのみを抽出
   config.log_level = :debug
-  # 標準出力としてアプリケーションのログを出力
+  # 標準出力としてアプリケーションのログを出力。logger.new関数では第一引数にログを保存する場所を指定できる。
   config.logger = Logger.new(STDOUT)
 end

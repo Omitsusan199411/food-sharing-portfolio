@@ -23,7 +23,7 @@ stdout_path = $stdout
 # ワーカープロセスが処理を開始し終了するまでの最大時間。この設定時間を超えるとワーカーは破棄される。
 timeout 60
 
-
+# preload_app trueにより、Unicornの再起動（マスタープロセスの再起動）をダウンタイムなしで行う
 preload_app true
 GC.respond_to?(:copy_on_write_friendly=) && GC.copy_on_write_friendly = true
 
@@ -31,7 +31,7 @@ check_client_connection false
 
 run_once = true
 
-# フォーク前の処理
+# フォーク前（マスタープロセスからワーカープロセスを生成する）の処理
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) &&
     # unicornとActiveRecord（データベース）との接続を切断する。
