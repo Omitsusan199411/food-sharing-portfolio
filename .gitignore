@@ -48,3 +48,6 @@ public/uploads/*
 
 #vendor/bundle
 /vendor/bundle
+
+# terraform
+backend.tf
